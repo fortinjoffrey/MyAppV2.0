@@ -37,5 +37,21 @@ struct CoreDataManager {
         }
     }
     
+    func performBatchDeleteRequest() -> Bool {
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Training.fetchRequest())
+        
+        do {
+            try context.execute(batchDeleteRequest)
+            return true
+            
+        } catch let delErr {
+            print("Failed to perform batch delete request", delErr)
+            return false
+        }
+    }
+    
     
 }
