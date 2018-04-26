@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TrainingsController: UITableViewController, CreateTrainingControllerDelegate {
     func didAddTraining(training: Training) {
@@ -15,12 +16,8 @@ class TrainingsController: UITableViewController, CreateTrainingControllerDelega
         tableView.insertRows(at: [newIndexPath], with: .automatic)
     }
     
-    
-    //    var trainings = ["Jambes", "Epaules", "Pectoraux"]
-    var trainings = [Training(name: "Jambes", date: Date()),
-                     Training(name: "Epaules", date: Date()),
-                     Training(name: "Pecs", date: Date())
-    ]
+    var trainings = [Training]()
+//    ]
     let cellId = "cellId"
     
     override func viewDidLoad() {
@@ -38,6 +35,26 @@ class TrainingsController: UITableViewController, CreateTrainingControllerDelega
         tableView.separatorColor = .red
         
         tableView.register(CustomCell.self, forCellReuseIdentifier: cellId)
+        
+        fetchTrainings()
+        
+    }
+    
+    private func fetchTrainings() {
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<Training>(entityName: "Training")
+        
+        do {
+            let trainings = try context.fetch(fetchRequest)
+            
+            self.trainings = trainings
+            self.tableView.reloadData()
+            
+        } catch let fetchErr {
+            print("Failed to fetch trainings:", fetchErr)
+        }
         
     }
     

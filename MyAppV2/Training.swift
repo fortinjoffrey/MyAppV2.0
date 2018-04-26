@@ -8,8 +8,8 @@
 
 import UIKit
 
-struct Training {
-    let name: String
-    let date: Date
-}
+//struct Training {
+//    let name: String
+//    let date: Date
+//}
 

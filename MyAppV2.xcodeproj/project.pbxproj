@@ -15,6 +15,8 @@
 		DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */; };
 		DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */; };
 		DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */; };
+		DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */; };
+		DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrainingController.swift; sourceTree = "<group>"; };
 		DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsController.swift; sourceTree = "<group>"; };
+		DDBE6CAA2091CD4B00C14200 /* MyAppV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAppV2.xcdatamodel; sourceTree = "<group>"; };
+		DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +73,18 @@
 				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
 				DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */,
 				DDBE6C972091BCE900C14200 /* Info.plist */,
+				DDBE6CAC2091CF0700C14200 /* CoreData */,
 			);
 			path = MyAppV2;
+			sourceTree = "<group>";
+		};
+		DDBE6CAC2091CF0700C14200 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */,
+				DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,7 +161,9 @@
 				DDBE6CA22091BD3800C14200 /* CustomCell.swift in Sources */,
 				DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
+				DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */,
 				DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */,
+				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,
 				DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +352,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DDBE6CAA2091CD4B00C14200 /* MyAppV2.xcdatamodel */,
+			);
+			currentVersion = DDBE6CAA2091CD4B00C14200 /* MyAppV2.xcdatamodel */;
+			path = MyAppV2Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DDBE6C802091BCE700C14200 /* Project object */;
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol CreateTrainingControllerDelegate {
     func didAddTraining(training: Training)
@@ -51,14 +52,24 @@ class CreateTrainingController: UIViewController {
     
     @objc private func handleSave() {
         
-        dismiss(animated: true) {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context)
+        
+        training.setValue(nameTextField.text, forKey: "name")
+        training.setValue(Date(), forKey: "date")
+        
+        do {
+            try context.save()
             
-            guard let name = self.nameTextField.text else { return }
-            
-            let training = Training(name: name, date: Date())
-            
-            self.delegate?.didAddTraining(training: training)
+            dismiss(animated: true) {
+                self.delegate?.didAddTraining(training: training as! Training)
+            }
+        } catch let saveErr {
+            print("Failed to save training:", saveErr)
         }
+        
+        
     }
     
     private func setupUI() {
