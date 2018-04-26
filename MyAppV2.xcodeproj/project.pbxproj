@@ -7,11 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD2573C020920ACF00AA6AB6 /* TrainingsController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */; };
+		DD2573C220920B3100AA6AB6 /* TrainingsController+CreateTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */; };
+		DD2573C520920CC800AA6AB6 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */; };
+		DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */; };
+		DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */; };
 		DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */; };
 		DDBE6C932091BCE900C14200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C922091BCE900C14200 /* Assets.xcassets */; };
 		DDBE6C962091BCE900C14200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */; };
 		DDBE6CA02091BD3300C14200 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6C9F2091BD3300C14200 /* Training.swift */; };
-		DDBE6CA22091BD3800C14200 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA12091BD3800C14200 /* CustomCell.swift */; };
+		DDBE6CA22091BD3800C14200 /* TrainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA12091BD3800C14200 /* TrainingCell.swift */; };
 		DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */; };
 		DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */; };
 		DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */; };
@@ -20,13 +25,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsController+UITableView.swift"; sourceTree = "<group>"; };
+		DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsController+CreateTraining.swift"; sourceTree = "<group>"; };
+		DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
+		DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Helpers.swift"; sourceTree = "<group>"; };
+		DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		DDBE6C882091BCE700C14200 /* MyAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDBE6C922091BCE900C14200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDBE6C952091BCE900C14200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDBE6C972091BCE900C14200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDBE6C9F2091BD3300C14200 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
-		DDBE6CA12091BD3800C14200 /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		DDBE6CA12091BD3800C14200 /* TrainingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingCell.swift; sourceTree = "<group>"; };
 		DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrainingController.swift; sourceTree = "<group>"; };
 		DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsController.swift; sourceTree = "<group>"; };
@@ -45,6 +55,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD2573BD20920A9100AA6AB6 /* Trainings */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */,
+				DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */,
+				DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */,
+				DDBE6CA12091BD3800C14200 /* TrainingCell.swift */,
+			);
+			path = Trainings;
+			sourceTree = "<group>";
+		};
+		DD2573BE20920A9F00AA6AB6 /* CreateTraining */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
+			);
+			path = CreateTraining;
+			sourceTree = "<group>";
+		};
+		DD2573C320920CB000AA6AB6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */,
+				DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */,
+				DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		DDBE6C7F2091BCE700C14200 = {
 			isa = PBXGroup;
 			children = (
@@ -65,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */,
-				DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */,
-				DDBE6CA12091BD3800C14200 /* CustomCell.swift */,
-				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
+				DD2573C320920CB000AA6AB6 /* Helpers */,
+				DD2573BD20920A9100AA6AB6 /* Trainings */,
+				DD2573BE20920A9F00AA6AB6 /* CreateTraining */,
 				DDBE6C9F2091BD3300C14200 /* Training.swift */,
 				DDBE6C922091BCE900C14200 /* Assets.xcassets */,
 				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
@@ -157,12 +196,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD2573C020920ACF00AA6AB6 /* TrainingsController+UITableView.swift in Sources */,
 				DDBE6CA02091BD3300C14200 /* Training.swift in Sources */,
-				DDBE6CA22091BD3800C14200 /* CustomCell.swift in Sources */,
+				DDBE6CA22091BD3800C14200 /* TrainingCell.swift in Sources */,
+				DD2573C220920B3100AA6AB6 /* TrainingsController+CreateTraining.swift in Sources */,
 				DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
 				DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */,
+				DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */,
 				DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */,
+				DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */,
+				DD2573C520920CC800AA6AB6 /* UIViewController+Helpers.swift in Sources */,
 				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,
 				DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */,
 			);

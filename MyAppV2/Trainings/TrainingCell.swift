@@ -1,5 +1,5 @@
 //
-//  CustomCell.swift
+//  TrainingCell.swift
 //  UITableViewSample
 //
 //  Created by Joffrey Fortin on 26/04/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomCell: UITableViewCell {
+class TrainingCell: UITableViewCell {
     
     var training: Training? {
         didSet {

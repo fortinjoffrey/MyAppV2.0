@@ -1,82 +1,12 @@
 //
-//  TableViewController.swift
-//  UITableViewSample
+//  TrainingsController+UITableView.swift
+//  MyAppV2
 //
-//  Created by Joffrey Fortin on 25/04/2018.
+//  Created by Joffrey Fortin on 26/04/2018.
 //  Copyright © 2018 Joffrey Fortin. All rights reserved.
 //
 
 import UIKit
-import CoreData
-
-class TrainingsController: UITableViewController, CreateTrainingControllerDelegate {
-    func didEditTraining(training: Training) {
-        guard let row = trainings.index(of: training) else { return }
-        let reloadIndexPath = IndexPath(row: row, section: 0)
-        tableView.reloadRows(at: [reloadIndexPath], with: .fade)
-    }
-    
-    func didAddTraining(training: Training) {
-        trainings.append(training)
-        let newIndexPath = IndexPath(row: trainings.count - 1, section: 0)
-        tableView.insertRows(at: [newIndexPath], with: .automatic)
-    }
-    
-    var trainings = [Training]()
-//    ]
-    let cellId = "cellId"
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.backgroundColor = .darkBlue
-        
-        navigationItem.title = "Trainings"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddTraining))
-        
-        tableView.tableFooterView = UIView()
-        
-        tableView.separatorStyle = .none
-        tableView.separatorColor = .red
-        
-        tableView.register(CustomCell.self, forCellReuseIdentifier: cellId)
-        
-        fetchTrainings()
-        
-    }
-    
-    private func fetchTrainings() {
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<Training>(entityName: "Training")
-        
-        do {
-            let trainings = try context.fetch(fetchRequest)
-            
-            self.trainings = trainings
-            self.tableView.reloadData()
-            
-        } catch let fetchErr {
-            print("Failed to fetch trainings:", fetchErr)
-        }
-        
-    }
-    
-    @objc private func handleAddTraining() {
-        print("Trying to add a training")
-        
-        let createTrainingController = CreateTrainingController()
-        let navController = UINavigationController(rootViewController: createTrainingController)
-
-        createTrainingController.delegate = self
-        
-        present(navController, animated: true, completion: nil)        
-    }
-    
-    
-}
 
 extension TrainingsController {
     
@@ -98,7 +28,7 @@ extension TrainingsController {
     
     // MARK: Cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TrainingCell
         
         cell.training = trainings[indexPath.row]
         
@@ -165,11 +95,6 @@ extension TrainingsController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    /*
-     
-     */
-    
     
     
 }
-

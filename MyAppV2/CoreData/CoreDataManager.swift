@@ -22,4 +22,20 @@ struct CoreDataManager {
         return container
     }()
     
+    func fetchTrainings() -> [Training]{
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<Training>(entityName: "Training")
+        
+        do {
+            let trainings = try context.fetch(fetchRequest)
+            return trainings
+        } catch let fetchErr {
+            print("Failed to fetch trainings:", fetchErr)
+            return []
+        }
+    }
+    
+    
 }
