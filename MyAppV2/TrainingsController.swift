@@ -8,10 +8,16 @@
 
 import UIKit
 
-class TrainingsController: UITableViewController {
+class TrainingsController: UITableViewController, CreateTrainingControllerDelegate {
+    func didAddTraining(training: Training) {
+        trainings.append(training)
+        let newIndexPath = IndexPath(row: trainings.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
     
-    //    var tableData = ["Jambes", "Epaules", "Pectoraux"]
-    var tableData = [Training(name: "Jambes", date: Date()),
+    
+    //    var trainings = ["Jambes", "Epaules", "Pectoraux"]
+    var trainings = [Training(name: "Jambes", date: Date()),
                      Training(name: "Epaules", date: Date()),
                      Training(name: "Pecs", date: Date())
     ]
@@ -41,6 +47,8 @@ class TrainingsController: UITableViewController {
         let createTrainingController = CreateTrainingController()
         let navController = UINavigationController(rootViewController: createTrainingController)
 
+        createTrainingController.delegate = self
+        
         present(navController, animated: true, completion: nil)        
     }
     
@@ -58,7 +66,7 @@ extension TrainingsController {
     
     // MARK: Rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableData.count
+        return trainings.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,7 +77,7 @@ extension TrainingsController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CustomCell
         
-        cell.training = tableData[indexPath.row]
+        cell.training = trainings[indexPath.row]
         
         return cell
     }
@@ -82,7 +90,7 @@ extension TrainingsController {
         let deleteAction = UIContextualAction(style: .destructive, title: "Supprimer") { (action, view, success) in
             
             
-            self.tableData.remove(at: indexPath.row)
+            self.trainings.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
             success(true)
         }
