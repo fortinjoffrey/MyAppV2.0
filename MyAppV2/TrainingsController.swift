@@ -10,6 +10,12 @@ import UIKit
 import CoreData
 
 class TrainingsController: UITableViewController, CreateTrainingControllerDelegate {
+    func didEditTraining(training: Training) {
+        guard let row = trainings.index(of: training) else { return }
+        let reloadIndexPath = IndexPath(row: row, section: 0)
+        tableView.reloadRows(at: [reloadIndexPath], with: .fade)
+    }
+    
     func didAddTraining(training: Training) {
         trainings.append(training)
         let newIndexPath = IndexPath(row: trainings.count - 1, section: 0)
@@ -106,15 +112,42 @@ extension TrainingsController {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Supprimer") { (action, view, success) in
             
+            let training = self.trainings[indexPath.row]
             
             self.trainings.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .left)
+            
+            let context = CoreDataManager.shared.persistentContainer.viewContext
+            
+            context.delete(training)
+            
+            do {
+                try context.save()
+            } catch let saveErr {
+                print("Failed to delete training:", saveErr)
+            }
             success(true)
         }
         deleteAction.backgroundColor = .red
         
+        let editAction = UIContextualAction(style: .normal, title: "Modifier") { (action, view, success) in
+            
+            let createTrainingController = CreateTrainingController()
+            let navController = UINavigationController(rootViewController: createTrainingController)
+            
+            createTrainingController.delegate = self
+            
+            let training = self.trainings[indexPath.row]
+            
+            createTrainingController.training = training
+            
+            self.present(navController, animated: true, completion: nil)
+            success(true)
+        }
+        editAction.backgroundColor = .darkBlue
         
-        let config = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         
         config.performsFirstActionWithFullSwipe = false
         

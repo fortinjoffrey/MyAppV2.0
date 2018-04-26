@@ -11,11 +11,17 @@ import CoreData
 
 protocol CreateTrainingControllerDelegate {
     func didAddTraining(training: Training)
+    func didEditTraining(training: Training)
 }
 
 class CreateTrainingController: UIViewController {
     
     var delegate: CreateTrainingControllerDelegate?
+    var training: Training? {
+        didSet {
+            nameTextField.text = training?.name
+        }
+    }
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -37,6 +43,7 @@ class CreateTrainingController: UIViewController {
         
         view.backgroundColor = .darkBlue
         
+        
         navigationItem.title = "Créer training"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancel))
         
@@ -52,6 +59,14 @@ class CreateTrainingController: UIViewController {
     
     @objc private func handleSave() {
         
+        if training == nil {
+            createTraining()
+        } else {
+            saveTrainingChanges()
+        }
+    }
+    
+    private func createTraining() {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context)
@@ -68,7 +83,22 @@ class CreateTrainingController: UIViewController {
         } catch let saveErr {
             print("Failed to save training:", saveErr)
         }
+    }
+    
+    private func saveTrainingChanges() {
         
+        let context = CoreDataManager.shared.persistentContainer.viewContext        
+        training?.name = nameTextField.text
+        
+        do {
+            try context.save()
+            dismiss(animated: true, completion: {
+                self.delegate?.didEditTraining(training: self.training!)
+            })
+            
+        } catch let saveErr {
+            print("Failed to save company changes:", saveErr)
+        }
         
     }
     
