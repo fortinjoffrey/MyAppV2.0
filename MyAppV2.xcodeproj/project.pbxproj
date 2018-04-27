@@ -12,6 +12,9 @@
 		DD2573C520920CC800AA6AB6 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */; };
 		DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */; };
 		DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */; };
+		DD2808D520931AD000D14DE3 /* TrainingsAutoUpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */; };
+		DD2808D720931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */; };
+		DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */; };
 		DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */; };
 		DDBE6C932091BCE900C14200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C922091BCE900C14200 /* Assets.xcassets */; };
 		DDBE6C962091BCE900C14200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */; };
@@ -30,6 +33,9 @@
 		DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Helpers.swift"; sourceTree = "<group>"; };
 		DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsAutoUpdateController.swift; sourceTree = "<group>"; };
+		DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsAutoUpdateController+UITableView.swift"; sourceTree = "<group>"; };
+		DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsAutoUpdateController+ControllerDelegate.swift"; sourceTree = "<group>"; };
 		DDBE6C882091BCE700C14200 /* MyAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDBE6C922091BCE900C14200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,9 +64,8 @@
 		DD2573BD20920A9100AA6AB6 /* Trainings */ = {
 			isa = PBXGroup;
 			children = (
-				DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */,
-				DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */,
-				DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */,
+				DD2808D320931AAB00D14DE3 /* FRC */,
+				DD2808DA209325D500D14DE3 /* Old (without FRC) */,
 				DDBE6CA12091BD3800C14200 /* TrainingCell.swift */,
 			);
 			path = Trainings;
@@ -82,6 +87,26 @@
 				DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		DD2808D320931AAB00D14DE3 /* FRC */ = {
+			isa = PBXGroup;
+			children = (
+				DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */,
+				DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */,
+				DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */,
+			);
+			path = FRC;
+			sourceTree = "<group>";
+		};
+		DD2808DA209325D500D14DE3 /* Old (without FRC) */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */,
+				DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */,
+				DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */,
+			);
+			path = "Old (without FRC)";
 			sourceTree = "<group>";
 		};
 		DDBE6C7F2091BCE700C14200 = {
@@ -199,12 +224,15 @@
 				DD2573C020920ACF00AA6AB6 /* TrainingsController+UITableView.swift in Sources */,
 				DDBE6CA02091BD3300C14200 /* Training.swift in Sources */,
 				DDBE6CA22091BD3800C14200 /* TrainingCell.swift in Sources */,
+				DD2808D520931AD000D14DE3 /* TrainingsAutoUpdateController.swift in Sources */,
 				DD2573C220920B3100AA6AB6 /* TrainingsController+CreateTraining.swift in Sources */,
 				DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
 				DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */,
 				DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */,
 				DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */,
+				DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */,
+				DD2808D720931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift in Sources */,
 				DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */,
 				DD2573C520920CC800AA6AB6 /* UIViewController+Helpers.swift in Sources */,
 				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,

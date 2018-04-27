@@ -44,19 +44,11 @@ extension TrainingsController {
             
             let training = self.trainings[indexPath.row]
             
-            self.trainings.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .left)
-            
-            let context = CoreDataManager.shared.persistentContainer.viewContext
-            
-            context.delete(training)
-            
-            do {
-                try context.save()
-            } catch let saveErr {
-                print("Failed to delete training:", saveErr)
+            if CoreDataManager.shared.deleteTraining(training: training) {
+                self.trainings.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .left)
+                success(true)
             }
-            success(true)
         }
         deleteAction.backgroundColor = .red
         
@@ -95,6 +87,4 @@ extension TrainingsController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
-    
 }

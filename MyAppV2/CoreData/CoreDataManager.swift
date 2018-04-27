@@ -24,7 +24,7 @@ struct CoreDataManager {
     
     func fetchTrainings() -> [Training]{
         
-        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let context = persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<Training>(entityName: "Training")
         
@@ -34,6 +34,21 @@ struct CoreDataManager {
         } catch let fetchErr {
             print("Failed to fetch trainings:", fetchErr)
             return []
+        }
+    }
+    
+    func deleteTraining(training: Training) -> Bool {
+        
+        let context = persistentContainer.viewContext
+        
+        context.delete(training)
+        
+        do {
+            try context.save()
+            return true
+        } catch let saveErr {
+            print("Failed to delete training:", saveErr)
+            return false
         }
     }
     
