@@ -57,7 +57,7 @@ extension TrainingsController {
             let createTrainingController = CreateTrainingController()
             let navController = UINavigationController(rootViewController: createTrainingController)
             
-            createTrainingController.delegate = self
+//            createTrainingController.delegate = self
             
             let training = self.trainings[indexPath.row]
             

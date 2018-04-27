@@ -25,5 +25,12 @@ extension UIViewController {
     
     @objc func handleCancelModal() {
         dismiss(animated: true, completion: nil)
-    }    
+    }
+    
+    func showEmptyTrainingNameAlert() {
+        let alertController = UIAlertController(title: "Champ vide", message: "Entrez un nom pour votre séance", preferredStyle: .alert)
+        let alertConfirmedAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(alertConfirmedAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }

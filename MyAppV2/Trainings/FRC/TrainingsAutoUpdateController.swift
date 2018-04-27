@@ -16,7 +16,7 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
     lazy var fetchResultsController: NSFetchedResultsController<Training> = {
         
         let request: NSFetchRequest<Training> = Training.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        request.sortDescriptors = [NSSortDescriptor(key: "endDate", ascending: false)]
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)

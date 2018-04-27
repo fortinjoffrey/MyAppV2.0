@@ -44,7 +44,7 @@ class TrainingsController: UITableViewController {
         let createTrainingController = CreateTrainingController()
         let navController = UINavigationController(rootViewController: createTrainingController)
 
-        createTrainingController.delegate = self
+//        createTrainingController.delegate = self
         
         present(navController, animated: true, completion: nil)        
     }
