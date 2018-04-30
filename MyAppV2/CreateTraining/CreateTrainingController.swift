@@ -171,7 +171,7 @@ class CreateTrainingController: UIViewController {
         guard let name = nameTextField.text else { return }
         
         if name.isEmpty {
-            showEmptyTrainingNameAlert()
+            showEmptyTextFieldAlert(message: "Entrer un nom pour votre séance")
             return
         }
         

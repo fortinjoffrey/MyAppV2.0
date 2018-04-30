@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Exercice" representedClassName="Exercice" syncable="YES" codeGenerationType="class">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="training" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Training" inverseName="exercices" inverseEntity="Training" syncable="YES"/>
+    </entity>
     <entity name="Training" representedClassName="Training" syncable="YES" codeGenerationType="class">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -8,8 +14,10 @@
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tirednessNotation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="exercices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercice" inverseName="training" inverseEntity="Exercice" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Training" positionX="-54" positionY="-9" width="128" height="150"/>
+        <element name="Training" positionX="259" positionY="-9" width="128" height="163"/>
+        <element name="Exercice" positionX="-54" positionY="45" width="128" height="103"/>
     </elements>
 </model>

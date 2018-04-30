@@ -17,6 +17,11 @@
 		DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */; };
 		DD2808DC2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808DB2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift */; };
 		DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808DD209344F700D14DE3 /* NotationPickerView.swift */; };
+		DD586A3F209707F600A81F9E /* ExercicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A3E209707F600A81F9E /* ExercicesController.swift */; };
+		DD586A41209708EC00A81F9E /* ExercicesController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */; };
+		DD586A4420970A5300A81F9E /* CreateExerciceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A4320970A5300A81F9E /* CreateExerciceController.swift */; };
+		DD586A46209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A45209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift */; };
+		DD586A4A2097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */; };
 		DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */; };
 		DDBE6C932091BCE900C14200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C922091BCE900C14200 /* Assets.xcassets */; };
 		DDBE6C962091BCE900C14200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */; };
@@ -40,6 +45,11 @@
 		DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsAutoUpdateController+ControllerDelegate.swift"; sourceTree = "<group>"; };
 		DD2808DB2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateTrainingController+TextDelegate.swift"; sourceTree = "<group>"; };
 		DD2808DD209344F700D14DE3 /* NotationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotationPickerView.swift; sourceTree = "<group>"; };
+		DD586A3E209707F600A81F9E /* ExercicesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercicesController.swift; sourceTree = "<group>"; };
+		DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+UITableView.swift"; sourceTree = "<group>"; };
+		DD586A4320970A5300A81F9E /* CreateExerciceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciceController.swift; sourceTree = "<group>"; };
+		DD586A45209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+CreateExerciceControllerDelegate.swift"; sourceTree = "<group>"; };
+		DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateExerciceController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		DDBE6C882091BCE700C14200 /* MyAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDBE6C922091BCE900C14200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -115,6 +125,25 @@
 			path = "Old (without FRC)";
 			sourceTree = "<group>";
 		};
+		DD586A3D209707D900A81F9E /* Exercices */ = {
+			isa = PBXGroup;
+			children = (
+				DD586A3E209707F600A81F9E /* ExercicesController.swift */,
+				DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */,
+				DD586A45209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift */,
+			);
+			path = Exercices;
+			sourceTree = "<group>";
+		};
+		DD586A4220970A3B00A81F9E /* CreateExercice */ = {
+			isa = PBXGroup;
+			children = (
+				DD586A4320970A5300A81F9E /* CreateExerciceController.swift */,
+				DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */,
+			);
+			path = CreateExercice;
+			sourceTree = "<group>";
+		};
 		DDBE6C7F2091BCE700C14200 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +167,8 @@
 				DD2573C320920CB000AA6AB6 /* Helpers */,
 				DD2573BD20920A9100AA6AB6 /* Trainings */,
 				DD2573BE20920A9F00AA6AB6 /* CreateTraining */,
+				DD586A3D209707D900A81F9E /* Exercices */,
+				DD586A4220970A3B00A81F9E /* CreateExercice */,
 				DDBE6C9F2091BD3300C14200 /* Training.swift */,
 				DDBE6C922091BCE900C14200 /* Assets.xcassets */,
 				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
@@ -231,14 +262,19 @@
 				DDBE6CA02091BD3300C14200 /* Training.swift in Sources */,
 				DDBE6CA22091BD3800C14200 /* TrainingCell.swift in Sources */,
 				DD2808D520931AD000D14DE3 /* TrainingsAutoUpdateController.swift in Sources */,
+				DD586A3F209707F600A81F9E /* ExercicesController.swift in Sources */,
 				DD2573C220920B3100AA6AB6 /* TrainingsController+CreateTraining.swift in Sources */,
 				DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */,
+				DD586A41209708EC00A81F9E /* ExercicesController+UITableView.swift in Sources */,
 				DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
+				DD586A46209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift in Sources */,
 				DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */,
 				DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */,
 				DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */,
+				DD586A4420970A5300A81F9E /* CreateExerciceController.swift in Sources */,
 				DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */,
+				DD586A4A2097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift in Sources */,
 				DD2808D720931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift in Sources */,
 				DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */,
 				DD2808DC2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift in Sources */,

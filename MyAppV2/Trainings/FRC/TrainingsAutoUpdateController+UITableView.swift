@@ -82,4 +82,15 @@ extension TrainingsAutoUpdateController {
         
     }
     
+    // MARK: Did select row at
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let training = fetchResultsController.object(at: indexPath)
+        
+        let exercicesController = ExercicesController()
+        exercicesController.training = training
+        navigationController?.pushViewController(exercicesController, animated: true)
+        
+    }
+    
 }

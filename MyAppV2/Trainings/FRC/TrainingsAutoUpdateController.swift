@@ -35,7 +35,7 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Training Auto Updates"
+        navigationItem.title = "Entraînements"
         
         setupPlusButtonInNavBar(selector: #selector(handleAdd))
         

@@ -27,8 +27,8 @@ extension UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    func showEmptyTrainingNameAlert() {
-        let alertController = UIAlertController(title: "Champ vide", message: "Entrez un nom pour votre séance", preferredStyle: .alert)
+    func showEmptyTextFieldAlert(message: String) {
+        let alertController = UIAlertController(title: "Champ vide", message: message, preferredStyle: .alert)
         let alertConfirmedAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertConfirmedAction)
         present(alertController, animated: true, completion: nil)
