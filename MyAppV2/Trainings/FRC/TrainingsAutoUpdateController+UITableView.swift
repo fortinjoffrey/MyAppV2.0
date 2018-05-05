@@ -47,6 +47,8 @@ extension TrainingsAutoUpdateController {
         
         cell.training = training
         
+        cell.accessoryType = .disclosureIndicator
+        
         return cell
     }
     
@@ -93,4 +95,18 @@ extension TrainingsAutoUpdateController {
         
     }
     
+    // MARK: Footer
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textAlignment = .center
+        label.text = "Pas d'entraînements enregistrés"
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        guard let count = fetchResultsController.fetchedObjects?.count else { return 0 }
+        return count > 0 ? 0 : 150
+    }
 }

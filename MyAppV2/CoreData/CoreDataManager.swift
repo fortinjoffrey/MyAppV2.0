@@ -104,7 +104,43 @@ struct CoreDataManager {
         }
     }
     
+    func createSet(duration: Int16, speed: Int16, repetitions: Int16, weight: Int16, exercice: Exercice) -> (Set?, Error?) {
+        
+        let context = persistentContainer.viewContext
+        
+        let set = NSEntityDescription.insertNewObject(forEntityName: "Set", into: context) as! Set
+        
+        set.date = Date()
+        set.duration = duration
+        set.speed = speed
+        set.repetitions = repetitions
+        set.weight = weight
+        set.exercice = exercice
+        
+        do {
+            try context.save()
+            return (set, nil)
+        } catch let saveErr {
+            print("Failed to create set:", saveErr)
+            return (nil, saveErr)
+        }
+        
+    }
     
+    func deleteSet(set: Set) -> Bool {
+        
+        let context = persistentContainer.viewContext        
+        context.delete(set)
+
+        do {
+            try context.save()
+            return true
+        } catch let saveErr {
+            print("Failed to delete set:", saveErr)
+            return false
+        }
+        
+    }
     
     
     

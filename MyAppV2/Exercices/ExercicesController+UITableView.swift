@@ -12,6 +12,7 @@ extension ExercicesController {
     
     func setupTableView() {
         
+        tableView.backgroundColor = .darkBlue
         tableView.tableFooterView = UIView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
@@ -28,7 +29,8 @@ extension ExercicesController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
-        cell.textLabel?.text = exercices[indexPath.row].name            
+        cell.textLabel?.text = exercices[indexPath.row].name
+        cell.accessoryType = .disclosureIndicator
         
         return cell
     }
@@ -65,6 +67,43 @@ extension ExercicesController {
         return config
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let exercice = exercices[indexPath.row]
+        
+        let setsController = SetsController()
+        setsController.exercice = exercice
+  
+        navigationController?.pushViewController(setsController, animated: true)
+    }
+    
+    // MARK: Header
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.backgroundColor = .lightBlue
+        label.textColor = .darkBlue
+        label.textAlignment = .center
+        label.text = "Exercices"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    // MARK: Footer
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Pas d'exercices enregistrés"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return exercices.count > 0 ? 0 : 150
+    }
     
     
 }

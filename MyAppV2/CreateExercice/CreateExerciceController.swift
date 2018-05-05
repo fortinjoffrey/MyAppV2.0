@@ -35,7 +35,7 @@ class CreateExerciceController: UIViewController {
         return tf
     }()
     
-    let categoryData = ["Poids libres","Machines","Cardio","Poids du corps","Gainage"]
+    let categoryData = ["Poids libres / Machines", "Cardio","Poids du corps","Gainage"]
     
     let categoryLabel: UILabel = {
         let label = UILabel()
@@ -74,7 +74,7 @@ class CreateExerciceController: UIViewController {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        ["Cardio", "Poids libre", "Machines","Poids du corps", "Gainage"].forEach {
+        categoryData.forEach {
             alertController.addAction(UIAlertAction(title: $0, style: .default, handler: { (action) in
                 
                 UIView.animate(withDuration: 1, animations: {

@@ -40,7 +40,7 @@ extension NotationPickerView: UIPickerViewDelegate {
         return 50
     }
     
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {        
         return 50
     }
     
