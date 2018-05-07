@@ -16,27 +16,26 @@ protocol CreateTrainingControllerDelegate {
 
 class CreateTrainingController: UIViewController {
     
-//    var delegate: CreateTrainingControllerDelegate?
     var training: Training? {
         didSet {
-            
             guard let name = training?.name else { return }
             guard let startDate = training?.startDate else { return }
-            guard let endDate = training?.endDate else { return }
-            guard let notation = training?.notation else { return }
-            guard let tirednessNotation = training?.tirednessNotation else { return }
-            guard let notes = training?.notes else { return }
-            
             
             nameTextField.text = name
             startDatePicker.date = startDate
-            endDatePicker.date = endDate
-            notationPicker.selectRow(Int(notation), inComponent: 0, animated: false)
-            tirednessNotationPicker.selectRow(Int(tirednessNotation), inComponent: 0, animated: false)
-            notesTextView.text = notes
+            isDone = training?.isDone
             
+            if let endDate = training?.endDate, let notation = training?.notation, let tirednessNotation = training?.tirednessNotation, let notes = training?.notes {
+                
+                endDatePicker.date = endDate
+                notationPicker.selectRow(Int(notation), inComponent: 0, animated: false)
+                tirednessNotationPicker.selectRow(Int(tirednessNotation), inComponent: 0, animated: false)
+                notesTextView.text = notes
+            }
         }
     }
+    
+    var isDone: Bool?
     
     var selectedTextArea: Any?
     var textfieldMode: Bool?
@@ -158,99 +157,66 @@ class CreateTrainingController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    
     @objc private func handleSave() {
         
         guard let name = nameTextField.text else { return }
+        guard let isDone = isDone else { return }
         
         if name.isEmpty {
             showEmptyTextFieldAlert(message: "Entrer un nom pour votre séance")
             return
         }
         
-        if training == nil {
-            createTraining()
+        training == nil ? createTraining(name: name, isDone: isDone) : saveTrainingChanges(name: name, isDone: isDone)
+        
+    }
+    
+    private func createTraining(name: String, isDone: Bool) {
+        
+        let tuple = CoreDataManager.shared.createTraining(name: name, startDate: startDatePicker.date, endDate: endDatePicker.date, notation: notationPicker.selectedData, tirednessNotation: tirednessNotationPicker.selectedData, notes: notesTextView.text, isDone: isDone)
+        
+        if let error = tuple.1 {
+            print(error)
         } else {
-            saveTrainingChanges()
+            dismiss(animated: true, completion: nil)
         }
     }
     
-    private func createTraining() {
+    private func saveTrainingChanges(name: String, isDone: Bool) {
         
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context)
+        let tuple = CoreDataManager.shared.saveTrainingChanges(name: name, startDate: startDatePicker.date, endDate: endDatePicker.date, notation: notationPicker.selectedData, tirednessNotation: tirednessNotationPicker.selectedData, notes: notesTextView.text, isDone: isDone, training: training)
         
-        training.setValue(nameTextField.text, forKey: "name")
-        training.setValue(startDatePicker.date, forKey: "startDate")
-        training.setValue(endDatePicker.date, forKey: "endDate")
-        training.setValue(notationPicker.selectedData, forKey: "notation")
-        training.setValue(tirednessNotationPicker.selectedData, forKey: "tirednessNotation")
-        training.setValue(notesTextView.text, forKey: "notes")
-        
-        do {
-            try context.save()
-            
-            dismiss(animated: true) {
-//                self.delegate?.didAddTraining(training: training as! Training)
-            }
-        } catch let saveErr {
-            print("Failed to save training:", saveErr)
+        if let error = tuple.1 {
+            print(error)
+        } else {
+            dismiss(animated: true, completion: nil)
         }
-    }
-    
-    private func saveTrainingChanges() {
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        training?.name = nameTextField.text
-        training?.startDate = startDatePicker.date
-        training?.endDate = endDatePicker.date
-        training?.notation = notationPicker.selectedData
-        training?.tirednessNotation = tirednessNotationPicker.selectedData
-        training?.notes = notesTextView.text
-        
-        do {
-            try context.save()
-            dismiss(animated: true, completion: {
-//                self.delegate?.didEditTraining(training: self.training!)
-            })
-            
-        } catch let saveErr {
-            print("Failed to save company changes:", saveErr)
-        }
-        
     }
     
     private func setupUI() {
         
-        view.addSubview(scrollView)
+        switch isDone {
+        case true:
+            setupUIForDoneTraining()
+        default:
+            _ = setupMinimalUI()
+        }
+    }
+    
+    func setupUIForDoneTraining() {
         
-        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        
-        let scrollContainerView = UIView()
-        scrollContainerView.backgroundColor = .lightBlue
-        
-        scrollView.addSubview(scrollContainerView)
-        
-        scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 800)
+        let scrollContainerView = setupMinimalUI()
         
         let notationContainerView = UIView()
         let tirednessNotationContainerView = UIView()
         
-        [nameTextField, startDateLabel, startDatePicker, endDateLabel, endDatePicker, notationLabel, notationContainerView, tirednessNotationLabel, tirednessNotationContainerView, notesLabel, notesTextView].forEach { scrollContainerView.addSubview($0)}
-        
-        nameTextField.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
-        
-        startDateLabel.anchor(top: nameTextField.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-        
-        startDatePicker.anchor(top: startDateLabel.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 65)
+        [endDateLabel, endDatePicker, notationLabel, notationContainerView, tirednessNotationLabel, tirednessNotationContainerView, notesLabel, notesTextView].forEach { scrollContainerView.addSubview($0)}
         
         endDateLabel.anchor(top: startDatePicker.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
@@ -278,7 +244,30 @@ class CreateTrainingController: UIViewController {
         notesLabel.anchor(top: tirednessNotationContainerView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
         notesTextView.anchor(top: notesLabel.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
-        
     }
     
+    func setupMinimalUI() -> UIView {
+        
+        view.addSubview(scrollView)
+        
+        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        let scrollContainerView = UIView()
+        scrollContainerView.backgroundColor = .lightBlue
+        
+        scrollView.addSubview(scrollContainerView)
+        
+        scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 800)
+        
+        
+        [nameTextField, startDateLabel, startDatePicker].forEach { scrollContainerView.addSubview($0)}
+        
+        nameTextField.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+        
+        startDateLabel.anchor(top: nameTextField.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
+        startDatePicker.anchor(top: startDateLabel.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 65)
+        
+        return scrollContainerView
+    }
 }

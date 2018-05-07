@@ -16,11 +16,11 @@ extension UIViewController {
     }
     
     func setupSaveButtonInNavBar(selector: Selector) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: selector)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sauvegarder", style: .plain, target: self, action: selector)
     }
     
     func setupCancelButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancelModal))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancelModal))
     }
     
     @objc func handleCancelModal() {

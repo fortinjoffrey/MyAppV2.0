@@ -3,6 +3,7 @@
     <entity name="Exercice" representedClassName="Exercice" syncable="YES" codeGenerationType="class">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="sets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Set" inverseName="exercice" inverseEntity="Set" syncable="YES"/>
         <relationship name="training" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Training" inverseName="exercices" inverseEntity="Training" syncable="YES"/>
@@ -16,8 +17,9 @@
         <relationship name="exercice" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Exercice" inverseName="sets" inverseEntity="Exercice" syncable="YES"/>
     </entity>
     <entity name="Training" representedClassName="Training" syncable="YES" codeGenerationType="class">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
@@ -26,8 +28,8 @@
         <relationship name="exercices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercice" inverseName="training" inverseEntity="Exercice" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Exercice" positionX="-54" positionY="45" width="128" height="120"/>
-        <element name="Training" positionX="259" positionY="-9" width="128" height="163"/>
+        <element name="Exercice" positionX="-54" positionY="45" width="128" height="135"/>
         <element name="Set" positionX="99" positionY="63" width="128" height="135"/>
+        <element name="Training" positionX="259" positionY="-9" width="128" height="180"/>
     </elements>
 </model>

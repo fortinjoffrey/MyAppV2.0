@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ExercicesController {
+extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
     
     func setupTableView() {
         
@@ -17,25 +17,27 @@ extension ExercicesController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
     }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+   
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return exercices.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         
         cell.textLabel?.text = exercices[indexPath.row].name
-        cell.accessoryType = .disclosureIndicator
+        
+        if exercices[indexPath.row].isDone {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .disclosureIndicator
+        }
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Supprimer") { (action, view, success) in
             
@@ -57,8 +59,6 @@ extension ExercicesController {
             let navController = UINavigationController(rootViewController: createExerciceController)
             success(true)
             self.present(navController, animated: true, completion: nil)
-            
-            
         }
         editAction.backgroundColor = .darkBlue
         
@@ -67,17 +67,19 @@ extension ExercicesController {
         return config
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let exercice = exercices[indexPath.row]
         
         let setsController = SetsController()
         setsController.exercice = exercice
+        setsController.delegate = self
   
         navigationController?.pushViewController(setsController, animated: true)
     }
     
     // MARK: Header
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
         label.backgroundColor = .lightBlue
         label.textColor = .darkBlue
@@ -87,12 +89,12 @@ extension ExercicesController {
         return label
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
     // MARK: Footer
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = .white
         label.textAlignment = .center
@@ -101,7 +103,7 @@ extension ExercicesController {
         return label
     }
     
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return exercices.count > 0 ? 0 : 150
     }
     

@@ -211,12 +211,24 @@ class CreateSetController: UIViewController {
         default:
             return
         }
-                
-        dismiss(animated: true) {
-            if let set = tuple.0 {
-                self.delegate?.didAddSet(set: set)
-            }
+        
+        // if it is not en cours then
+//        dismiss(animated: true) {
+//            if let set = tuple.0 {
+//                self.delegate?.didAddSet(set: set)
+//            }
+//        }
+        
+        
+        // else if it's en cours et do not dismiss the creation
+        if let set = tuple.0 {
+            self.delegate?.didAddSet(set: set)
         }
+        
+        let runningTimerController = RunningTimerController()
+        runningTimerController.timerValue = CGFloat(90)
+        present(runningTimerController, animated: true, completion: nil)
+        
     }
     
     override func viewDidLoad() {

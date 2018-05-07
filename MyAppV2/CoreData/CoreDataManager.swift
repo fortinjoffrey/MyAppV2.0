@@ -22,6 +22,51 @@ struct CoreDataManager {
         return container
     }()
     
+    // MARK: Training methods
+    func createTraining(name: String, startDate: Date, endDate: Date, notation: Int16, tirednessNotation: Int16, notes: String, isDone: Bool = false) -> (Training?, Error?) {
+        
+        let context = persistentContainer.viewContext
+        
+        let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context) as! Training
+        
+        training.name = name
+        training.startDate = startDate
+        training.endDate = endDate
+        training.notation = notation
+        training.tirednessNotation = tirednessNotation
+        training.notes = notes
+        training.isDone = isDone
+        
+        do {
+            try context.save()
+            return (training, nil)
+        } catch let saveErr {
+            print("Failed to create training in CD:", saveErr)
+            return (nil, saveErr)
+        }
+    }
+    
+    func saveTrainingChanges(name: String, startDate: Date, endDate: Date, notation: Int16, tirednessNotation: Int16, notes: String, isDone: Bool, training: Training?) -> (Training?, Error?) {
+        
+        let context = persistentContainer.viewContext
+        
+        training?.name = name
+        training?.startDate = startDate
+        training?.endDate = endDate
+        training?.notation = notation
+        training?.tirednessNotation = tirednessNotation
+        training?.notes = notes
+        training?.isDone = isDone
+        
+        do {
+            try context.save()
+            return (training, nil)
+        } catch let saveErr {
+            print("Failed to save training changes in CD:", saveErr)
+            return (nil, saveErr)
+        }
+    }
+    
     func fetchTrainings() -> [Training]{
         
         let context = persistentContainer.viewContext
@@ -69,7 +114,7 @@ struct CoreDataManager {
     }
     
     
-    // MARK: Exercices
+    // MARK: Exercices methods
     func createExercice(name: String, category: String, training: Training) -> (Exercice?, Error?) {
         
         let context = persistentContainer.viewContext
@@ -79,6 +124,7 @@ struct CoreDataManager {
         exercice.name = name
         exercice.date = Date()
         exercice.category = category
+        exercice.isDone = false
         exercice.training = training
         
         do {
@@ -104,6 +150,7 @@ struct CoreDataManager {
         }
     }
     
+    // MARK: Set methods
     func createSet(duration: Int16, speed: Int16, repetitions: Int16, weight: Int16, exercice: Exercice) -> (Set?, Error?) {
         
         let context = persistentContainer.viewContext

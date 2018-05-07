@@ -9,7 +9,13 @@
 import UIKit
 import CoreData
 
+protocol SetsControllerDelegate {
+    func didFinishExercice(exercice: Exercice)
+}
+
 class SetsController: UIViewController {
+    
+    var delegate: SetsControllerDelegate?
     
     var exercice: Exercice? {
         didSet {
@@ -32,6 +38,22 @@ class SetsController: UIViewController {
         button.addTarget(self, action: #selector(handleAdd), for: .touchUpInside)
         return button
     }()
+    
+    @objc private func handleDone() {
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        exercice?.isDone = true
+        
+        do {
+            try context.save()
+            if let exercice = exercice {
+                self.delegate?.didFinishExercice(exercice: exercice)
+                navigationController?.popViewController(animated: true)
+            }           
+        } catch let saveErr {
+            print("Failed to save exercice validation:", saveErr)
+        }
+    }
   
     let cellIds = ["repsWeightCellId", "cardioCellId", "bodyweightCellId", "gainageCellId", "cellId"]    
 
@@ -51,7 +73,6 @@ class SetsController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .darkBlue
-
         
         setupUI()
         setupTableView()
@@ -61,11 +82,14 @@ class SetsController: UIViewController {
     
     func setupUI() {
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checked_64").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(handleDone))
+        
         [tableView, plusButton].forEach { view.addSubview($0) }
         
         tableView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
         
         plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 32, paddingRight: 32, width: 50, height: 50)
+    
         
     }
     
@@ -77,5 +101,12 @@ class SetsController: UIViewController {
         
         sets = sortedSets
     }
-    
 }
+
+
+
+
+
+
+
+

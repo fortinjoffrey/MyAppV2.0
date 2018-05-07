@@ -9,9 +9,17 @@
 import UIKit
 import CoreData
 
+extension TrainingsAutoUpdateController: ExercicesControllerDelegate {
+    func didFinishTraining(training: Training) {
+        print(training.isDone)
+        guard let indexPath = fetchResultsController.indexPath(forObject: training) else { return }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+}
+
 extension TrainingsAutoUpdateController {
- 
-   
+    
+    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, sectionIndexTitleForSectionName sectionName: String) -> String? {
         return sectionName
     }

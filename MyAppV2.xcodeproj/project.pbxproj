@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		DD2573C020920ACF00AA6AB6 /* TrainingsController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */; };
 		DD2573C220920B3100AA6AB6 /* TrainingsController+CreateTraining.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */; };
-		DD2573C520920CC800AA6AB6 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */; };
-		DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */; };
-		DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */; };
+		DD2573C520920CC800AA6AB6 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C420920CC800AA6AB6 /* UIViewController+.swift */; };
+		DD2573C720920FE500AA6AB6 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C620920FE500AA6AB6 /* UINavigationController+.swift */; };
+		DD2573C9209211E400AA6AB6 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2573C8209211E400AA6AB6 /* UIView+.swift */; };
 		DD2808D520931AD000D14DE3 /* TrainingsAutoUpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */; };
 		DD2808D720931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */; };
 		DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */; };
@@ -20,15 +20,19 @@
 		DD586A3F209707F600A81F9E /* ExercicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A3E209707F600A81F9E /* ExercicesController.swift */; };
 		DD586A41209708EC00A81F9E /* ExercicesController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */; };
 		DD586A4420970A5300A81F9E /* CreateExerciceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A4320970A5300A81F9E /* CreateExerciceController.swift */; };
-		DD586A46209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A45209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift */; };
+		DD586A46209711D000A81F9E /* ExercicesController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A45209711D000A81F9E /* ExercicesController+Delegate.swift */; };
 		DD586A4A2097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */; };
 		DD6B489B209BB5740002C07F /* RepsWeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6B489A209BB5740002C07F /* RepsWeightCell.swift */; };
+		DDAB7D3D20A037B20022CF34 /* SelectedTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB7D3C20A037B20022CF34 /* SelectedTimer.swift */; };
+		DDAB7D4220A03A8E0022CF34 /* SelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB7D4120A03A8E0022CF34 /* SelectionCell.swift */; };
+		DDAB7D4420A03E110022CF34 /* SelectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB7D4320A03E110022CF34 /* SelectionController.swift */; };
+		DDAB7D4620A046C80022CF34 /* RunningTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB7D4520A046C80022CF34 /* RunningTimerController.swift */; };
+		DDAB7D4820A0493E0022CF34 /* RunningTimerController+Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAB7D4720A0493E0022CF34 /* RunningTimerController+Background.swift */; };
 		DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */; };
 		DDBE6C932091BCE900C14200 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C922091BCE900C14200 /* Assets.xcassets */; };
 		DDBE6C962091BCE900C14200 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */; };
-		DDBE6CA02091BD3300C14200 /* Training.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6C9F2091BD3300C14200 /* Training.swift */; };
 		DDBE6CA22091BD3800C14200 /* TrainingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA12091BD3800C14200 /* TrainingCell.swift */; };
-		DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */; };
+		DDBE6CA42091BD3D00C14200 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA32091BD3D00C14200 /* UIColor+.swift */; };
 		DDBE6CA62091BE3000C14200 /* CreateTrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */; };
 		DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */; };
 		DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */; };
@@ -46,9 +50,9 @@
 /* Begin PBXFileReference section */
 		DD2573BF20920ACF00AA6AB6 /* TrainingsController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsController+UITableView.swift"; sourceTree = "<group>"; };
 		DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsController+CreateTraining.swift"; sourceTree = "<group>"; };
-		DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
-		DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Helpers.swift"; sourceTree = "<group>"; };
-		DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
+		DD2573C420920CC800AA6AB6 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
+		DD2573C620920FE500AA6AB6 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
+		DD2573C8209211E400AA6AB6 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsAutoUpdateController.swift; sourceTree = "<group>"; };
 		DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsAutoUpdateController+UITableView.swift"; sourceTree = "<group>"; };
 		DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsAutoUpdateController+ControllerDelegate.swift"; sourceTree = "<group>"; };
@@ -57,17 +61,21 @@
 		DD586A3E209707F600A81F9E /* ExercicesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercicesController.swift; sourceTree = "<group>"; };
 		DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+UITableView.swift"; sourceTree = "<group>"; };
 		DD586A4320970A5300A81F9E /* CreateExerciceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciceController.swift; sourceTree = "<group>"; };
-		DD586A45209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+CreateExerciceControllerDelegate.swift"; sourceTree = "<group>"; };
+		DD586A45209711D000A81F9E /* ExercicesController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+Delegate.swift"; sourceTree = "<group>"; };
 		DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateExerciceController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		DD6B489A209BB5740002C07F /* RepsWeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWeightCell.swift; sourceTree = "<group>"; };
+		DDAB7D3C20A037B20022CF34 /* SelectedTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedTimer.swift; sourceTree = "<group>"; };
+		DDAB7D4120A03A8E0022CF34 /* SelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionCell.swift; sourceTree = "<group>"; };
+		DDAB7D4320A03E110022CF34 /* SelectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionController.swift; sourceTree = "<group>"; };
+		DDAB7D4520A046C80022CF34 /* RunningTimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningTimerController.swift; sourceTree = "<group>"; };
+		DDAB7D4720A0493E0022CF34 /* RunningTimerController+Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RunningTimerController+Background.swift"; sourceTree = "<group>"; };
 		DDBE6C882091BCE700C14200 /* MyAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDBE6C922091BCE900C14200 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDBE6C952091BCE900C14200 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDBE6C972091BCE900C14200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DDBE6C9F2091BD3300C14200 /* Training.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Training.swift; sourceTree = "<group>"; };
 		DDBE6CA12091BD3800C14200 /* TrainingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingCell.swift; sourceTree = "<group>"; };
-		DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
+		DDBE6CA32091BD3D00C14200 /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTrainingController.swift; sourceTree = "<group>"; };
 		DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsController.swift; sourceTree = "<group>"; };
 		DDBE6CAA2091CD4B00C14200 /* MyAppV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAppV2.xcdatamodel; sourceTree = "<group>"; };
@@ -93,45 +101,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DD2573BD20920A9100AA6AB6 /* Trainings */ = {
-			isa = PBXGroup;
-			children = (
-				DD2808D320931AAB00D14DE3 /* FRC */,
-				DD2808DA209325D500D14DE3 /* Old (without FRC) */,
-				DDBE6CA12091BD3800C14200 /* TrainingCell.swift */,
-			);
-			path = Trainings;
-			sourceTree = "<group>";
-		};
-		DD2573BE20920A9F00AA6AB6 /* CreateTraining */ = {
-			isa = PBXGroup;
-			children = (
-				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
-				DD2808DB2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift */,
-			);
-			path = CreateTraining;
-			sourceTree = "<group>";
-		};
 		DD2573C320920CB000AA6AB6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				DD2573C420920CC800AA6AB6 /* UIViewController+Helpers.swift */,
-				DD2573C620920FE500AA6AB6 /* UINavigationController+Helpers.swift */,
-				DD2573C8209211E400AA6AB6 /* UIView+Helpers.swift */,
-				DDBE6CA32091BD3D00C14200 /* UIColor+theme.swift */,
-				DD2808DD209344F700D14DE3 /* NotationPickerView.swift */,
+				DDBE6CA32091BD3D00C14200 /* UIColor+.swift */,
+				DD2573C620920FE500AA6AB6 /* UINavigationController+.swift */,
+				DD2573C8209211E400AA6AB6 /* UIView+.swift */,
+				DD2573C420920CC800AA6AB6 /* UIViewController+.swift */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		DD2808D320931AAB00D14DE3 /* FRC */ = {
-			isa = PBXGroup;
-			children = (
-				DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */,
-				DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */,
-				DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */,
-			);
-			path = FRC;
 			sourceTree = "<group>";
 		};
 		DD2808DA209325D500D14DE3 /* Old (without FRC) */ = {
@@ -144,34 +122,59 @@
 			path = "Old (without FRC)";
 			sourceTree = "<group>";
 		};
-		DD586A3D209707D900A81F9E /* Exercices */ = {
+		DDAB7D4920A0B8F80022CF34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DD586A3E209707F600A81F9E /* ExercicesController.swift */,
-				DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */,
-				DD586A45209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift */,
+				DD2808DD209344F700D14DE3 /* NotationPickerView.swift */,
+				DDAB7D3C20A037B20022CF34 /* SelectedTimer.swift */,
 			);
-			path = Exercices;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		DD586A4220970A3B00A81F9E /* CreateExercice */ = {
+		DDAB7D4A20A0B9000022CF34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */,
+				DDE0CE24209E1A8500F7C82D /* CardioCell.swift */,
+				DDE0CE28209E203400F7C82D /* GainageCell.swift */,
+				DD6B489A209BB5740002C07F /* RepsWeightCell.swift */,
+				DDAB7D4120A03A8E0022CF34 /* SelectionCell.swift */,
+				DDBE6CA12091BD3800C14200 /* TrainingCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DDAB7D4B20A0B9430022CF34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				DD586A4320970A5300A81F9E /* CreateExerciceController.swift */,
-				DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */,
+				DDFBC7B9209B376F001D464C /* CreateSetController.swift */,
+				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
+				DD586A3E209707F600A81F9E /* ExercicesController.swift */,
+				DDAB7D4520A046C80022CF34 /* RunningTimerController.swift */,
+				DDAB7D4320A03E110022CF34 /* SelectionController.swift */,
+				DDFBC7B0209AF0B2001D464C /* SetsController.swift */,
+				DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */,
+				DDAB7D4C20A0BA040022CF34 /* Extensions */,
 			);
-			path = CreateExercice;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		DD6B4897209BB52B0002C07F /* Cells */ = {
+		DDAB7D4C20A0BA040022CF34 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				DD6B489A209BB5740002C07F /* RepsWeightCell.swift */,
-				DDE0CE24209E1A8500F7C82D /* CardioCell.swift */,
-				DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */,
-				DDE0CE28209E203400F7C82D /* GainageCell.swift */,
+				DD586A492097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift */,
+				DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */,
+				DD2808DB2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift */,
+				DD586A45209711D000A81F9E /* ExercicesController+Delegate.swift */,
+				DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */,
+				DDAB7D4720A0493E0022CF34 /* RunningTimerController+Background.swift */,
+				DDFBC7C2209B6D4D001D464C /* SetsController+CreateSetControllerDelegate.swift */,
+				DDFBC7C0209B6B83001D464C /* SetsController+UITableView.swift */,
+				DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */,
+				DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */,
 			);
-			path = Cells;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		DDBE6C7F2091BCE700C14200 = {
@@ -193,18 +196,16 @@
 		DDBE6C8A2091BCE700C14200 /* MyAppV2 */ = {
 			isa = PBXGroup;
 			children = (
-				DDFBC7AF209AF0A4001D464C /* Sets */,
 				DDBE6C8B2091BCE700C14200 /* AppDelegate.swift */,
-				DD2573C320920CB000AA6AB6 /* Helpers */,
-				DD2573BD20920A9100AA6AB6 /* Trainings */,
-				DD2573BE20920A9F00AA6AB6 /* CreateTraining */,
-				DD586A3D209707D900A81F9E /* Exercices */,
-				DD586A4220970A3B00A81F9E /* CreateExercice */,
-				DDBE6C9F2091BD3300C14200 /* Training.swift */,
 				DDBE6C922091BCE900C14200 /* Assets.xcassets */,
-				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
+				DDAB7D4920A0B8F80022CF34 /* Model */,
+				DDAB7D4A20A0B9000022CF34 /* View */,
+				DDAB7D4B20A0B9430022CF34 /* Controller */,
+				DD2573C320920CB000AA6AB6 /* Helpers */,
 				DDBE6C972091BCE900C14200 /* Info.plist */,
+				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
 				DDBE6CAC2091CF0700C14200 /* CoreData */,
+				DD2808DA209325D500D14DE3 /* Old (without FRC) */,
 			);
 			path = MyAppV2;
 			sourceTree = "<group>";
@@ -212,31 +213,10 @@
 		DDBE6CAC2091CF0700C14200 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */,
 				DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */,
+				DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		DDFBC7AF209AF0A4001D464C /* Sets */ = {
-			isa = PBXGroup;
-			children = (
-				DDFBC7B0209AF0B2001D464C /* SetsController.swift */,
-				DDFBC7C0209B6B83001D464C /* SetsController+UITableView.swift */,
-				DDFBC7C2209B6D4D001D464C /* SetsController+CreateSetControllerDelegate.swift */,
-				DD6B4897209BB52B0002C07F /* Cells */,
-				DDFBC7B8209B3722001D464C /* CreateSet */,
-			);
-			path = Sets;
-			sourceTree = "<group>";
-		};
-		DDFBC7B8209B3722001D464C /* CreateSet */ = {
-			isa = PBXGroup;
-			children = (
-				DDFBC7B9209B376F001D464C /* CreateSetController.swift */,
-				DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */,
-			);
-			path = CreateSet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,7 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD2573C020920ACF00AA6AB6 /* TrainingsController+UITableView.swift in Sources */,
-				DDBE6CA02091BD3300C14200 /* Training.swift in Sources */,
+				DDAB7D4220A03A8E0022CF34 /* SelectionCell.swift in Sources */,
 				DDBE6CA22091BD3800C14200 /* TrainingCell.swift in Sources */,
 				DD2808D520931AD000D14DE3 /* TrainingsAutoUpdateController.swift in Sources */,
 				DD586A3F209707F600A81F9E /* ExercicesController.swift in Sources */,
@@ -322,22 +302,26 @@
 				DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
 				DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */,
-				DD586A46209711D000A81F9E /* ExercicesController+CreateExerciceControllerDelegate.swift in Sources */,
+				DD586A46209711D000A81F9E /* ExercicesController+Delegate.swift in Sources */,
 				DDFBC7BA209B376F001D464C /* CreateSetController.swift in Sources */,
 				DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */,
 				DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */,
-				DD2573C720920FE500AA6AB6 /* UINavigationController+Helpers.swift in Sources */,
-				DDBE6CA42091BD3D00C14200 /* UIColor+theme.swift in Sources */,
+				DD2573C720920FE500AA6AB6 /* UINavigationController+.swift in Sources */,
+				DDBE6CA42091BD3D00C14200 /* UIColor+.swift in Sources */,
 				DD586A4420970A5300A81F9E /* CreateExerciceController.swift in Sources */,
 				DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */,
+				DDAB7D4420A03E110022CF34 /* SelectionController.swift in Sources */,
 				DDFBC7BD209B3AE1001D464C /* CreateSetController+UIPickerView.swift in Sources */,
 				DD586A4A2097528000A81F9E /* CreateExerciceController+UITextFieldDelegate.swift in Sources */,
+				DDAB7D4820A0493E0022CF34 /* RunningTimerController+Background.swift in Sources */,
+				DDAB7D4620A046C80022CF34 /* RunningTimerController.swift in Sources */,
+				DDAB7D3D20A037B20022CF34 /* SelectedTimer.swift in Sources */,
 				DD2808D720931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift in Sources */,
 				DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */,
-				DD2573C9209211E400AA6AB6 /* UIView+Helpers.swift in Sources */,
+				DD2573C9209211E400AA6AB6 /* UIView+.swift in Sources */,
 				DD2808DC2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift in Sources */,
 				DDFBC7C1209B6B83001D464C /* SetsController+UITableView.swift in Sources */,
-				DD2573C520920CC800AA6AB6 /* UIViewController+Helpers.swift in Sources */,
+				DD2573C520920CC800AA6AB6 /* UIViewController+.swift in Sources */,
 				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,
 				DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */,
 				DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */,

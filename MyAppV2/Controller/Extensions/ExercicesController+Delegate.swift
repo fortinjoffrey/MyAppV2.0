@@ -1,5 +1,5 @@
 //
-//  ExercicesController+CreateExerciceControllerDelegate.swift
+//  ExercicesControllerDelegate.swift
 //  MyAppV2
 //
 //  Created by Joffrey Fortin on 30/04/2018.
@@ -22,4 +22,18 @@ extension ExercicesController: CreateExerciceControllerDelegate {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }    
+}
+
+extension ExercicesController: SetsControllerDelegate {
+    func didFinishExercice(exercice: Exercice) {
+        guard let row = exercices.index(of: exercice) else { return }
+        exercices[row] = exercice        
+        let indexPath = IndexPath(row: row, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        
+    }
+    
+    
+    
+    
 }

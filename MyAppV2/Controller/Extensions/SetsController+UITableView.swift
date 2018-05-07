@@ -35,20 +35,22 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
         case "Poids libres / Machines":
 //            cell.textLabel?.text = "\(set.repetitions) REPS || \(set.weight) KGS".set
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[0], for: indexPath) as! RepsWeightCell
+            cell.accessoryType = .checkmark
             cell.set = set
             return cell
         case "Cardio":
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[1], for: indexPath) as! CardioCell
-            print(set.duration)
-//            cell.textLabel?.text = "\(set.duration / 60 % 60) MIN || \(set.speed) KM / H"
+            cell.accessoryType = .checkmark
             cell.set = set
             return cell
         case "Poids du corps":
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[2], for: indexPath) as! BodyweightCell
+            cell.accessoryType = .checkmark
             cell.set = set
             return cell
         case "Gainage":
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[3], for: indexPath) as! GainageCell
+            cell.accessoryType = .checkmark
             cell.set = set
             return cell
         default:

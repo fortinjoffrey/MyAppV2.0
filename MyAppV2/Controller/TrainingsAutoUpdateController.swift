@@ -45,9 +45,32 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
     }
     
     @objc private func handleAdd() {
+        
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let trainingCategories = ["Entraînement terminé", "Entraînement en cours", "Entraînement futur"]
+        
+        alertController.addAction(UIAlertAction(title: trainingCategories[0], style: .default, handler: { (_) in
+            self.presentCreateTrainingController(isDone: true)
+        }))
+        
+        [trainingCategories[1],trainingCategories[2]].forEach {
+            alertController.addAction(UIAlertAction(title: $0, style: .default, handler: { (_) in
+                self.presentCreateTrainingController(isDone: false)
+            }))
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func presentCreateTrainingController(isDone: Bool) {
+        
         let createTrainingController = CreateTrainingController()
+        createTrainingController.isDone = isDone
         let navController = UINavigationController(rootViewController: createTrainingController)
-        present(navController, animated: true, completion: nil)
+        self.present(navController, animated: true, completion: nil)        
     }
 }
 

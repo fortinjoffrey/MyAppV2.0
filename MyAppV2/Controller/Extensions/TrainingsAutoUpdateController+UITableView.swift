@@ -47,7 +47,7 @@ extension TrainingsAutoUpdateController {
         
         cell.training = training
         
-        cell.accessoryType = .disclosureIndicator
+//        training.isDone ? cell.accessoryType = .checkmark : cell.accessoryType = .disclosureIndicator
         
         return cell
     }
@@ -71,7 +71,7 @@ extension TrainingsAutoUpdateController {
             
             let training = self.fetchResultsController.object(at: indexPath)
             
-            createTrainingController.training = training
+            createTrainingController.training = training            
             
             self.present(navController, animated: true, completion: nil)
             success(true)
@@ -90,6 +90,7 @@ extension TrainingsAutoUpdateController {
         let training = fetchResultsController.object(at: indexPath)
         
         let exercicesController = ExercicesController()
+        exercicesController.delegate = self
         exercicesController.training = training
         navigationController?.pushViewController(exercicesController, animated: true)
         
