@@ -12,7 +12,12 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
     
     func setupTableView() {
         
-        tableView.register(RepsWeightCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(RepsWeightCell.self, forCellReuseIdentifier: cellIds[0])
+        tableView.register(CardioCell.self, forCellReuseIdentifier: cellIds[1])
+        tableView.register(BodyweightCell.self, forCellReuseIdentifier: cellIds[2])
+        tableView.register(GainageCell.self, forCellReuseIdentifier: cellIds[3])
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIds[4])
+        tableView.tableFooterView = UIView()
         
     }
     
@@ -24,27 +29,33 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
     // MARK: Cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepsWeightCell
-        
         let set = sets[indexPath.row]
         
         switch exercice?.category {
         case "Poids libres / Machines":
-//            cell.textLabel?.text = "\(set.repetitions) REPS || \(set.weight) KGS"
+//            cell.textLabel?.text = "\(set.repetitions) REPS || \(set.weight) KGS".set
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[0], for: indexPath) as! RepsWeightCell
             cell.set = set
+            return cell
         case "Cardio":
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[1], for: indexPath) as! CardioCell
             print(set.duration)
-            cell.textLabel?.text = "\(set.duration / 60 % 60) MIN || \(set.speed) KM / H"
+//            cell.textLabel?.text = "\(set.duration / 60 % 60) MIN || \(set.speed) KM / H"
+            cell.set = set
+            return cell
         case "Poids du corps":
-            cell.textLabel?.text = "\(set.repetitions)"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[2], for: indexPath) as! BodyweightCell
+            cell.set = set
+            return cell
         case "Gainage":
-            cell.textLabel?.text = "\(set.duration / 60 % 60) MIN \(set.duration % 60) SEC"
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[3], for: indexPath) as! GainageCell
+            cell.set = set
+            return cell
         default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[4], for: indexPath)
             cell.textLabel?.text = ""
+            return cell
         }
-        
-        return cell
-        
     }
     
     // MARK: Swipe Action

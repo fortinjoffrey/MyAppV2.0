@@ -33,8 +33,7 @@ class SetsController: UIViewController {
         return button
     }()
   
-    
-    let cellId = "cellId"
+    let cellIds = ["repsWeightCellId", "cardioCellId", "bodyweightCellId", "gainageCellId", "cellId"]    
 
     @objc private func handleAdd() {
      

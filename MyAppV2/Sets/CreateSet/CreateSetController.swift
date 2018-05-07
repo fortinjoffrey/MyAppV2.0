@@ -238,7 +238,7 @@ class CreateSetController: UIViewController {
         case "Cardio":
             setupUIForCardio()
         case "Poids du corps":
-            setupUIForPdc()
+            setupUIForBodyweight()
         case "Gainage":
             setupUIForGainage()
         default:
@@ -304,7 +304,7 @@ class CreateSetController: UIViewController {
         validateButton.anchor(top: durationSpeedPickerStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
     }
     
-    func setupUIForPdc() {
+    func setupUIForBodyweight() {
         
         setupRepsWeightPickerViews()
         
