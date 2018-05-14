@@ -29,4 +29,5 @@ extension UIColor {
     static let trackStrokeColor = UIColor.rgb(r: 56, g: 25, b: 49)
     static let pulsatingFillColor = UIColor.rgb(r: 86, g: 30, b: 63)
     
+    static let doneGreen = rgb(r: 20, g: 187, b: 112)
 }

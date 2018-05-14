@@ -14,13 +14,11 @@ extension SetsController: CreateSetControllerDelegate {
         let indexPath = IndexPath(row: sets.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         
-        
-        // present timer automatically if training is "en cours"
-        let layout = UICollectionViewFlowLayout()
-        let selectionController = SelectionController(collectionViewLayout: layout)
-        let navController = UINavigationController(rootViewController: selectionController)
-        self.present(navController, animated: true, completion: nil)
-        
+        guard let trainingIsDone = trainingIsDone else { return }
+
+        if !trainingIsDone {
+            tabBarController?.selectedIndex = 2
+        }
     }
     
     func didEditSet(set: Set) {

@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol RunningTimerControllerDelegate {
+    func didFinishTimer()
+}
+
 class RunningTimerController: UIViewController {
+    
+    var delegate: RunningTimerControllerDelegate?
     
     var shapeLayer = CAShapeLayer()
     var timer: Timer?
@@ -65,6 +71,8 @@ class RunningTimerController: UIViewController {
  
     
     @objc private func handleStop() {
+        timer?.invalidate()
+        self.delegate?.didFinishTimer()
         dismiss(animated: true, completion: nil)
     }
     
@@ -104,8 +112,13 @@ class RunningTimerController: UIViewController {
         if count <= 0 && shapeLayer.strokeEnd >= 1.0 {
             timer?.invalidate()
             
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true) {
+//                self.delegate?.didFinishTimer()
+//            }
             
+            self.delegate?.didFinishTimer()
+            dismiss(animated: true, completion: nil)
             
             // send notification and dismiss timer from view
         } else {

@@ -17,6 +17,7 @@ class TrainingCell: UITableViewCell {
                 
                 if isDone {
                     accessoryType = UITableViewCellAccessoryType.checkmark
+                    backgroundColor = .doneGreen
                 } else {
                     accessoryType = UITableViewCellAccessoryType.disclosureIndicator
                 }
@@ -25,7 +26,7 @@ class TrainingCell: UITableViewCell {
                 dateFormatter.dateFormat = "dd/MM/yyyy"
                 
                 let dateString = dateFormatter.string(from: date)
-                nameAndDate.text = "\(name) Date: \(dateString)"
+                nameAndDate.text = "\(name) Date: \(dateString)"                
             } else {
                 nameAndDate.text = training?.name
             }

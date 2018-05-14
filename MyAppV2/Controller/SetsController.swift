@@ -17,6 +17,8 @@ class SetsController: UIViewController {
     
     var delegate: SetsControllerDelegate?
     
+    var trainingIsDone: Bool? = false
+    
     var exercice: Exercice? {
         didSet {
             navigationItem.title = exercice?.name
@@ -60,7 +62,7 @@ class SetsController: UIViewController {
     @objc private func handleAdd() {
      
         let createSetController = CreateSetController()
-        createSetController.exercice = exercice
+        createSetController.exercice = exercice        
         createSetController.delegate = self
         
         let navController = UINavigationController(rootViewController: createSetController)
@@ -88,7 +90,9 @@ class SetsController: UIViewController {
         
         tableView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
         
-        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 32, paddingRight: 32, width: 50, height: 50)
+        guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
+        
+        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
     
         
     }

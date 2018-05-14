@@ -73,6 +73,7 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
         
         let setsController = SetsController()
         setsController.exercice = exercice
+        setsController.trainingIsDone = training?.isDone
         setsController.delegate = self
   
         navigationController?.pushViewController(setsController, animated: true)

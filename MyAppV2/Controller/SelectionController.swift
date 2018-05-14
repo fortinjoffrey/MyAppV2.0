@@ -56,6 +56,7 @@ extension SelectionController {
         let count = minutes * 60 + seconds
         
         let runningTimerController = RunningTimerController()
+        runningTimerController.delegate = self
         runningTimerController.timerValue = CGFloat(count)
         
         

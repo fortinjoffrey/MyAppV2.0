@@ -28,10 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         
 //        let tableViewController = TrainingsController()
-        let tableViewController = TrainingsAutoUpdateController()
-        let navController = UINavigationController(rootViewController: tableViewController)
+        let mainTabBarController = MainTabBarController()
         
-        window?.rootViewController = navController
+        window?.rootViewController = mainTabBarController
         
         
         return true

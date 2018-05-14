@@ -46,15 +46,25 @@ class CreateTrainingController: UIViewController {
         return sv
     }()
     
-    lazy var nameTextField: UITextField = {
+    private let nameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Nom de la séance"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var nameTextField: UITextField = {
         let tf = UITextField()
         tf.delegate = self
-        tf.placeholder = "Entrez un nom pour votre séance"
+        tf.placeholder = "Ex: Jambes / Épaules"
+        tf.textAlignment = .center
         tf.font = UIFont.systemFont(ofSize: 16)
         return tf
     }()
     
-    let startDateLabel: UILabel = {
+    private let startDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Entrez l'heure de début"
         label.font = UIFont.boldSystemFont(ofSize: 16)
@@ -63,14 +73,14 @@ class CreateTrainingController: UIViewController {
         return label
     }()
     
-    let startDatePicker: UIDatePicker = {
+    private let startDatePicker: UIDatePicker = {
         let dp = UIDatePicker()
         dp.datePickerMode = .dateAndTime
         dp.locale = Locale(identifier: "FR_fr")
         return dp
     }()
     
-    let endDateLabel: UILabel = {
+    private let endDateLabel: UILabel = {
         let label = UILabel()
         label.text = "Fin de l'entraînement"
         label.textAlignment = .center
@@ -78,14 +88,14 @@ class CreateTrainingController: UIViewController {
         return label
     }()
     
-    let endDatePicker: UIDatePicker = {
+    private let endDatePicker: UIDatePicker = {
         let dp = UIDatePicker()
         dp.datePickerMode = .dateAndTime
         dp.locale = Locale(identifier: "FR_fr")
         return dp
     }()
     
-    let notationLabel: UILabel = {
+    private let notationLabel: UILabel = {
         let label = UILabel()
         label.text = "Notez la séance"
         label.textAlignment = .center
@@ -93,7 +103,7 @@ class CreateTrainingController: UIViewController {
         return label
     }()
     
-    let notationPicker: NotationPickerView = {
+    private let notationPicker: NotationPickerView = {
         let pv = NotationPickerView()
         pv.dataSource = pv
         pv.delegate = pv
@@ -103,7 +113,7 @@ class CreateTrainingController: UIViewController {
         return pv
     }()
     
-    let tirednessNotationLabel: UILabel = {
+    private let tirednessNotationLabel: UILabel = {
         let label = UILabel()
         label.text = "Notez votre état de fatigue"
         label.textAlignment = .center
@@ -111,7 +121,7 @@ class CreateTrainingController: UIViewController {
         return label
     }()
     
-    let tirednessNotationPicker: NotationPickerView = {
+    private let tirednessNotationPicker: NotationPickerView = {
         let pv = NotationPickerView()
         pv.dataSource = pv
         pv.delegate = pv
@@ -121,7 +131,7 @@ class CreateTrainingController: UIViewController {
         return pv
     }()
     
-    let notesLabel: UILabel = {
+    private let notesLabel: UILabel = {
         let label = UILabel()
         label.text = "Remarques sur la séance"
         label.textAlignment = .center
@@ -129,7 +139,7 @@ class CreateTrainingController: UIViewController {
         return label
     }()
     
-    lazy var notesTextView: UITextView = {
+    private lazy var notesTextView: UITextView = {
         let tf = UITextView()
         tf.delegate = self
         tf.text = ""
@@ -155,6 +165,10 @@ class CreateTrainingController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard))
         view.addGestureRecognizer(tap)
         
+        setupObservers()
+    }
+    
+    fileprivate func setupObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
@@ -260,9 +274,11 @@ class CreateTrainingController: UIViewController {
         scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 800)
         
         
-        [nameTextField, startDateLabel, startDatePicker].forEach { scrollContainerView.addSubview($0)}
+        [nameLabel,nameTextField, startDateLabel, startDatePicker].forEach { scrollContainerView.addSubview($0)}
         
-        nameTextField.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
+        nameLabel.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        
+        nameTextField.anchor(top: nameLabel.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 50)
         
         startDateLabel.anchor(top: nameTextField.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         

@@ -40,6 +40,8 @@
 		DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE24209E1A8500F7C82D /* CardioCell.swift */; };
 		DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */; };
 		DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE28209E203400F7C82D /* GainageCell.swift */; };
+		DDF1E97F20A9DB17005F9DC0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */; };
+		DDF1E98120A9E713005F9DC0 /* SelectionController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */; };
 		DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7B0209AF0B2001D464C /* SetsController.swift */; };
 		DDFBC7BA209B376F001D464C /* CreateSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7B9209B376F001D464C /* CreateSetController.swift */; };
 		DDFBC7BD209B3AE1001D464C /* CreateSetController+UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */; };
@@ -83,6 +85,8 @@
 		DDE0CE24209E1A8500F7C82D /* CardioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioCell.swift; sourceTree = "<group>"; };
 		DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightCell.swift; sourceTree = "<group>"; };
 		DDE0CE28209E203400F7C82D /* GainageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainageCell.swift; sourceTree = "<group>"; };
+		DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectionController+Delegate.swift"; sourceTree = "<group>"; };
 		DDFBC7B0209AF0B2001D464C /* SetsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsController.swift; sourceTree = "<group>"; };
 		DDFBC7B9209B376F001D464C /* CreateSetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetController.swift; sourceTree = "<group>"; };
 		DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateSetController+UIPickerView.swift"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 		DDAB7D4B20A0B9430022CF34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */,
 				DD586A4320970A5300A81F9E /* CreateExerciceController.swift */,
 				DDFBC7B9209B376F001D464C /* CreateSetController.swift */,
 				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
@@ -173,6 +178,7 @@
 				DDFBC7C0209B6B83001D464C /* SetsController+UITableView.swift */,
 				DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */,
 				DD2808D620931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift */,
+				DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -300,6 +306,7 @@
 				DD6B489B209BB5740002C07F /* RepsWeightCell.swift in Sources */,
 				DDFBC7C3209B6D4D001D464C /* SetsController+CreateSetControllerDelegate.swift in Sources */,
 				DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */,
+				DDF1E97F20A9DB17005F9DC0 /* MainTabBarController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
 				DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */,
 				DD586A46209711D000A81F9E /* ExercicesController+Delegate.swift in Sources */,
@@ -323,6 +330,7 @@
 				DDFBC7C1209B6B83001D464C /* SetsController+UITableView.swift in Sources */,
 				DD2573C520920CC800AA6AB6 /* UIViewController+.swift in Sources */,
 				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,
+				DDF1E98120A9E713005F9DC0 /* SelectionController+Delegate.swift in Sources */,
 				DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */,
 				DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */,
 			);

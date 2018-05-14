@@ -57,7 +57,9 @@ class ExercicesController: UIViewController {
         
         setupTableView()
         
-        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 32, paddingRight: 32, width: 50, height: 50)
+        guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
+        
+        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
         
     }
     
