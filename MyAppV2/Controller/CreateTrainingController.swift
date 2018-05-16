@@ -193,7 +193,11 @@ class CreateTrainingController: UIViewController {
     
     private func createTraining(name: String, isDone: Bool) {
         
-        let tuple = CoreDataManager.shared.createTraining(name: name, startDate: startDatePicker.date, endDate: endDatePicker.date, notation: notationPicker.selectedData, tirednessNotation: tirednessNotationPicker.selectedData, notes: notesTextView.text, isDone: isDone)
+        let endDate = isDone ? endDatePicker.date : startDatePicker.date
+        
+        let tuple = CoreDataManager.shared.createTraining(name: name, startDate: startDatePicker.date, endDate: endDate, notation: notationPicker.selectedData, tirednessNotation: tirednessNotationPicker.selectedData, notes: notesTextView.text, isDone: isDone)
+        
+        print(endDatePicker.date)
         
         if let error = tuple.1 {
             print(error)

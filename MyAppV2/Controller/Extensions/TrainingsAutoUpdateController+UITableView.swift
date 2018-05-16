@@ -14,7 +14,9 @@ extension TrainingsAutoUpdateController {
         tableView.backgroundColor = .darkBlue
         tableView.register(TrainingCell.self, forCellReuseIdentifier: cellId)
         tableView.tableFooterView = UIView()
-        tableView.separatorStyle = .none        
+        tableView.separatorStyle = .singleLine
+        tableView.separatorColor = .black
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: view.frame.width / 7 + 11 , bottom: 0, right: 30)
     }
  
     // MARK: Section
