@@ -85,18 +85,26 @@ extension TrainingsAutoUpdateController {
         return config
         
     }
-    
-    // MARK: Did select row at
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let training = fetchResultsController.object(at: indexPath)
         
         let exercicesController = ExercicesController()
         exercicesController.delegate = self
         exercicesController.training = training
         navigationController?.pushViewController(exercicesController, animated: true)
-        
+        return nil
     }
+    // MARK: Did select row at
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let training = fetchResultsController.object(at: indexPath)
+//
+//        let exercicesController = ExercicesController()
+//        exercicesController.delegate = self
+//        exercicesController.training = training
+//        navigationController?.pushViewController(exercicesController, animated: true)
+//
+//    }
     
     // MARK: Footer
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

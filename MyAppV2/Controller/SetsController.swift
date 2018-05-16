@@ -84,7 +84,11 @@ class SetsController: UIViewController {
     
     func setupUI() {
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checked_64").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(handleDone))
+        if let isDone = exercice?.isDone {
+            if !isDone {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checked_64").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(handleDone))
+            }
+        }
         
         [tableView, plusButton].forEach { view.addSubview($0) }
         

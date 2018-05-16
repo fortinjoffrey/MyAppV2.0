@@ -67,17 +67,29 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
         return config
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let exercice = exercices[indexPath.row]
         
         let setsController = SetsController()
         setsController.exercice = exercice
         setsController.trainingIsDone = training?.isDone
         setsController.delegate = self
-  
+        
         navigationController?.pushViewController(setsController, animated: true)
+        return nil
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let exercice = exercices[indexPath.row]
+//
+//        let setsController = SetsController()
+//        setsController.exercice = exercice
+//        setsController.trainingIsDone = training?.isDone
+//        setsController.delegate = self
+//
+//        navigationController?.pushViewController(setsController, animated: true)
+//    }
     
     // MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
