@@ -15,8 +15,8 @@ extension SetsController: CreateSetControllerDelegate {
         tableView.insertRows(at: [indexPath], with: .automatic)
         
         guard let trainingIsDone = trainingIsDone else { return }
-
-        if !trainingIsDone {
+        
+        if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
             tabBarController?.selectedIndex = 2
         }
     }

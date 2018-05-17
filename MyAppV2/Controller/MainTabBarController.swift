@@ -28,7 +28,8 @@ class MainTabBarController: UITabBarController {
         let timerNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "timer_unselected"), selectedImage: #imageLiteral(resourceName: "timer_selected"), rootViewController: SelectionController(collectionViewLayout: timerLayout))
         timerNavController.tabBarItem.title = "Timer"
         
-        let settingsNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "settings_unselected"), selectedImage: #imageLiteral(resourceName: "settings_selected"))
+        let settingsController = SettingsController(style: .grouped)
+        let settingsNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "settings_unselected"), selectedImage: #imageLiteral(resourceName: "settings_selected"),rootViewController: settingsController)
         settingsNavController.tabBarItem.title = "Paramètres"
         
         tabBar.tintColor = .black
