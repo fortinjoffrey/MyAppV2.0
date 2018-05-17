@@ -132,6 +132,58 @@
 			path = "Old (without FRC)";
 			sourceTree = "<group>";
 		};
+		DDA4DB5C20ADBBED0090E5FB /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		DDA4DB5D20ADBBFC0090E5FB /* Training */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
+				DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */,
+			);
+			path = Training;
+			sourceTree = "<group>";
+		};
+		DDA4DB5E20ADBC150090E5FB /* Exercice */ = {
+			isa = PBXGroup;
+			children = (
+				DD586A4320970A5300A81F9E /* CreateExerciceController.swift */,
+				DD586A3E209707F600A81F9E /* ExercicesController.swift */,
+			);
+			path = Exercice;
+			sourceTree = "<group>";
+		};
+		DDA4DB5F20ADBC1C0090E5FB /* Set */ = {
+			isa = PBXGroup;
+			children = (
+				DDFBC7B9209B376F001D464C /* CreateSetController.swift */,
+				DDFBC7B0209AF0B2001D464C /* SetsController.swift */,
+			);
+			path = Set;
+			sourceTree = "<group>";
+		};
+		DDA4DB6020ADBC1F0090E5FB /* Timer */ = {
+			isa = PBXGroup;
+			children = (
+				DDAB7D4520A046C80022CF34 /* RunningTimerController.swift */,
+				DDAB7D4320A03E110022CF34 /* SelectionController.swift */,
+			);
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		DDA4DB6120ADBC340090E5FB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DDA4DB3820AD7FD20090E5FB /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		DDAB7D4920A0B8F80022CF34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -159,16 +211,12 @@
 		DDAB7D4B20A0B9430022CF34 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */,
-				DD586A4320970A5300A81F9E /* CreateExerciceController.swift */,
-				DDFBC7B9209B376F001D464C /* CreateSetController.swift */,
-				DDBE6CA52091BE3000C14200 /* CreateTrainingController.swift */,
-				DD586A3E209707F600A81F9E /* ExercicesController.swift */,
-				DDAB7D4520A046C80022CF34 /* RunningTimerController.swift */,
-				DDAB7D4320A03E110022CF34 /* SelectionController.swift */,
-				DDFBC7B0209AF0B2001D464C /* SetsController.swift */,
-				DD2808D420931AD000D14DE3 /* TrainingsAutoUpdateController.swift */,
-				DDA4DB3820AD7FD20090E5FB /* SettingsController.swift */,
+				DDA4DB6120ADBC340090E5FB /* Settings */,
+				DDA4DB6020ADBC1F0090E5FB /* Timer */,
+				DDA4DB5F20ADBC1C0090E5FB /* Set */,
+				DDA4DB5E20ADBC150090E5FB /* Exercice */,
+				DDA4DB5D20ADBBFC0090E5FB /* Training */,
+				DDA4DB5C20ADBBED0090E5FB /* Main */,
 				DDAB7D4C20A0BA040022CF34 /* Extensions */,
 			);
 			path = Controller;

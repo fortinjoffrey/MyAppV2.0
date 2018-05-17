@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 protocol RunningTimerControllerDelegate {
     func didFinishTimer()
@@ -72,12 +73,14 @@ class RunningTimerController: UIViewController {
     
     @objc private func handleStop() {
         timer?.invalidate()
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
         self.delegate?.didFinishTimer()
         dismiss(animated: true, completion: nil)
     }
     
     @objc private func handlePlus() {
-        timerValue += 30
+        timerValue += 30        
         count += 30
     }
     
@@ -87,6 +90,8 @@ class RunningTimerController: UIViewController {
         setupUI()
         
         setupObservers()
+        
+        sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "TERMINÈ", body: "\(timerValue) se sont écoulées")
         
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(handleTimer), userInfo: nil, repeats: true)
         
@@ -111,11 +116,6 @@ class RunningTimerController: UIViewController {
         
         if count <= 0 && shapeLayer.strokeEnd >= 1.0 {
             timer?.invalidate()
-            
-//            dismiss(animated: true, completion: nil)
-//            dismiss(animated: true) {
-//                self.delegate?.didFinishTimer()
-//            }
             
             self.delegate?.didFinishTimer()
             dismiss(animated: true, completion: nil)
