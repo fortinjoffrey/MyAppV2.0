@@ -40,7 +40,7 @@ class ExercicesController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         
         setupUI()
       

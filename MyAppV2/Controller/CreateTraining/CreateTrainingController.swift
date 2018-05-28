@@ -11,7 +11,6 @@ import CoreData
 
 protocol CreateTrainingControllerDelegate {
     func didAddTraining(training: Training)
-    func didEditTraining(training: Training)
 }
 
 class CreateTrainingController: UIViewController {
@@ -36,6 +35,8 @@ class CreateTrainingController: UIViewController {
     }
     
     var isDone: Bool?
+    
+    var delegate: CreateTrainingControllerDelegate?
     
     var selectedTextArea: Any?
     var textfieldMode: Bool?
@@ -197,12 +198,15 @@ class CreateTrainingController: UIViewController {
         
         let tuple = CoreDataManager.shared.createTraining(name: name, startDate: startDatePicker.date, endDate: endDate, notation: notationPicker.selectedData, tirednessNotation: tirednessNotationPicker.selectedData, notes: notesTextView.text, isDone: isDone)
         
-        print(endDatePicker.date)
-        
         if let error = tuple.1 {
             print(error)
         } else {
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
+            dismiss(animated: true) {
+                if let training = tuple.0 {
+                    self.delegate?.didAddTraining(training: training)
+                }                
+            }
         }
     }
     

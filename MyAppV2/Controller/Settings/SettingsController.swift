@@ -52,6 +52,7 @@ class SettingsController: UITableViewController {
             if let state = UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool {
                 automaticTimerSwitch.isOn = state
             } else {
+                UserDefaults.standard.set(true, forKey: "automaticTimerSwitchIsOn")
                 automaticTimerSwitch.isOn = true
             }                        
             automaticTimerSwitch.tag = 0

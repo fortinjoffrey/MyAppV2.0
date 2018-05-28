@@ -17,6 +17,15 @@ extension TrainingsAutoUpdateController: ExercicesControllerDelegate {
     }
 }
 
+extension TrainingsAutoUpdateController: CreateTrainingControllerDelegate {
+    func didAddTraining(training: Training) {
+        guard let indexPath = fetchResultsController.indexPath(forObject: training) else { return }
+        print(indexPath)        
+        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        _ = tableView(tableView, willSelectRowAt: indexPath)      
+    }
+}
+
 extension TrainingsAutoUpdateController {
     
     

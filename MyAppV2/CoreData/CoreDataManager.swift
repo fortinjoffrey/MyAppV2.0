@@ -155,7 +155,8 @@ struct CoreDataManager {
         
         let context = persistentContainer.viewContext
         
-        let set = NSEntityDescription.insertNewObject(forEntityName: "Set", into: context) as! Set
+//        let set = NSEntityDescription.insertNewObject(forEntityName: "Set", into: context) as! Set
+        let set = Set(context: context)
         
         set.date = Date()
         set.duration = duration

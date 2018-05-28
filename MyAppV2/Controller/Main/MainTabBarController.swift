@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.barTintColor = .white
-        setupControllers()
+        setupControllers()                
     }
     
     fileprivate func setupControllers() {

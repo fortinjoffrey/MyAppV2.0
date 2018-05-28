@@ -16,7 +16,12 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
     lazy var fetchResultsController: NSFetchedResultsController<Training> = {
         
         let request: NSFetchRequest<Training> = Training.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "endDate", ascending: false)]
+        
+//        let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        let endDateSortDescriptor = NSSortDescriptor(key: "endDate", ascending: false)
+        
+        request.sortDescriptors = [endDateSortDescriptor]
+        
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
@@ -50,13 +55,18 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
         
         let trainingCategories = ["Entraînement terminé", "Entraînement en cours", "Entraînement futur"]
         
-        alertController.addAction(UIAlertAction(title: trainingCategories[0], style: .default, handler: { (_) in
-            self.presentCreateTrainingController(isDone: true)
-        }))
-        
-        [trainingCategories[1],trainingCategories[2]].forEach {
-            alertController.addAction(UIAlertAction(title: $0, style: .default, handler: { (_) in
-                self.presentCreateTrainingController(isDone: false)
+        for (index, value) in trainingCategories.enumerated() {
+            
+            var isDone: Bool = true
+            
+            if index == 0 {
+                isDone = true
+            } else {
+                isDone = false
+            }
+            
+            alertController.addAction(UIAlertAction(title: value, style: .default, handler: { (_) in
+                self.presentCreateTrainingController(isDone: isDone)
             }))
         }
         
@@ -69,6 +79,8 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
         
         let createTrainingController = CreateTrainingController()
         createTrainingController.isDone = isDone
+        createTrainingController.delegate = self
+        
         let navController = UINavigationController(rootViewController: createTrainingController)
         self.present(navController, animated: true, completion: nil)        
     }

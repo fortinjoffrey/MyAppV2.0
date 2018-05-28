@@ -15,17 +15,14 @@ protocol SetsControllerDelegate {
 
 class SetsController: UIViewController {
     
+    var sets = [Set]()
     var delegate: SetsControllerDelegate?
-    
     var trainingIsDone: Bool? = false
-    
     var exercice: Exercice? {
         didSet {
             navigationItem.title = exercice?.name
         }
     }
-    
-    var sets = [Set]()
     
     lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -73,7 +70,6 @@ class SetsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .darkBlue
         
         setupUI()
@@ -81,7 +77,7 @@ class SetsController: UIViewController {
         fetchSets()
         
     }
-    
+
     func setupUI() {
         
         if let isDone = exercice?.isDone {

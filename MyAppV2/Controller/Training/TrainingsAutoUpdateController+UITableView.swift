@@ -85,6 +85,7 @@ extension TrainingsAutoUpdateController {
         return config
         
     }
+    
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let training = fetchResultsController.object(at: indexPath)
         
