@@ -50,19 +50,7 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
             success(true)
         }
         
-        let editAction = UIContextualAction(style: .normal, title: "Modifier") { (action, view, success) in
-            
-            let createExerciceController = CreateExerciceController()
-            createExerciceController.delegate = self
-            createExerciceController.training = self.training
-            createExerciceController.exercice = self.exercices[indexPath.row]
-            let navController = UINavigationController(rootViewController: createExerciceController)
-            success(true)
-            self.present(navController, animated: true, completion: nil)
-        }
-        editAction.backgroundColor = .darkBlue
-        
-        let config = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        let config = UISwipeActionsConfiguration(actions: [deleteAction])
         config.performsFirstActionWithFullSwipe = false
         return config
     }
@@ -78,18 +66,6 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
         navigationController?.pushViewController(setsController, animated: true)
         return nil
     }
-    
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let exercice = exercices[indexPath.row]
-//
-//        let setsController = SetsController()
-//        setsController.exercice = exercice
-//        setsController.trainingIsDone = training?.isDone
-//        setsController.delegate = self
-//
-//        navigationController?.pushViewController(setsController, animated: true)
-//    }
     
     // MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

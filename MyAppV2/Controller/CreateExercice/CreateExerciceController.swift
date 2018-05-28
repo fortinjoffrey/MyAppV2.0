@@ -2,166 +2,217 @@
 //  CreateExerciceController.swift
 //  MyAppV2
 //
-//  Created by Joffrey Fortin on 30/04/2018.
+//  Created by Joffrey Fortin on 28/05/2018.
 //  Copyright © 2018 Joffrey Fortin. All rights reserved.
 //
 
 import UIKit
-import CoreData
-
-protocol CreateExerciceControllerDelegate {
-    func didAddExercice(exercice: Exercice)
-    func didEditExercice(exercice: Exercice)
-}
 
 class CreateExerciceController: UIViewController {
     
-    var training: Training?
-    var exercice: Exercice? {
-        didSet {
-            nameTextfield.text = exercice?.name
-            categoryTextfield.text = exercice?.category
-            categoryTextfield.backgroundColor = .green
-        }
-    }
-    var delegate: CreateExerciceControllerDelegate?
-    
-    lazy var nameTextfield: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Entrez un nom pour votre exercice"
-        tf.textAlignment = .center
-        tf.font = UIFont.boldSystemFont(ofSize: 16)
-        tf.delegate = self
-        return tf
+    private let visualEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.alpha = 0.5
+        return visualEffectView
     }()
     
-    let categoryData = ["Poids libres / Machines", "Cardio","Poids du corps","Gainage"]
+    private let dismissButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(#imageLiteral(resourceName: "down-arrow").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
+        return button
+    }()
     
-    let categoryLabel: UILabel = {
+    private let mainView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    private let nameLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .left
-        label.text = "Catégorie"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.text = "Nom de l'exercice"
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        label.textAlignment = .center
         return label
     }()
     
-    lazy var categoryTextfield: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Choisir catégorie"
-        tf.textAlignment = .center
-        tf.font = UIFont.boldSystemFont(ofSize: 16)
-        tf.delegate = self
-        return tf
+    private lazy var nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.textColor = .gray
+        textField.textAlignment = .center
+        textField.placeholder = "Entrez nom"
+        textField.delegate = self
+        return textField
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .darkBlue
-        
-        navigationItem.title = exercice == nil ? "Créer exercice" : "Modifier"
-        
-        setupCancelButton()
-        setupSaveButtonInNavBar(selector: #selector(handleSave))
-        setupUI()
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
-    }
+    private let primaryGroupLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Groupe musculaire principal"
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        label.textAlignment = .center
+        return label
+    }()
     
-    func handleCategoryTextfield() {
+    private let primaryGroupButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sélectionner groupe", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(handleGroupSelection), for: .touchUpInside)
+        return button
+    }()
+    
+    private let secondaryGroupLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Groupe musculaire secondaire"
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let secondaryGroupButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("(Optionnel)", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.addTarget(self, action: #selector(handleGroupSelection), for: .touchUpInside)
+        return button
+    }()
+    
+    private let categoryLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Catégorie de l'exercice"
+        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let categoryButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Exemple: Poids du corps", for: .normal)
+        button.setTitleColor(.gray, for: .normal)
+        button.tag = 2
+        button.addTarget(self, action: #selector(handleGroupSelection), for: .touchUpInside)
+        return button
+    }()
+    
+    let groups = ["Pectoraux" ,"Abdos", "Epaules"].sorted()
+    let categories = ["Poids libres / Machines", "Cardio","Poids du corps","Gainage"]
+    
+    @objc fileprivate func handleGroupSelection(button: UIButton) {
         
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        var dataArray: [String] = groups
         
-        categoryData.forEach {
-            alertController.addAction(UIAlertAction(title: $0, style: .default, handler: { (action) in
-                
-                UIView.animate(withDuration: 1, animations: {
-                    self.categoryTextfield.text = action.title
-                    self.categoryTextfield.backgroundColor = .green
-                })
-            }))
+        if button.tag == 2 && dataArray == groups {
+            dataArray = categories
         }
         
-        alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+        dataArray.forEach {
+            alertController.addAction(UIAlertAction(title: $0, style: .default, handler: { (action) in
+                button.setTitle(action.title, for: .normal)
+            })) }
         
+        alertController.addAction(UIAlertAction(title: "Annuler", style: .destructive, handler: nil))
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc private func handleSave() {
-        
-        guard let name = nameTextfield.text else { return }
-        guard let category = categoryTextfield.text else { return }
-        
-        if name.isEmpty {
-            showEmptyTextFieldAlert(message: "Entrer un nom pour votre exercice")
-            return
-        } else if category.isEmpty {
-            showEmptyTextFieldAlert(message: "Entrer une catégorie pour votre exercice")
-            return
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        if let tabBarController = tabBarController {
+            tabBarController.tabBar.isHidden = true
         }
         
-        if exercice == nil {
-            createExercice(name: name, category: category)
-        } else {
-            saveExerciceChanges(name: name, category: category)
-        }
+        
+        setupViewsAndLayout()
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
+        view.addGestureRecognizer(panGestureRecognizer)
+        
     }
     
-    private func createExercice(name: String, category: String) {
+    @objc fileprivate func handleGesture(gesture: UIPanGestureRecognizer) {
         
-        guard let training = training else { return }
+        let translation = gesture.translation(in: self.view)
+        view.frame.origin.y = translation.y
         
-        let tuple = CoreDataManager.shared.createExercice(name: name, category: category, training: training)
-        
-        if let error = tuple.1 {
-            // present an alert
-            print(error)
-        } else {
-            dismiss(animated: true) {
-                if let exercice = tuple.0 {
-                    self.delegate?.didAddExercice(exercice: exercice)
+        if gesture.state == .ended {
+            
+            let velocity = gesture.velocity(in: self.view)
+            
+            if velocity.y > 1000 || view.frame.origin.y >= view.frame.height / 2 {
+                dismiss(animated: true, completion: nil)
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    self.view.frame.origin.y = 0
                 }
             }
-        }                
-    }
-    
-    private func saveExerciceChanges(name: String, category: String) {
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        exercice?.name = name
-        exercice?.category = category
-        
-        do {
-            try context.save()
-            dismiss(animated: true) {
-                if let exercice = self.exercice {
-                    self.delegate?.didEditExercice(exercice: exercice)
-                }
-            }
-        } catch let saveErr {
-            print("Failed to save changes:", saveErr)
         }
     }
     
-    private func setupUI() {
+    fileprivate func setupViewsAndLayout() {
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .lightBlue
+        [visualEffectView, dismissButton, mainView].forEach { view.addSubview($0) }
         
-        [backgroundView, nameTextfield, categoryLabel, categoryTextfield].forEach { view.addSubview($0) }
+        visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        backgroundView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 300)
+        dismissButton.anchor(top: nil, left: nil, bottom: mainView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 25, height: 25)
+        dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        nameTextfield.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        mainView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: view.frame.height * 0.7)
+        mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
-        categoryLabel.anchor(top: nameTextfield.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 2, height: 50)
+        let fieldsStackView = UIStackView(arrangedSubviews: [nameLabel, nameTextField, primaryGroupLabel, primaryGroupButton, secondaryGroupLabel, secondaryGroupButton, categoryLabel, categoryButton])
+        fieldsStackView.distribution = .fillEqually
+        fieldsStackView.axis = .vertical
         
-        categoryTextfield.anchor(top: categoryLabel.topAnchor, left: categoryLabel.rightAnchor, bottom: categoryLabel.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 0)
+        let cancelButton = UIButton(type: .system)
+        cancelButton.setTitle("Annuler", for: .normal)
+        cancelButton.setTitleColor(.red, for: .normal)
+        cancelButton.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
+        
+        let validateButton = UIButton(type: .system)
+        validateButton.setTitle("Ajouter", for: .normal)
+        validateButton.setTitleColor(.blue, for: .normal)
+        validateButton.addTarget(self, action: #selector(handleValidate), for: .touchUpInside)
+        
+        let buttonStackView = UIStackView(arrangedSubviews: [cancelButton, validateButton])
+        buttonStackView.distribution = .fillEqually
+        buttonStackView.axis = .horizontal
+        
+        [fieldsStackView, buttonStackView].forEach { mainView.addSubview($0) }
+        
+        fieldsStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 400)
+        
+        buttonStackView.anchor(top: nil, left: mainView.leftAnchor, bottom: mainView.bottomAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+    }
+    
+    @objc fileprivate func handleCancel() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc fileprivate func handleValidate() {
+        
+        guard let exerciceName = nameTextField.text else { return }
+        guard let primaryGroupName = primaryGroupButton.titleLabel?.text else { return }
+        guard let secondaryGroupName = secondaryGroupButton.titleLabel?.text else { return }
+        guard let categoryName = categoryButton.titleLabel?.text else { return }
+        
+        if exerciceName.isEmpty || !groups.contains(primaryGroupName) || !categories.contains(categoryName) {
+            let alertController = UIAlertController(title: "Champ vide", message: "Veuillez compléter les champs", preferredStyle: .alert)
+            let alertConfirmedAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(alertConfirmedAction)
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+        
+        let tuple = CoreDataManager.shared.createExercice(name: exerciceName, category: categoryName, primaryGroup: primaryGroupName, secondaryGroup: secondaryGroupName, training: nil)
+        
+        if tuple.1 == nil {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
-
-
-
-

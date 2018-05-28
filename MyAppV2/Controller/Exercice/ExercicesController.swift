@@ -87,11 +87,12 @@ class ExercicesController: UIViewController {
     
     @objc private func handleAdd() {
         
-        let createExerciceController = CreateExerciceController()
-        let navController = UINavigationController(rootViewController: createExerciceController)
-        createExerciceController.training = training
-        createExerciceController.delegate = self
-        present(navController, animated: true, completion: nil)        
+        let listExercicesAutoUpdateController = ListExercicesAutoUpdateController()
+        listExercicesAutoUpdateController.training = training
+        listExercicesAutoUpdateController.delegate = self
+        let navController = UINavigationController(rootViewController: listExercicesAutoUpdateController)
+        present(navController, animated: true, completion: nil)
+
     }
     
     private func fetchExercices() {

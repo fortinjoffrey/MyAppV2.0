@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
         let trainingsNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "trainings_unselected"), selectedImage: #imageLiteral(resourceName: "trainings_selected"), rootViewController: TrainingsAutoUpdateController())
         trainingsNavController.tabBarItem.title = "Entraînements"
         
-        let exercicesNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "exercices_unselected"), selectedImage: #imageLiteral(resourceName: "exercices_selected"))
+        let exercicesNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "exercices_unselected"), selectedImage: #imageLiteral(resourceName: "exercices_selected"), rootViewController: ListExercicesAutoUpdateController())
         exercicesNavController.tabBarItem.title = "Exercices"
         
         let timerLayout = UICollectionViewFlowLayout()

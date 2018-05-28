@@ -4,6 +4,7 @@
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="isDone" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isListed" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="primaryGroup" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secondaryGroup" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,7 +31,7 @@
         <relationship name="exercices" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Exercice" inverseName="training" inverseEntity="Exercice" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Exercice" positionX="-54" positionY="45" width="128" height="165"/>
+        <element name="Exercice" positionX="-54" positionY="45" width="128" height="180"/>
         <element name="Set" positionX="99" positionY="63" width="128" height="135"/>
         <element name="Training" positionX="259" positionY="-9" width="128" height="180"/>
     </elements>

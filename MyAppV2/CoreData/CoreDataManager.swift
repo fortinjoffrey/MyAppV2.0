@@ -22,12 +22,13 @@ struct CoreDataManager {
         return container
     }()
     
-    // MARK: Training methods
+    // MARK: Training
     func createTraining(name: String, startDate: Date, endDate: Date, notation: Int16, tirednessNotation: Int16, notes: String, isDone: Bool = false) -> (Training?, Error?) {
         
         let context = persistentContainer.viewContext
         
-        let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context) as! Training
+//        let training = NSEntityDescription.insertNewObject(forEntityName: "Training", into: context) as! Training
+        let training = Training(context: context)
         
         training.name = name
         training.startDate = startDate
@@ -71,7 +72,8 @@ struct CoreDataManager {
         
         let context = persistentContainer.viewContext
         
-        let fetchRequest = NSFetchRequest<Training>(entityName: "Training")
+//        let fetchRequest = NSFetchRequest<Training>(entityName: "Training")
+        let fetchRequest: NSFetchRequest<Training> = Training.fetchRequest()
         
         do {
             let trainings = try context.fetch(fetchRequest)
@@ -114,18 +116,29 @@ struct CoreDataManager {
     }
     
     
-    // MARK: Exercices methods
-    func createExercice(name: String, category: String, training: Training) -> (Exercice?, Error?) {
+    // MARK: Exercices
+    func createExercice(name: String, category: String, primaryGroup: String, secondaryGroup: String?,training: Training?) -> (Exercice?, Error?) {
         
         let context = persistentContainer.viewContext
         
-        let exercice = NSEntityDescription.insertNewObject(forEntityName: "Exercice", into: context) as! Exercice
+//        let exercice = NSEntityDescription.insertNewObject(forEntityName: "Exercice", into: context) as! Exercice
+        let exercice = Exercice(context: context)
         
         exercice.name = name
         exercice.date = Date()
         exercice.category = category
         exercice.isDone = false
+        
+        exercice.primaryGroup = primaryGroup
+        exercice.secondaryGroup = secondaryGroup
+        
         exercice.training = training
+        
+        if training == nil {
+            exercice.isListed = true
+        } else {
+            exercice.isListed = false
+        }
         
         do {
             try context.save()
