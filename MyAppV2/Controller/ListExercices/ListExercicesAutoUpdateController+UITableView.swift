@@ -34,8 +34,9 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: listExercicesCellId, for: indexPath)
 
         let exercice = fetchResultsController.object(at: indexPath)
-//        cell.textLabel?.text = exercice.name
-        cell.textLabel?.text = exercice.name ?? "" + " / \(exercice.isListed)"
+        cell.textLabel?.text = "\(exercice.name ?? "")"
+        cell.accessoryType = selectedExercices.contains(exercice) ? .checkmark : .none
+        
         return cell        
     }
     
@@ -71,20 +72,20 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
     //MARK: TO DO
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
+        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
+        
         let exercice = fetchResultsController.object(at: indexPath)
         
         if let index = selectedExercices.index(of: exercice) {
             selectedExercices.remove(at: index)
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            cell.accessoryType = .none
         } else {
             selectedExercices.append(exercice)
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            cell.accessoryType = .checkmark
         }
-        
+    
         return nil
     }
-    
-    
 }
 
 
