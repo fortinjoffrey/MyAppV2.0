@@ -32,7 +32,7 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
         let set = sets[indexPath.row]
         
         switch exercice?.category {
-        case "Poids libres / Machines":
+        case "Poids libres","Machines, poulie":
 //            cell.textLabel?.text = "\(set.repetitions) REPS || \(set.weight) KGS".set
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[0], for: indexPath) as! RepsWeightCell
             cell.accessoryType = .checkmark

@@ -98,8 +98,10 @@ class CreateExerciceController: UIViewController {
         return button
     }()
     
-    let groups = ["Pectoraux" ,"Abdos", "Epaules"].sorted()
-    let categories = ["Poids libres / Machines", "Cardio","Poids du corps","Gainage"]
+    let groups = ["Pectoraux" ,"Abdominaux", "Quadriceps","Deltoïdes","Biceps","Avant-bras","Trapèzes","Triceps","Lombaires","Ischio-Jambiers","Mollets","Fessiers","Dorsaux"].sorted()
+    let categories = ["Poids libres","Machines, poulie", "Cardio","Poids du corps","Gainage"]
+    
+    var mainViewOriginY: CGFloat = 0.0
     
     @objc fileprivate func handleGroupSelection(button: UIButton) {
         
@@ -126,7 +128,6 @@ class CreateExerciceController: UIViewController {
             tabBarController.tabBar.isHidden = true
         }
         
-        
         setupViewsAndLayout()
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
@@ -137,20 +138,32 @@ class CreateExerciceController: UIViewController {
     @objc fileprivate func handleGesture(gesture: UIPanGestureRecognizer) {
         
         let translation = gesture.translation(in: self.view)
-        view.frame.origin.y = translation.y
+        mainView.frame.origin.y =  mainViewOriginY + translation.y
+        
+        if gesture.state == .changed {
+            print(translation.y)
+            let percentage = translation.y / view.frame.height
+            visualEffectView.alpha = 1 - percentage
+            dismissButton.alpha = 1 - percentage
+        }
         
         if gesture.state == .ended {
             
             let velocity = gesture.velocity(in: self.view)
             
-            if velocity.y > 1000 || view.frame.origin.y >= view.frame.height / 2 {
+            if velocity.y > 1000 || mainView.frame.origin.y >= view.frame.height / 2 {
+                visualEffectView.alpha = 0
                 dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration: 0.3) {
-                    self.view.frame.origin.y = 0
+                    self.mainView.frame.origin.y = self.mainViewOriginY
                 }
             }
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        mainViewOriginY = mainView.frame.origin.y
     }
     
     fileprivate func setupViewsAndLayout() {
@@ -162,8 +175,8 @@ class CreateExerciceController: UIViewController {
         dismissButton.anchor(top: nil, left: nil, bottom: mainView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 25, height: 25)
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
-        mainView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: view.frame.height * 0.7)
-        mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        mainView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height * 0.9)
+//        mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
         let fieldsStackView = UIStackView(arrangedSubviews: [nameLabel, nameTextField, primaryGroupLabel, primaryGroupButton, secondaryGroupLabel, secondaryGroupButton, categoryLabel, categoryButton])
         fieldsStackView.distribution = .fillEqually
@@ -187,7 +200,7 @@ class CreateExerciceController: UIViewController {
         
         fieldsStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 400)
         
-        buttonStackView.anchor(top: nil, left: mainView.leftAnchor, bottom: mainView.bottomAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        buttonStackView.anchor(top: fieldsStackView.bottomAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
     }
     
     @objc fileprivate func handleCancel() {

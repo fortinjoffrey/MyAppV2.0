@@ -26,6 +26,7 @@
 		DD5CD28520BC386100213BD3 /* CreateExerciceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CD28420BC386100213BD3 /* CreateExerciceController.swift */; };
 		DD5CD28720BC39BF00213BD3 /* CreateExerciceController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CD28620BC39BF00213BD3 /* CreateExerciceController+UITextFieldDelegate.swift */; };
 		DD5CD28C20BC4FA500213BD3 /* ExercicesController+ListExercicesAutoUpdateControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CD28B20BC4FA500213BD3 /* ExercicesController+ListExercicesAutoUpdateControllerDelegate.swift */; };
+		DD5CD28E20BE038F00213BD3 /* ListExercicesAutoUpdateController+Exercices.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5CD28D20BE038F00213BD3 /* ListExercicesAutoUpdateController+Exercices.swift */; };
 		DD6B489B209BB5740002C07F /* RepsWeightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6B489A209BB5740002C07F /* RepsWeightCell.swift */; };
 		DDA4DB3920AD7FD20090E5FB /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4DB3820AD7FD20090E5FB /* SettingsController.swift */; };
 		DDA4DB3B20AD804B0090E5FB /* SettingsSubtitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA4DB3A20AD804B0090E5FB /* SettingsSubtitleCell.swift */; };
@@ -76,6 +77,7 @@
 		DD5CD28420BC386100213BD3 /* CreateExerciceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateExerciceController.swift; sourceTree = "<group>"; };
 		DD5CD28620BC39BF00213BD3 /* CreateExerciceController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateExerciceController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		DD5CD28B20BC4FA500213BD3 /* ExercicesController+ListExercicesAutoUpdateControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+ListExercicesAutoUpdateControllerDelegate.swift"; sourceTree = "<group>"; };
+		DD5CD28D20BE038F00213BD3 /* ListExercicesAutoUpdateController+Exercices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListExercicesAutoUpdateController+Exercices.swift"; sourceTree = "<group>"; };
 		DD6B489A209BB5740002C07F /* RepsWeightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepsWeightCell.swift; sourceTree = "<group>"; };
 		DDA4DB3820AD7FD20090E5FB /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		DDA4DB3A20AD804B0090E5FB /* SettingsSubtitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSubtitleCell.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				DD5CD27B20BC25EB00213BD3 /* ListExercicesAutoUpdateController.swift */,
 				DD5CD27D20BC277000213BD3 /* ListExercicesAutoUpdateController+UITableView.swift */,
 				DD5CD27F20BC2A1D00213BD3 /* ListExercicesAutoUpdateController+NSFetchedResultsControllerDelegate.swift */,
+				DD5CD28D20BE038F00213BD3 /* ListExercicesAutoUpdateController+Exercices.swift */,
 			);
 			path = ListExercices;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				DDF1E98120A9E713005F9DC0 /* SelectionController+Delegate.swift in Sources */,
 				DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */,
 				DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */,
+				DD5CD28E20BE038F00213BD3 /* ListExercicesAutoUpdateController+Exercices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

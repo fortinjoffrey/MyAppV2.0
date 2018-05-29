@@ -181,7 +181,7 @@ class CreateSetController: UIViewController {
         var tuple: (Set?, Error?)
         
         switch exercice.category {
-        case "Poids libres / Machines":
+        case "Poids libres","Machines, poulie":
             
             let repetitions = repsPickerData[repsPickerView.selectedRow(inComponent: 0)]
             let weight = weightPickerData[weightPickerView.selectedRow(inComponent: 0)]
@@ -235,7 +235,7 @@ class CreateSetController: UIViewController {
         view.backgroundColor = .white
         
         switch exercice?.category {
-        case "Poids libres / Machines":
+        case "Poids libres","Machines, poulie":
             setupUIForRepsWeight()
         case "Cardio":
             setupUIForCardio()

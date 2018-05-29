@@ -59,37 +59,23 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        navigationItem.title = "Listes des exercices"
-        
-        
+        navigationItem.title = training == nil ? "Listes des exercices" : "Ajouter exercices"
         
         if training == nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddView))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
             tableView.allowsSelection = false
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminer", style: .plain, target: self, action: #selector(handleDone))
             tableView.allowsSelection = true
         }
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+//        if UserDefaults.standard.object(forKey: "hasAlreadyBeenLauched") == nil {
+//            createDefaultsExercices()
+//            UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
+//        }
         
-        if UserDefaults.standard.object(forKey: "hasAlreadyBeenLauched") == nil {
-            createDefaultsExercices()
-            UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
-        }
-        
-    }
-    
-    fileprivate func createDefaultsExercices() {
-        
-        var defaultsExercicesArray = [[String]]()
-        defaultsExercicesArray.append(["Développé Couché Haltères", "Pectoraux", "Triceps","Poids libre"])
-        defaultsExercicesArray.append(["Dips", "Triceps", "Pectoraux", "", "Poids du corps"])
-        
-        defaultsExercicesArray.forEach { (exercice) in
-            _ = CoreDataManager.shared.createExercice(name: exercice[0], category: exercice[1], primaryGroup: exercice[2], secondaryGroup: exercice[3], training: nil)
-        }
-    }
+    }        
     
     /*
      * Might call this method upon "Reset All Exercices To Default" inside the settings page
@@ -99,7 +85,11 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         
         fetchResultsController.fetchedObjects?.forEach({ (exercice) in
             _ = CoreDataManager.shared.deleteExercice(exercice: exercice)
-        })        
+        })
+        
+        createDefaultsExercices()
+        UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
+        
     }
     
     @objc fileprivate func handleAddView() {
