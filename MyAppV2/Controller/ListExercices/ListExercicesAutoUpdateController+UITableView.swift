@@ -24,7 +24,7 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let numberOfRows = fetchResultsController.sections?[section].numberOfObjects {
+        if let numberOfRows = fetchResultsController.sections?[section].numberOfObjects {            
             return numberOfRows
         }
         return 0

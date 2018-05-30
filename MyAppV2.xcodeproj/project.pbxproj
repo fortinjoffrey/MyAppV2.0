@@ -48,6 +48,7 @@
 		DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE24209E1A8500F7C82D /* CardioCell.swift */; };
 		DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */; };
 		DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE28209E203400F7C82D /* GainageCell.swift */; };
+		DDEDC14820BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEDC14720BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift */; };
 		DDF1E97F20A9DB17005F9DC0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */; };
 		DDF1E98120A9E713005F9DC0 /* SelectionController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */; };
 		DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7B0209AF0B2001D464C /* SetsController.swift */; };
@@ -101,6 +102,7 @@
 		DDE0CE24209E1A8500F7C82D /* CardioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioCell.swift; sourceTree = "<group>"; };
 		DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightCell.swift; sourceTree = "<group>"; };
 		DDE0CE28209E203400F7C82D /* GainageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainageCell.swift; sourceTree = "<group>"; };
+		DDEDC14720BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListExercicesAutoUpdateController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectionController+Delegate.swift"; sourceTree = "<group>"; };
 		DDFBC7B0209AF0B2001D464C /* SetsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				DD5CD27D20BC277000213BD3 /* ListExercicesAutoUpdateController+UITableView.swift */,
 				DD5CD27F20BC2A1D00213BD3 /* ListExercicesAutoUpdateController+NSFetchedResultsControllerDelegate.swift */,
 				DD5CD28D20BE038F00213BD3 /* ListExercicesAutoUpdateController+Exercices.swift */,
+				DDEDC14720BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift */,
 			);
 			path = ListExercices;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				DDFBC7C1209B6B83001D464C /* SetsController+UITableView.swift in Sources */,
 				DDA4DB3B20AD804B0090E5FB /* SettingsSubtitleCell.swift in Sources */,
 				DD2573C520920CC800AA6AB6 /* UIViewController+.swift in Sources */,
+				DDEDC14820BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift in Sources */,
 				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,
 				DDF1E98120A9E713005F9DC0 /* SelectionController+Delegate.swift in Sources */,
 				DDBE6C8C2091BCE700C14200 /* AppDelegate.swift in Sources */,

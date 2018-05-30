@@ -70,6 +70,7 @@ class SetsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = .darkBlue
         
         setupUI()

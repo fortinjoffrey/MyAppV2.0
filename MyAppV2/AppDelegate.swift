@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupNavigationBar()
         setupNotificationRequestAndDelegate()
         
+        
         window = UIWindow()
         window?.makeKeyAndVisible()
         

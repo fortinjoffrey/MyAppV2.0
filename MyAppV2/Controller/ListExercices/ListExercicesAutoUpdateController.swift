@@ -17,6 +17,23 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     
     let listExercicesCellId = "listExercicesCellId"
     
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "Entrez nom de l'exercice"
+        
+        if let textfield = searchController.searchBar.value(forKey: "searchField") as? UITextField {
+            if let backgroundview = textfield.subviews.first {
+                backgroundview.backgroundColor = UIColor.init(white: 1, alpha: 1)
+                backgroundview.layer.cornerRadius = 10
+                backgroundview.clipsToBounds = true
+            }
+        }
+        searchController.searchBar.tintColor = .white // Cancel color
+        searchController.searchBar.delegate = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        return searchController
+    }()
+    
     var training: Training?
     var delegate: ListExercicesAutoUpdateControllerDelegate?
     
@@ -56,10 +73,16 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     }()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupTableView()
+        setupSearchBar()
+        
         navigationItem.title = training == nil ? "Listes des exercices" : "Ajouter exercices"
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
         
         if training == nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddView))
@@ -75,7 +98,17 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
 //            UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
 //        }
         
-    }        
+    }
+    
+    func setupSearchBar() {
+        
+//        navigationController?.navigationBar.addSubview(searchBar)
+//
+//        guard let navBar = navigationController?.navigationBar else { return }
+//
+//        searchBar.anchor(top: navBar.topAnchor, left: navBar.leftAnchor, bottom: navBar.bottomAnchor, right: navBar.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: navBar.frame.width * 0.7, height: 0)
+        
+    }
     
     /*
      * Might call this method upon "Reset All Exercices To Default" inside the settings page

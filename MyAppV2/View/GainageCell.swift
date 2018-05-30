@@ -17,8 +17,7 @@ class GainageCell: UITableViewCell {
                 durationSecondsValueLabel.text = "\(duration % 60)"
             }
         }
-    }
-    
+    }    
     
     let durationMinutesValueLabel: UILabel = {
         let label = UILabel()
