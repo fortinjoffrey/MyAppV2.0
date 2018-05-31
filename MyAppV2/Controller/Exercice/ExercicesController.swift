@@ -78,6 +78,8 @@ class ExercicesController: UIViewController {
             if let training = training {
                 self.delegate?.didFinishTraining(training: training)
                 navigationController?.popViewController(animated: true)
+                //
+                
             }
         } catch let saveErr {
             print("Failed to save training validation:", saveErr)

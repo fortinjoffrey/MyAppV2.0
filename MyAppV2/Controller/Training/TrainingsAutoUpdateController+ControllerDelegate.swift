@@ -14,6 +14,13 @@ extension TrainingsAutoUpdateController: ExercicesControllerDelegate {
         print(training.isDone)
         guard let indexPath = fetchResultsController.indexPath(forObject: training) else { return }
         tableView.reloadRows(at: [indexPath], with: .automatic)
+        
+        let reportTrainingController = ReportTrainingController()
+        reportTrainingController.modalPresentationStyle = .overFullScreen
+        let training = self.fetchResultsController.object(at: indexPath)
+        reportTrainingController.training = training
+        self.present(reportTrainingController, animated: true, completion: nil)
+        
     }
 }
 
