@@ -58,6 +58,8 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let exercice = exercices[indexPath.row]
         
+        print(exercice.category ?? "")
+        
         let setsController = SetsController()
         setsController.exercice = exercice
         setsController.trainingIsDone = training?.isDone

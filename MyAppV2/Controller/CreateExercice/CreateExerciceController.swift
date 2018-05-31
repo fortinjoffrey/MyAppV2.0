@@ -98,7 +98,7 @@ class CreateExerciceController: UIViewController {
         return button
     }()
     
-    let groups = ["Pectoraux" ,"Abdominaux", "Quadriceps","Deltoïdes","Biceps","Avant-bras","Trapèzes","Triceps","Lombaires","Ischio-Jambiers","Mollets","Fessiers","Dorsaux"].sorted()
+    let groups = ["Pectoraux" ,"Abdominaux", "Quadriceps","Deltoïdes","Biceps","Avant-bras","Trapèzes","Triceps","Lombaires","Ischio-Jambiers","Mollets","Fessiers","Dorsaux", "Cardio"].sorted()
     let categories = ["Poids libres","Machines, poulie", "Cardio","Poids du corps","Gainage"]
     
     var mainViewOriginY: CGFloat = 0.0

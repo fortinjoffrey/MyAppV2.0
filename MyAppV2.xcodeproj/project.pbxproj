@@ -17,6 +17,8 @@
 		DD2808D92093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */; };
 		DD2808DC2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808DB2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift */; };
 		DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD2808DD209344F700D14DE3 /* NotationPickerView.swift */; };
+		DD309CC620C00D800011A464 /* ReportTrainingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD309CC520C00D800011A464 /* ReportTrainingController.swift */; };
+		DD309CC820C00DD30011A464 /* ReportTrainingController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD309CC720C00DD30011A464 /* ReportTrainingController+UITableView.swift */; };
 		DD586A3F209707F600A81F9E /* ExercicesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A3E209707F600A81F9E /* ExercicesController.swift */; };
 		DD586A41209708EC00A81F9E /* ExercicesController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */; };
 		DD586A46209711D000A81F9E /* ExercicesController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD586A45209711D000A81F9E /* ExercicesController+Delegate.swift */; };
@@ -69,6 +71,8 @@
 		DD2808D82093217100D14DE3 /* TrainingsAutoUpdateController+ControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TrainingsAutoUpdateController+ControllerDelegate.swift"; sourceTree = "<group>"; };
 		DD2808DB2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateTrainingController+TextDelegate.swift"; sourceTree = "<group>"; };
 		DD2808DD209344F700D14DE3 /* NotationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotationPickerView.swift; sourceTree = "<group>"; };
+		DD309CC520C00D800011A464 /* ReportTrainingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTrainingController.swift; sourceTree = "<group>"; };
+		DD309CC720C00DD30011A464 /* ReportTrainingController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportTrainingController+UITableView.swift"; sourceTree = "<group>"; };
 		DD586A3E209707F600A81F9E /* ExercicesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercicesController.swift; sourceTree = "<group>"; };
 		DD586A40209708EC00A81F9E /* ExercicesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+UITableView.swift"; sourceTree = "<group>"; };
 		DD586A45209711D000A81F9E /* ExercicesController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExercicesController+Delegate.swift"; sourceTree = "<group>"; };
@@ -142,6 +146,15 @@
 				DD2573C120920B3100AA6AB6 /* TrainingsController+CreateTraining.swift */,
 			);
 			path = "Old (without FRC)";
+			sourceTree = "<group>";
+		};
+		DD309CBE20BFE7420011A464 /* ReportTraining */ = {
+			isa = PBXGroup;
+			children = (
+				DD309CC520C00D800011A464 /* ReportTrainingController.swift */,
+				DD309CC720C00DD30011A464 /* ReportTrainingController+UITableView.swift */,
+			);
+			path = ReportTraining;
 			sourceTree = "<group>";
 		};
 		DD5494E020B97AD900782AFA /* CreateSet */ = {
@@ -278,6 +291,7 @@
 				DDA4DB5C20ADBBED0090E5FB /* Main */,
 				DDA4DB5D20ADBBFC0090E5FB /* Training */,
 				DD5494E120B97AFB00782AFA /* CreateTraining */,
+				DD309CBE20BFE7420011A464 /* ReportTraining */,
 				DDA4DB5E20ADBC150090E5FB /* Exercice */,
 				DD5CD27A20BC25BD00213BD3 /* ListExercices */,
 				DD5CD28320BC384100213BD3 /* CreateExercice */,
@@ -423,6 +437,7 @@
 				DD586A46209711D000A81F9E /* ExercicesController+Delegate.swift in Sources */,
 				DD5CD27C20BC25EB00213BD3 /* ListExercicesAutoUpdateController.swift in Sources */,
 				DDFBC7BA209B376F001D464C /* CreateSetController.swift in Sources */,
+				DD309CC620C00D800011A464 /* ReportTrainingController.swift in Sources */,
 				DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */,
 				DDA4DB3D20AD80960090E5FB /* SettingsRightDetailCell.swift in Sources */,
 				DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */,
@@ -439,6 +454,7 @@
 				DD2808D720931F1F00D14DE3 /* TrainingsAutoUpdateController+UITableView.swift in Sources */,
 				DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */,
 				DD2573C9209211E400AA6AB6 /* UIView+.swift in Sources */,
+				DD309CC820C00DD30011A464 /* ReportTrainingController+UITableView.swift in Sources */,
 				DD2808DC2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift in Sources */,
 				DDFBC7C1209B6B83001D464C /* SetsController+UITableView.swift in Sources */,
 				DDA4DB3B20AD804B0090E5FB /* SettingsSubtitleCell.swift in Sources */,
