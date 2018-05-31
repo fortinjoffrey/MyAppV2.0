@@ -11,6 +11,7 @@ import UIKit
 class ReportTrainingController: UIViewController {
     
     let reportTrainingCellId = "reportTrainingCellId"
+    let collectionViewCellId = "collectionViewCellId"
     let cellIds = ["repsWeightCellId", "cardioCellId", "bodyweightCellId", "gainageCellId", "cellId"]
     
     var training: Training? {
@@ -58,6 +59,12 @@ class ReportTrainingController: UIViewController {
     let tableViewHeaderHeight: CGFloat = 40
     var tableViewHeight: CGFloat = 0
     
+    var sortedCountedGroups: [(key: String, value: Int)] = []
+    
+    let collectionViewCellHeight: CGFloat = 40
+    let collectionViewSpacing: CGFloat = 4
+    var collectionViewHeight: CGFloat = 0
+    
     private let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
@@ -98,11 +105,17 @@ class ReportTrainingController: UIViewController {
         return label
     }()
     
-    lazy var performancesTableView: UITableView = {
-        let tv = UITableView()
-        tv.dataSource = self
-        tv.delegate = self
+    let performancesTableView: UITableView = {
+        let tv = UITableView() 
         return tv
+    }()
+    
+    let groupsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        return collectionView
     }()
     
     @objc fileprivate func handleDismiss() {
@@ -110,32 +123,23 @@ class ReportTrainingController: UIViewController {
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .clear
-        setupSubViews()
         fetchExercices()
-        setupHeightsForComponents()
-        setupLayout()
+        setupSubViews()
         setupTableView()
-        
+        setupCollectionView()
+        setupLayout()
     }
     
+    
+    
     func setupSubViews() {
-        
         view.addSubview(visualEffectView)
         visualEffectView.contentView.addSubview(scrollView)
         scrollView.addSubview(scrollContainerView)
-        [dismissButton, durationLabel,exercicesNumberLabel,performancesTableView].forEach { scrollContainerView.addSubview($0) }
-    }
-    
-    func setupHeightsForComponents() {
-        var numberOfSets = 0
-        sets.forEach { numberOfSets += $0.count }
-        print(exercices.count, numberOfSets)
-        tableViewHeight = CGFloat(exercices.count) * tableViewHeaderHeight + CGFloat(numberOfSets) * tableViewCellHeight
-        print(tableViewHeight)
+        [dismissButton, durationLabel,exercicesNumberLabel, groupsCollectionView, performancesTableView].forEach { scrollContainerView.addSubview($0) }
     }
     
     func setupLayout() {
@@ -156,7 +160,9 @@ class ReportTrainingController: UIViewController {
         
         durationExercicesStackView.anchor(top: dismissButton.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 70)
         
-        performancesTableView.anchor(top: durationExercicesStackView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: tableViewHeight)
+        groupsCollectionView.anchor(top: durationExercicesStackView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: collectionViewHeight)
+        
+        performancesTableView.anchor(top: groupsCollectionView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: tableViewHeight)
     }
     
     private func fetchExercices() {

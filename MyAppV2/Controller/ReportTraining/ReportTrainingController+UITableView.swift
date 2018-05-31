@@ -11,6 +11,8 @@ import UIKit
 extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
     
     func setupTableView() {
+        performancesTableView.dataSource = self
+        performancesTableView.delegate = self
         performancesTableView.tableFooterView = UIView()
         performancesTableView.allowsSelection = false
         performancesTableView.isScrollEnabled = false
@@ -20,9 +22,19 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
         performancesTableView.register(BodyweightCell.self, forCellReuseIdentifier: cellIds[2])
         performancesTableView.register(GainageCell.self, forCellReuseIdentifier: cellIds[3])
         performancesTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIds[4])
+        setupHeightsForTableView()
+    }
+    
+    func setupHeightsForTableView() {
+        var numberOfSets = 0
+        sets.forEach { numberOfSets += $0.count }
+        print(exercices.count, numberOfSets)
+        tableViewHeight = CGFloat(exercices.count) * tableViewHeaderHeight + CGFloat(numberOfSets) * tableViewCellHeight
+        print(tableViewHeight)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        print(exercices.count)
         return exercices.count
     }
     
@@ -36,8 +48,7 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
         let set = sets[indexPath.section][indexPath.row]
         
         switch exercice.category {
-        case "Poids libres","Machines, poulie", " Poids libres / Machines":
-            //            cell.textLabel?.text = "\(set.repetitions) REPS || \(set.weight) KGS".set
+        case "Poids libres","Machines, poulie", " Poids libres / Machines":            
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[0], for: indexPath) as! RepsWeightCell
             cell.set = set
             return cell
@@ -69,7 +80,7 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
         label.backgroundColor = .lightBlue
         label.textColor = .darkBlue
         label.textAlignment = .center
-        label.text = exercices[section].name
+        label.text = exercices[section].name?.uppercased()
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }
