@@ -45,10 +45,10 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let exercice = exercices[indexPath.section]
-        let set = sets[indexPath.section][indexPath.row]
+        let set = sets[indexPath.section][indexPath.row]        
         
         switch exercice.category {
-        case "Poids libres","Machines, poulie", " Poids libres / Machines":            
+        case "Poids libres","Machines, poulie", "Poids libres / Machines":
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[0], for: indexPath) as! RepsWeightCell
             cell.set = set
             return cell

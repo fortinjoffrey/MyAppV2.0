@@ -17,7 +17,11 @@ extension SetsController: CreateSetControllerDelegate {
         guard let trainingIsDone = trainingIsDone else { return }
         
         if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
-            tabBarController?.selectedIndex = 2
+//            tabBarController?.selectedIndex = 2
+            let runningTimerController = RunningTimerController()
+            runningTimerController.modalPresentationStyle = .overFullScreen
+            runningTimerController.timerValue = CGFloat(90)
+            present(runningTimerController, animated: true, completion: nil)
         }
     }
     

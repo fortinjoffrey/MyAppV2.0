@@ -27,7 +27,7 @@ class SelectionController: UICollectionViewController, UICollectionViewDelegateF
         navigationItem.title = "Timer"
         setupCancelButton()
         
-        collectionView?.backgroundColor = .lightBlue
+        collectionView?.backgroundColor = .white
         collectionView?.register(SelectionCell.self, forCellWithReuseIdentifier: cellId)
     }
     
@@ -57,6 +57,7 @@ extension SelectionController {
         let count = minutes * 60 + seconds
         
         let runningTimerController = RunningTimerController()
+        runningTimerController.modalPresentationStyle = .overFullScreen
         runningTimerController.delegate = self
         runningTimerController.timerValue = CGFloat(count)
         

@@ -165,8 +165,8 @@
 		DD5494E020B97AD900782AFA /* CreateSet */ = {
 			isa = PBXGroup;
 			children = (
-				DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */,
 				DDFBC7B9209B376F001D464C /* CreateSetController.swift */,
+				DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */,
 			);
 			path = CreateSet;
 			sourceTree = "<group>";

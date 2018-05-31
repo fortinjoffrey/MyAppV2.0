@@ -15,22 +15,19 @@ class SelectionCell: UICollectionViewCell {
             guard let seconds = timer?.seconds else { return }
             guard let minutes = timer?.minutes else { return }
             
-            let boldAttributes: [NSAttributedStringKey:Any] = [NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.foregroundColor:UIColor.black]
+            let boldAttributes: [NSAttributedStringKey:Any] = [NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 18), NSAttributedStringKey.foregroundColor:UIColor.gray]
             
-            let valueAttributes: [NSAttributedStringKey:Any] = [NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 28), NSAttributedStringKey.foregroundColor:UIColor.blue]
+            let valueAttributes: [NSAttributedStringKey:Any] = [NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 28), NSAttributedStringKey.foregroundColor:UIColor.black]
             
             var attributedText = NSMutableAttributedString(attributedString: NSAttributedString(string: ""))
             
             if minutes == 0 {
-//                timerLabel.text = "\(seconds)SEC"
                 attributedText = NSMutableAttributedString(string: "\(seconds)", attributes: valueAttributes)
                 attributedText.append(NSAttributedString(string: "SEC", attributes: boldAttributes ))
             } else if seconds == 0 {
-//                timerLabel.text = "\(minutes)MIN"
                 attributedText = NSMutableAttributedString(string: "\(minutes)", attributes: valueAttributes)
                 attributedText.append(NSAttributedString(string: "MIN", attributes: boldAttributes ))
             } else {
-//                timerLabel.text = "\(minutes)MIN\(seconds)SEC"
                 attributedText = NSMutableAttributedString(string: "\(minutes)", attributes: valueAttributes)
                 attributedText.append(NSAttributedString(string: "MIN", attributes: boldAttributes ))
                 attributedText.append(NSAttributedString(string: "\(seconds)", attributes: valueAttributes))
@@ -62,13 +59,13 @@ class SelectionCell: UICollectionViewCell {
     private func setupUI() {
         
 //        backgroundColor = UIColor(red: 11/255, green: 22/255, blue: 53/255, alpha: 1)
-        backgroundColor = .white
+        backgroundColor = .lightBlue
         
         addSubview(timerLabel)
         
         timerLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        setupCellShadow()
+        layer.cornerRadius = 10
+//        setupCellShadow()
         
     }
     
