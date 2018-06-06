@@ -17,7 +17,7 @@ protocol CreateSetControllerDelegate {
 
 class CreateSetController: UIViewController {
     
-    var trainingIsDone: Bool? = false
+    var trainingIsDone: Bool = false
     
     var delegate: CreateSetControllerDelegate?
     
@@ -26,7 +26,7 @@ class CreateSetController: UIViewController {
             navigationItem.title = exercice?.name
         }
     }
-
+    
     // MARK: Labels
     let repsLabel: UILabel = {
         let label = UILabel()
@@ -213,12 +213,23 @@ class CreateSetController: UIViewController {
         default:
             return
         }
-
-        dismiss(animated: true) {
-            if let set = tuple.0 {
-                self.delegate?.didAddSet(set: set)
+        
+        if let set = tuple.0 {
+            self.delegate?.didAddSet(set: set)
+            if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
+                let runningTimerController = RunningTimerController()
+                runningTimerController.modalPresentationStyle = .overFullScreen
+                
+                if let count = UserDefaults.standard.value(forKey: "DefaultTimerCount") as? Int {
+                    runningTimerController.timerValue = CGFloat(count)
+                } else {
+                    runningTimerController.timerValue = CGFloat(90)
+                }
+                
+                present(runningTimerController, animated: true, completion: nil)
             }
         }
+        
     }
     
     override func viewDidLoad() {

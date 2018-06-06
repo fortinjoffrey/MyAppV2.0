@@ -40,7 +40,7 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     var selectedExercices = [Exercice]()
     
     lazy var tableView: UITableView = {
-        let tv = UITableView(frame: .zero, style: .grouped)
+        let tv = UITableView(frame: .zero, style: .plain)
         tv.dataSource = self
         tv.delegate = self
         return tv

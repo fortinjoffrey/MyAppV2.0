@@ -42,12 +42,12 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
     
     
     //MARK: DELEGATE
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let sections = fetchResultsController.sections {
-            return sections[section].name
-        }
-        return fetchResultsController.sectionIndexTitles[section]
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if let sections = fetchResultsController.sections {
+//            return sections[section].name
+//        }
+//        return fetchResultsController.sectionIndexTitles[section]
+//    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -85,6 +85,27 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
         }
     
         return nil
+    }
+    
+    
+    // MARK: Header
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let label = UILabel()
+        label.backgroundColor = .lightBlue
+        label.textColor = .darkBlue
+        label.textAlignment = .center
+        if let sections = fetchResultsController.sections {
+            label.text = sections[section].name
+        } else {
+            label.text = fetchResultsController.sectionIndexTitles[section]
+        }
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
 }
 

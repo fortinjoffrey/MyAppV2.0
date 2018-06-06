@@ -55,6 +55,8 @@
 		DDEDC14820BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDEDC14720BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift */; };
 		DDF1E97F20A9DB17005F9DC0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */; };
 		DDF1E98120A9E713005F9DC0 /* SelectionController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */; };
+		DDF1EFE620C8829400E843C6 /* UITableView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1EFE520C8829400E843C6 /* UITableView+.swift */; };
+		DDF1EFE820C8835C00E843C6 /* SettingsTimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF1EFE720C8835C00E843C6 /* SettingsTimerController.swift */; };
 		DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7B0209AF0B2001D464C /* SetsController.swift */; };
 		DDFBC7BA209B376F001D464C /* CreateSetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7B9209B376F001D464C /* CreateSetController.swift */; };
 		DDFBC7BD209B3AE1001D464C /* CreateSetController+UIPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */; };
@@ -113,6 +115,8 @@
 		DDEDC14720BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListExercicesAutoUpdateController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		DDF1E97E20A9DB17005F9DC0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		DDF1E98020A9E713005F9DC0 /* SelectionController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectionController+Delegate.swift"; sourceTree = "<group>"; };
+		DDF1EFE520C8829400E843C6 /* UITableView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+.swift"; sourceTree = "<group>"; };
+		DDF1EFE720C8835C00E843C6 /* SettingsTimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTimerController.swift; sourceTree = "<group>"; };
 		DDFBC7B0209AF0B2001D464C /* SetsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsController.swift; sourceTree = "<group>"; };
 		DDFBC7B9209B376F001D464C /* CreateSetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetController.swift; sourceTree = "<group>"; };
 		DDFBC7BC209B3AE1001D464C /* CreateSetController+UIPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateSetController+UIPickerView.swift"; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				DD2573C620920FE500AA6AB6 /* UINavigationController+.swift */,
 				DD2573C8209211E400AA6AB6 /* UIView+.swift */,
 				DD2573C420920CC800AA6AB6 /* UIViewController+.swift */,
+				DDF1EFE520C8829400E843C6 /* UITableView+.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				DDA4DB3820AD7FD20090E5FB /* SettingsController.swift */,
+				DDF1EFE720C8835C00E843C6 /* SettingsTimerController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -440,6 +446,7 @@
 				DD5CD28520BC386100213BD3 /* CreateExerciceController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
 				DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */,
+				DDF1EFE820C8835C00E843C6 /* SettingsTimerController.swift in Sources */,
 				DD5CD28720BC39BF00213BD3 /* CreateExerciceController+UITextFieldDelegate.swift in Sources */,
 				DD586A46209711D000A81F9E /* ExercicesController+Delegate.swift in Sources */,
 				DD5CD27C20BC25EB00213BD3 /* ListExercicesAutoUpdateController.swift in Sources */,
@@ -455,6 +462,7 @@
 				DDFBC7BD209B3AE1001D464C /* CreateSetController+UIPickerView.swift in Sources */,
 				DD5CD28020BC2A1D00213BD3 /* ListExercicesAutoUpdateController+NSFetchedResultsControllerDelegate.swift in Sources */,
 				DDAB7D4820A0493E0022CF34 /* RunningTimerController+Background.swift in Sources */,
+				DDF1EFE620C8829400E843C6 /* UITableView+.swift in Sources */,
 				DDAB7D4620A046C80022CF34 /* RunningTimerController.swift in Sources */,
 				DDA4DB3920AD7FD20090E5FB /* SettingsController.swift in Sources */,
 				DDAB7D3D20A037B20022CF34 /* SelectedTimer.swift in Sources */,

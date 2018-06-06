@@ -14,15 +14,20 @@ extension SetsController: CreateSetControllerDelegate {
         let indexPath = IndexPath(row: sets.count - 1, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
         
-        guard let trainingIsDone = trainingIsDone else { return }
+//        guard let trainingIsDone = trainingIsDone else { return }
         
-        if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
-//            tabBarController?.selectedIndex = 2
-            let runningTimerController = RunningTimerController()
-            runningTimerController.modalPresentationStyle = .overFullScreen
-            runningTimerController.timerValue = CGFloat(90)
-            present(runningTimerController, animated: true, completion: nil)
-        }
+//        if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
+//            let runningTimerController = RunningTimerController()
+//            runningTimerController.modalPresentationStyle = .overFullScreen
+//            
+//            if let count = UserDefaults.standard.value(forKey: "DefaultTimerCount") as? Int {
+//                runningTimerController.timerValue = CGFloat(count)
+//            } else {
+//                runningTimerController.timerValue = CGFloat(90)
+//            }
+//            
+//            present(runningTimerController, animated: true, completion: nil)
+//        }
     }
     
     func didEditSet(set: Set) {
