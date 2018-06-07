@@ -11,7 +11,7 @@ import UIKit
 class SettingsTimerController: UITableViewController {
     
     let cellId = "cellId"
-    let defaultTimerCounts = [30, 45, 60, 90, 120, 180, 360]
+    let defaultTimerCounts = [15, 30, 45, 60, 90, 120, 180, 300, 450, 600, 900]
     
    
     override func viewDidLoad() {

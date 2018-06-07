@@ -19,6 +19,7 @@ class SettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Paramètres"
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         registerTableViewCells()
     }
@@ -64,7 +65,7 @@ class SettingsController: UITableViewController {
                 return cell
             }
         default:
-            let cell = tableView.dequeuseReusableCell(withIdentifier: rightDetailCellId, for: indexPath, textLabelText: "Version", detailTextLabelText: "1.0", selectionStyle: .none, accessoryType: nil)
+            let cell = tableView.dequeuseReusableCell(withIdentifier: rightDetailCellId, for: indexPath, textLabelText: "Version", detailTextLabelText: "1.0", selectionStyle: .none, accessoryType: .none)
             return cell
         }
     }

@@ -68,7 +68,6 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         } catch let err {
             print(err)
         }
-        
         return frc
     }()
     
@@ -76,23 +75,8 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
-        setupSearchBar()
-        
-        navigationItem.title = training == nil ? "Listes des exercices" : "Ajouter exercices"
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        
-        if training == nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddView))
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
-            tableView.allowsSelection = false
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminer", style: .plain, target: self, action: #selector(handleDone))
-            tableView.allowsSelection = true
-        }
-        
+        setupNavigationItems()
 //        if UserDefaults.standard.object(forKey: "hasAlreadyBeenLauched") == nil {
 //            createDefaultsExercices()
 //            UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
@@ -100,14 +84,25 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         
     }
     
-    func setupSearchBar() {
+    fileprivate func setupNavigationItems() {
         
-//        navigationController?.navigationBar.addSubview(searchBar)
-//
-//        guard let navBar = navigationController?.navigationBar else { return }
-//
-//        searchBar.anchor(top: navBar.topAnchor, left: navBar.leftAnchor, bottom: navBar.bottomAnchor, right: navBar.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: navBar.frame.width * 0.7, height: 0)
+        navigationItem.title = training == nil ? "Listes des exercices" : "Ajouter exercices"
+        navigationItem.searchController = searchController
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.hidesSearchBarWhenScrolling = false
         
+        tableView.allowsSelection = training == nil ? false : true
+        
+        setupNavigationBarButtonItems()
+    }
+    
+    fileprivate func setupNavigationBarButtonItems() {
+        if training == nil {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddView))
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminer", style: .plain, target: self, action: #selector(handleDone))
+        }
     }
     
     /*
@@ -118,8 +113,7 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         
         fetchResultsController.fetchedObjects?.forEach({ (exercice) in
             _ = CoreDataManager.shared.deleteExercice(exercice: exercice)
-        })
-        
+        })        
         createDefaultsExercices()
         UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
         

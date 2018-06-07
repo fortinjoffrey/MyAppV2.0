@@ -38,6 +38,18 @@ class SetsController: UIViewController {
         return button
     }()
     
+    let validateButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Valider", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.backgroundColor = .green
+        button.layer.cornerRadius = 10
+        button.isHidden = true
+        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
+        return button
+    }()
+    
     @objc private func handleDone() {
         
         let context = CoreDataManager.shared.persistentContainer.viewContext
@@ -53,18 +65,16 @@ class SetsController: UIViewController {
             print("Failed to save exercice validation:", saveErr)
         }
     }
-  
+    
     let cellIds = ["repsWeightCellId", "cardioCellId", "bodyweightCellId", "gainageCellId", "cellId"]    
-
+    
     @objc private func handleAdd() {
-     
+        
         let createSetController = CreateSetController()
+        createSetController.modalPresentationStyle = .overFullScreen
         createSetController.exercice = exercice        
         createSetController.delegate = self
-        
-        let navController = UINavigationController(rootViewController: createSetController)
-        
-        present(navController, animated: true, completion: nil)
+        present(createSetController, animated: true, completion: nil)
     }
     
     
@@ -78,32 +88,29 @@ class SetsController: UIViewController {
         fetchSets()
         
     }
-
+    
     func setupUI() {
         
         if let isDone = exercice?.isDone {
-            if !isDone {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checked_64").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(handleDone))
-            }
+            validateButton.isHidden = !isDone ? false : true
         }
         
-        [tableView, plusButton].forEach { view.addSubview($0) }
+        [tableView, plusButton, validateButton].forEach { view.addSubview($0) }
         
-        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
+        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
         guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
         
         plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
-    
         
+        validateButton.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor).isActive = true
+        validateButton.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: plusButton.leftAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 50)
     }
     
     func fetchSets() {
         
-        guard let exerciceSets = exercice?.sets?.allObjects as? [Set] else { return }
-        
+        guard let exerciceSets = exercice?.sets?.allObjects as? [Set] else { return }        
         let sortedSets = exerciceSets.sorted(by: { $0.date! < $1.date! })
-        
         sets = sortedSets
     }
 }

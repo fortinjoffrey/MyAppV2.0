@@ -23,8 +23,36 @@ class CreateSetController: UIViewController {
     
     var exercice: Exercice? {
         didSet {
-            navigationItem.title = exercice?.name
+//            exercice?.sets?.count
         }
+    }
+    
+    private let visualEffectView: UIVisualEffectView = {
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        visualEffectView.alpha = 1
+        return visualEffectView
+    }()
+    
+    var mainViewOriginY: CGFloat = 0.0
+    
+    private let mainView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.masksToBounds = true
+        view.layer.cornerRadius = 10
+        return view
+    }()
+    
+    private let dismissButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(#imageLiteral(resourceName: "down-arrow").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc fileprivate func handleCancel() {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: Labels
@@ -182,32 +210,23 @@ class CreateSetController: UIViewController {
         
         switch exercice.category {
         case "Poids libres","Machines, poulie":
-            
             let repetitions = repsPickerData[repsPickerView.selectedRow(inComponent: 0)]
             let weight = weightPickerData[weightPickerView.selectedRow(inComponent: 0)]
-            
             tuple = CoreDataManager.shared.createSet(duration: 0, speed: 0, repetitions: repetitions, weight: weight, exercice: exercice)
             
         case "Cardio":
-            
             let durationMinutes = durationPickerData[durationPickerView.selectedRow(inComponent: 0)]
             let speed = speedPickerData[speedPickerView.selectedRow(inComponent: 0)]
-            
             tuple = CoreDataManager.shared.createSet(duration: durationMinutes * 60, speed: speed, repetitions: 0, weight: 0, exercice: exercice)
             
         case "Poids du corps":
-            
             let repetitions = repsPickerData[repsPickerView.selectedRow(inComponent: 0)]
-            
             tuple = CoreDataManager.shared.createSet(duration: 0, speed: 0, repetitions: repetitions, weight: 0, exercice: exercice)
             
         case "Gainage":
-            
             let durationMinutes = gainageMinutesPickerData[gainageMinutesPickerView.selectedRow(inComponent: 0)]
             let durationSeconds = gainageSecondsPickerData[gainageSecondsPickerView.selectedRow(inComponent: 0)]
-            
             let duration = durationMinutes * 60 + durationSeconds
-            
             tuple = CoreDataManager.shared.createSet(duration: duration, speed: 0, repetitions: 0, weight: 0, exercice: exercice)
             
         default:
@@ -225,7 +244,6 @@ class CreateSetController: UIViewController {
                 } else {
                     runningTimerController.timerValue = CGFloat(90)
                 }
-                
                 present(runningTimerController, animated: true, completion: nil)
             }
         }
@@ -234,16 +252,65 @@ class CreateSetController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupCancelButton()
         setupUI()
-        
+        setupPanGesture()
     }
+    
+    override func viewDidLayoutSubviews() {
+        mainViewOriginY = mainView.frame.origin.y
+    }
+    
+    fileprivate func setupPanGesture() {
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
+        view.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    @objc fileprivate func handleGesture(gesture: UIPanGestureRecognizer) {
+        
+        let translation = gesture.translation(in: self.view)
+        if translation.y < 0 {
+            return
+        }
+        mainView.frame.origin.y =  mainViewOriginY + translation.y
+        
+        if gesture.state == .changed {
+            let percentage = translation.y / view.frame.height
+            visualEffectView.alpha = 1 - percentage
+            dismissButton.alpha = 1 - percentage
+        }
+        
+        if gesture.state == .ended {
+            
+            let velocity = gesture.velocity(in: self.view)
+            
+            if velocity.y > 1000 || mainView.frame.origin.y >= view.frame.height / 2 {
+                visualEffectView.alpha = 0
+                dismiss(animated: true, completion: nil)
+            } else {
+                UIView.animate(withDuration: 0.3) {
+                    self.mainView.frame.origin.y = self.mainViewOriginY
+                }
+            }
+        }
+    }
+    
+    
     
     
     func setupUI() {
         
-        view.backgroundColor = .white
+        [visualEffectView, dismissButton, mainView].forEach { view.addSubview($0) }
+        
+        visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        mainView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height * 0.7)
+        
+        dismissButton.anchor(top: nil, left: nil, bottom: mainView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 25, height: 25)
+        dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        mainView.addSubview(validateButton)
+        
+        validateButton.anchor(top: nil, left: mainView.leftAnchor, bottom: mainView.bottomAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 50)
         
         switch exercice?.category {
         case "Poids libres","Machines, poulie":
@@ -279,13 +346,11 @@ class CreateSetController: UIViewController {
         repsWeightPickerStackView.axis = .horizontal
         repsWeightPickerStackView.distribution = .fillEqually
         
-        [repsWeightLabelStackView, repsWeightPickerStackView, validateButton].forEach { view.addSubview($0) }
+        [repsWeightLabelStackView, repsWeightPickerStackView].forEach { mainView.addSubview($0) }
         
-        repsWeightLabelStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        repsWeightLabelStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
-        repsWeightPickerStackView.anchor(top: nil, left: view.leftAnchor, bottom: validateButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
-        
-        validateButton.anchor(top: repsWeightPickerStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        repsWeightPickerStackView.anchor(top: nil, left: mainView.leftAnchor, bottom: validateButton.topAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
     }
     
     func setupUIForCardio() {
@@ -308,13 +373,11 @@ class CreateSetController: UIViewController {
         durationSpeedPickerStackView.axis = .horizontal
         durationSpeedPickerStackView.distribution = .fillEqually
         
-        [durationSpeedLabelStackView, durationSpeedPickerStackView, validateButton].forEach { view.addSubview($0) }
+        [durationSpeedLabelStackView, durationSpeedPickerStackView].forEach { mainView.addSubview($0) }
         
-        durationSpeedLabelStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        durationSpeedLabelStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
-        durationSpeedPickerStackView.anchor(top: nil, left: view.leftAnchor, bottom: validateButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
-        
-        validateButton.anchor(top: durationSpeedPickerStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        durationSpeedPickerStackView.anchor(top: nil, left: mainView.leftAnchor, bottom: validateButton.topAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
     }
     
     func setupUIForBodyweight() {
@@ -325,13 +388,11 @@ class CreateSetController: UIViewController {
         repsStackView.axis = .vertical
         repsStackView.distribution = .fillEqually
         
-        [repsStackView, repsPickerView, validateButton].forEach { view.addSubview($0) }
+        [repsStackView, repsPickerView].forEach { mainView.addSubview($0) }
         
-        repsStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        repsStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
-        repsPickerView.anchor(top: nil, left: view.leftAnchor, bottom: validateButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
-        
-        validateButton.anchor(top: repsPickerView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        repsPickerView.anchor(top: nil, left: mainView.leftAnchor, bottom: validateButton.topAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
     }
     
     func setupUIForGainage() {
@@ -354,15 +415,10 @@ class CreateSetController: UIViewController {
         minutesSecondsPickerStackView.axis = .horizontal
         minutesSecondsPickerStackView.distribution = .fillEqually
         
-        [minutesSecondsLabelStackView, minutesSecondsPickerStackView, validateButton].forEach { view.addSubview($0) }
+        [minutesSecondsLabelStackView, minutesSecondsPickerStackView].forEach { mainView.addSubview($0) }
         
-        minutesSecondsLabelStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        minutesSecondsLabelStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
-        minutesSecondsPickerStackView.anchor(top: nil, left: view.leftAnchor, bottom: validateButton.topAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
-        
-        validateButton.anchor(top: minutesSecondsPickerStackView.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 0)
+        minutesSecondsPickerStackView.anchor(top: nil, left: mainView.leftAnchor, bottom: validateButton.topAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
     }
-    
-    
-    
 }

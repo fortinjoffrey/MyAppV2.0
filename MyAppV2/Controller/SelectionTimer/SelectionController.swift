@@ -14,19 +14,21 @@ class SelectionController: UICollectionViewController, UICollectionViewDelegateF
     
     var timers = [SelectedTimer(seconds: 15, minutes: 0),
                   SelectedTimer(seconds: 30, minutes: 0),
+                  SelectedTimer(seconds: 45, minutes: 0),
                   SelectedTimer(seconds: 0, minutes: 1),
                   SelectedTimer(seconds: 30, minutes: 1),
                   SelectedTimer(seconds: 0, minutes: 2),
                   SelectedTimer(seconds: 0, minutes: 3),
                   SelectedTimer(seconds: 0, minutes: 5),
-                  SelectedTimer(seconds: 0, minutes: 10)]
+                  SelectedTimer(seconds: 30, minutes: 7),
+                  SelectedTimer(seconds: 0, minutes: 10),
+                  SelectedTimer(seconds: 0, minutes: 15)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Timer"
-        setupCancelButton()
-        
+        navigationItem.largeTitleDisplayMode = .never        
         collectionView?.backgroundColor = .white
         collectionView?.register(SelectionCell.self, forCellWithReuseIdentifier: cellId)
     }

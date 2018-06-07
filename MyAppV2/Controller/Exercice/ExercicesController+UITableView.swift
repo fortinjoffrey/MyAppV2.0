@@ -14,8 +14,7 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
         
         tableView.backgroundColor = .darkBlue
         tableView.tableFooterView = UIView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
-        
+        tableView.register(SettingsRightDetailCell.self, forCellReuseIdentifier: cellId)
     }
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,15 +24,10 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        
-        cell.textLabel?.text = exercices[indexPath.row].name
-        
-        if exercices[indexPath.row].isDone {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .disclosureIndicator
-        }
-        
+        let exercice = exercices[indexPath.row]
+        cell.textLabel?.text = exercice.name
+        cell.detailTextLabel?.text = exercice.primaryGroup
+        cell.accessoryType = exercice.isDone ? .checkmark : .disclosureIndicator
         return cell
     }
     

@@ -13,7 +13,7 @@ class CreateExerciceController: UIViewController {
     private let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
-        visualEffectView.alpha = 0.5
+        visualEffectView.alpha = 1
         return visualEffectView
     }()
     
@@ -140,8 +140,7 @@ class CreateExerciceController: UIViewController {
         let translation = gesture.translation(in: self.view)
         mainView.frame.origin.y =  mainViewOriginY + translation.y
         
-        if gesture.state == .changed {
-            print(translation.y)
+        if gesture.state == .changed {            
             let percentage = translation.y / view.frame.height
             visualEffectView.alpha = 1 - percentage
             dismissButton.alpha = 1 - percentage
