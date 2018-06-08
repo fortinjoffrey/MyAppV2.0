@@ -39,40 +39,9 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.title = "Entraînements"
-        
         setupPlusButtonInNavBar(selector: #selector(handleAdd))
-        
         setupTableView()
-        
-        fetchResultsController.fetchedObjects?.forEach { print($0.name ?? "")}
-    }
-    
-    @objc private func handleAdd() {
-        
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let trainingCategories = ["Entraînement terminé", "Entraînement en cours", "Entraînement futur"]
-        
-        for (index, value) in trainingCategories.enumerated() {
-            
-            var isDone: Bool = true
-            
-            if index == 0 {
-                isDone = true
-            } else {
-                isDone = false
-            }
-            
-            alertController.addAction(UIAlertAction(title: value, style: .default, handler: { (_) in
-                self.presentCreateTrainingController(isDone: isDone)
-            }))
-        }
-        
-        alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
-        
-        present(alertController, animated: true, completion: nil)
     }
     
     func presentCreateTrainingController(isDone: Bool) {
@@ -83,6 +52,23 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
         
         let navController = UINavigationController(rootViewController: createTrainingController)
         self.present(navController, animated: true, completion: nil)        
+    }
+    
+    @objc private func handleAdd() {
+        
+        let trainingCategories = ["Entraînement terminé", "Entraînement en cours", "Entraînement futur"]
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        for (index, value) in trainingCategories.enumerated() {
+            
+            let isDone = index == 0 ? true : false
+            alertController.addAction(UIAlertAction(title: value, style: .default, handler: { (_) in
+                self.presentCreateTrainingController(isDone: isDone)
+            }))
+        }
+        alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
     }
 }
 

@@ -16,6 +16,13 @@ protocol ListExercicesAutoUpdateControllerDelegate {
 class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsControllerDelegate {
     
     let listExercicesCellId = "listExercicesCellId"
+    var training: Training?
+    var delegate: ListExercicesAutoUpdateControllerDelegate?
+    var selectedExercices = [Exercice]()
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -33,11 +40,6 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         searchController.obscuresBackgroundDuringPresentation = false
         return searchController
     }()
-    
-    var training: Training?
-    var delegate: ListExercicesAutoUpdateControllerDelegate?
-    
-    var selectedExercices = [Exercice]()
     
     lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
@@ -71,17 +73,12 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         return frc
     }()
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         setupNavigationItems()
-//        if UserDefaults.standard.object(forKey: "hasAlreadyBeenLauched") == nil {
-//            createDefaultsExercices()
-//            UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
-//        }
-        
+        definesPresentationContext = true
+        //createDefaultsExercicesIfNeeded()
     }
     
     fileprivate func setupNavigationItems() {
@@ -90,7 +87,6 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         navigationItem.searchController = searchController
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.hidesSearchBarWhenScrolling = false
-        
         tableView.allowsSelection = training == nil ? false : true
         
         setupNavigationBarButtonItems()
@@ -105,6 +101,13 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         }
     }
     
+    fileprivate func createDefaultsExercicesIfNeeded() {
+        if UserDefaults.standard.object(forKey: "hasAlreadyBeenLauched") == nil {
+            createDefaultsExercices()
+            UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
+        }
+    }
+    
     /*
      * Might call this method upon "Reset All Exercices To Default" inside the settings page
      */
@@ -116,7 +119,23 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         })        
         createDefaultsExercices()
         UserDefaults.standard.set(true, forKey: "hasAlreadyBeenLauched")
+    }
+    
+    fileprivate func createExerciceIntoTraining(exercice: Exercice) {
         
+        guard let training = self.training else { return }
+        guard let name = exercice.name else { return }
+        guard let category = exercice.category else { return }
+        guard let primaryGroup = exercice.primaryGroup else { return }
+        
+        let tuple = CoreDataManager.shared.createExercice(name: name, category: category, primaryGroup: primaryGroup, secondaryGroup: exercice.secondaryGroup, training: training)
+        if let error = tuple.1 {
+            print(error)
+        } else {
+            if let exercice = tuple.0 {
+                self.delegate?.didAddExerciceToTraining(exercice: exercice)
+            }            
+        }
     }
     
     @objc fileprivate func handleAddView() {
@@ -130,25 +149,6 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
             self.selectedExercices.forEach {
                 self.createExerciceIntoTraining(exercice: $0)
             }
-        }
-    }
-    
-    fileprivate func createExerciceIntoTraining(exercice: Exercice) {
-        
-        guard let training = self.training else { return }
-        guard let name = exercice.name else { return }
-        guard let category = exercice.category else { return }
-        guard let primaryGroup = exercice.primaryGroup else { return }
-        
-        print(name)
-        
-        let tuple = CoreDataManager.shared.createExercice(name: name, category: category, primaryGroup: primaryGroup, secondaryGroup: exercice.secondaryGroup, training: training)
-        if let error = tuple.1 {
-            print(error)
-        } else {
-            if let exercice = tuple.0 {
-                self.delegate?.didAddExerciceToTraining(exercice: exercice)
-            }            
         }
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-extension UIViewController {
+extension UIViewController {        
     
     func setupPlusButtonInNavBar(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: selector)

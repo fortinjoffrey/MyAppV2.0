@@ -66,21 +66,30 @@ class RunningTimerController: UIViewController {
         return button
     }()
     
-    let plusButton: UIButton = {
+//    let plusButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("+ 30 seconds", for: .normal)
+//        button.setTitleColor(UIColor.white, for: .normal)
+//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+//        button.backgroundColor = .outlineStrokeColor
+//        button.addTarget(self, action: #selector(handlePlus), for: .touchUpInside)
+//        button.layer.cornerRadius = 20
+//        return button
+//    }()
+ 
+    private let plusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("+ 30 seconds", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.backgroundColor = .outlineStrokeColor
+        button.setBackgroundImage(#imageLiteral(resourceName: "plus_black").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handlePlus), for: .touchUpInside)
-        button.layer.cornerRadius = 20
-//        button.layer.shadowColor = UIColor.lightGray.cgColor
-//        button.layer.shadowOpacity = 1
-//        button.layer.shadowRadius = 0.0
-//        button.layer.shadowOffset = CGSize(width: 0, height: 2)
         return button
     }()
- 
+    
+    private let minusButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(#imageLiteral(resourceName: "minus_black").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleMinus), for: .touchUpInside)
+        return button
+    }()
     
     @objc private func handleStop() {
         timer?.invalidate()
@@ -91,8 +100,19 @@ class RunningTimerController: UIViewController {
     }
     
     @objc private func handlePlus() {
-        timerValue += 30        
-        count += 30
+        timerValue += 15
+        count += 15
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "Temps écoulé", body: "\(Int(timerValue)) se sont écoulées")
+    }
+    
+    @objc private func handleMinus() {
+        if count > 15 {
+            timerValue -= 15
+            count -= 15
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "Temps écoulé", body: "\(Int(timerValue)) se sont écoulées")
+        }
     }
     
     override func viewDidLoad() {
@@ -143,11 +163,16 @@ class RunningTimerController: UIViewController {
     }
     
     func setupUI() {
+
         
-        [dismissButton, timeLabel, remainingTimeLabel, stopButton, plusButton].forEach { view.addSubview($0) }
+        [dismissButton, timeLabel, remainingTimeLabel, stopButton, minusButton, plusButton].forEach { view.addSubview($0) }
         
         dismissButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        minusButton.anchor(top: dismissButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 50, paddingLeft: view.frame.width / 6, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
+        
+        plusButton.anchor(top: dismissButton.bottomAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: view.frame.width / 6, width: 25, height: 25)
     
         NSLayoutConstraint.activate([timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      timeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -158,11 +183,6 @@ class RunningTimerController: UIViewController {
         
         stopButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 50, paddingRight: 0, width: view.frame.width / 1.5, height: 50)
         stopButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-//        plusButton.anchor(top: view.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width / 3, height: 50)
-//        plusButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        
     }
     
     func setupCircleLayers() {

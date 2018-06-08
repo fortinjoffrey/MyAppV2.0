@@ -16,7 +16,7 @@ class MainTabBarController: UITabBarController {
         setupControllers()                
     }
     
-    fileprivate func setupControllers() {
+    fileprivate func setupControllers() {                
         
         let trainingsNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "trainings_unselected"), selectedImage: #imageLiteral(resourceName: "trainings_selected"), rootViewController: TrainingsAutoUpdateController())
         trainingsNavController.tabBarItem.title = "Entraînements"
@@ -33,10 +33,7 @@ class MainTabBarController: UITabBarController {
         settingsNavController.tabBarItem.title = "Paramètres"
         
         tabBar.tintColor = .black
-        viewControllers = [trainingsNavController, exercicesNavController, timerNavController, settingsNavController]
-        
-        print(tabBar.frame.height)
-        
+        viewControllers = [trainingsNavController, exercicesNavController, timerNavController, settingsNavController]        
     }
     
     fileprivate func templateNavController(unselectedImage: UIImage, selectedImage: UIImage, rootViewController: UIViewController = UIViewController()) -> UINavigationController {

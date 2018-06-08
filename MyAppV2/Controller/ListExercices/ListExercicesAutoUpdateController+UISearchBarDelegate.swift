@@ -13,8 +13,7 @@ extension ListExercicesAutoUpdateController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
                 
         if !searchText.isEmpty {
-            let predicate = NSPredicate(format: "name contains %@ && isListed = true", searchText)            
-            
+            let predicate = NSPredicate(format: "name contains %@ && isListed = true", searchText)                        
             fetchResultsController.fetchRequest.predicate = predicate
         } else {
             fetchResultsController.fetchRequest.predicate = NSPredicate(format: "isListed = true")
@@ -22,29 +21,13 @@ extension ListExercicesAutoUpdateController: UISearchBarDelegate {
         
         try? fetchResultsController.performFetch()
         tableView.reloadData()
-        
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        print("Cancel")
         fetchResultsController.fetchRequest.predicate = NSPredicate(format: "isListed = true")
         try? fetchResultsController.performFetch()
         tableView.reloadData()
     }
-    
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("Begin")
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        print("End editing")
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("Search button clicked")
-        searchController.searchBar.resignFirstResponder()
-    }
-    
 }
 
 /*

@@ -49,6 +49,7 @@
 		DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */; };
 		DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */; };
 		DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */; };
+		DDBE85D120CAEA2A00A65BFD /* CreateTrainingController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */; };
 		DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE24209E1A8500F7C82D /* CardioCell.swift */; };
 		DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */; };
 		DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE28209E203400F7C82D /* GainageCell.swift */; };
@@ -109,6 +110,7 @@
 		DDBE6CA72091BE6E00C14200 /* TrainingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingsController.swift; sourceTree = "<group>"; };
 		DDBE6CAA2091CD4B00C14200 /* MyAppV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAppV2.xcdatamodel; sourceTree = "<group>"; };
 		DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateTrainingController+UI.swift"; sourceTree = "<group>"; };
 		DDE0CE24209E1A8500F7C82D /* CardioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioCell.swift; sourceTree = "<group>"; };
 		DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightCell.swift; sourceTree = "<group>"; };
 		DDE0CE28209E203400F7C82D /* GainageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainageCell.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				DDAB7D4920A0B8F80022CF34 /* Model */,
 				DDAB7D4A20A0B9000022CF34 /* View */,
 				DDAB7D4B20A0B9430022CF34 /* Controller */,
+				DDBE85CF20CAE9EC00A65BFD /* UI */,
 				DD2573C320920CB000AA6AB6 /* Helpers */,
 				DDBE6C972091BCE900C14200 /* Info.plist */,
 				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
@@ -356,6 +359,14 @@
 				DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		DDBE85CF20CAE9EC00A65BFD /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,6 +454,7 @@
 				DDFBC7C3209B6D4D001D464C /* SetsController+CreateSetControllerDelegate.swift in Sources */,
 				DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */,
 				DDF1E97F20A9DB17005F9DC0 /* MainTabBarController.swift in Sources */,
+				DDBE85D120CAEA2A00A65BFD /* CreateTrainingController+UI.swift in Sources */,
 				DD5CD28520BC386100213BD3 /* CreateExerciceController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
 				DDFBC7B1209AF0B2001D464C /* SetsController.swift in Sources */,

@@ -40,15 +40,6 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
         return cell        
     }
     
-    
-    //MARK: DELEGATE
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if let sections = fetchResultsController.sections {
-//            return sections[section].name
-//        }
-//        return fetchResultsController.sectionIndexTitles[section]
-//    }
-    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         if training != nil { return UISwipeActionsConfiguration(actions: []) }
@@ -63,13 +54,9 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
         let config = UISwipeActionsConfiguration(actions: [deleteAction])
         config.performsFirstActionWithFullSwipe = false
         
-        
         return config
     }
-    
-    
-    
-    //MARK: TO DO
+                
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         
         guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
