@@ -27,14 +27,11 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
     
     func setupHeightsForTableView() {
         var numberOfSets = 0
-        sets.forEach { numberOfSets += $0.count }
-        print(exercices.count, numberOfSets)
+        sets.forEach { numberOfSets += $0.count }        
         tableViewHeight = CGFloat(exercices.count) * tableViewHeaderHeight + CGFloat(numberOfSets) * tableViewCellHeight
-        print(tableViewHeight)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print(exercices.count)
         return exercices.count
     }
     

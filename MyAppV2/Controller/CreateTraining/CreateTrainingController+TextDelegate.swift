@@ -52,11 +52,10 @@ extension CreateTrainingController: UITextFieldDelegate, UITextViewDelegate {
             originY = textview.frame.origin.y - scrollView.contentOffset.y
         }
         
-        let difference = targetY - originY
+        let difference = targetY - originY                
         
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: rect.height, right: 0)
-        
-        print(targetY, originY, difference)
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: rect.height, right: 0)
         
         if difference < 0 {
             scrollView.setContentOffset(CGPoint(x: 0, y: self.scrollView.contentOffset.y - difference), animated: false)
@@ -66,6 +65,7 @@ extension CreateTrainingController: UITextFieldDelegate, UITextViewDelegate {
     
     @objc func handleKeyboardWillHide(notification: NSNotification) {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        scrollView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     @objc func handleDismissKeyboard() {

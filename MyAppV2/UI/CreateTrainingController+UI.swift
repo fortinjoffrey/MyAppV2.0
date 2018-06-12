@@ -63,7 +63,11 @@ extension CreateTrainingController {
         
         let scrollContainerView = setupMinimalUI()
         let notationContainerView = setupNotationContainerView()
-        let tirednessNotationContainerView = setupTirednessNotationContainerView()
+        let tirednessNotationContainerView = setupTirednessNotationContainerView()        
+        let endDateLabel = createLabel(for: "Fin de l'entraînement")
+        let notationLabel = createLabel(for: "Notez la séance")
+        let tirednessNotationLabel = createLabel(for: "Notez votre état de fatigue")
+        let notesLabel = createLabel(for: "Remarques sur la séance")
         
         let views = [endDateLabel,endDatePicker, notationLabel, notationContainerView, tirednessNotationLabel, tirednessNotationContainerView, notesLabel]
         
@@ -77,6 +81,13 @@ extension CreateTrainingController {
     }
     
     fileprivate func setupMinimalUI() -> UIView {
+        
+        let nameLabel = createLabel(for: "Nom de la séance")
+        let startDateLabel = createLabel(for: "Entrez l'heure de début")
+        
+        
+        
+        
         
         view.addSubview(scrollView)
         
@@ -98,4 +109,28 @@ extension CreateTrainingController {
         return scrollContainerView
     }
     
+    fileprivate func createLabel(for text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

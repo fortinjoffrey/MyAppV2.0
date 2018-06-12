@@ -50,6 +50,7 @@
 		DDBE6CAB2091CD4B00C14200 /* MyAppV2Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CA92091CD4B00C14200 /* MyAppV2Model.xcdatamodeld */; };
 		DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */; };
 		DDBE85D120CAEA2A00A65BFD /* CreateTrainingController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */; };
+		DDBE85D320CAF62000A65BFD /* ReportTrainingController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE85D220CAF62000A65BFD /* ReportTrainingController+UI.swift */; };
 		DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE24209E1A8500F7C82D /* CardioCell.swift */; };
 		DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */; };
 		DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE28209E203400F7C82D /* GainageCell.swift */; };
@@ -111,6 +112,7 @@
 		DDBE6CAA2091CD4B00C14200 /* MyAppV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyAppV2.xcdatamodel; sourceTree = "<group>"; };
 		DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateTrainingController+UI.swift"; sourceTree = "<group>"; };
+		DDBE85D220CAF62000A65BFD /* ReportTrainingController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportTrainingController+UI.swift"; sourceTree = "<group>"; };
 		DDE0CE24209E1A8500F7C82D /* CardioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioCell.swift; sourceTree = "<group>"; };
 		DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightCell.swift; sourceTree = "<group>"; };
 		DDE0CE28209E203400F7C82D /* GainageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainageCell.swift; sourceTree = "<group>"; };
@@ -277,7 +279,7 @@
 		DDAB7D4920A0B8F80022CF34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				DD2808DD209344F700D14DE3 /* NotationPickerView.swift */,
+				DDBE6CAC2091CF0700C14200 /* CoreData */,
 				DDAB7D3C20A037B20022CF34 /* SelectedTimer.swift */,
 			);
 			path = Model;
@@ -286,6 +288,7 @@
 		DDAB7D4A20A0B9000022CF34 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DD2808DD209344F700D14DE3 /* NotationPickerView.swift */,
 				DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */,
 				DDE0CE24209E1A8500F7C82D /* CardioCell.swift */,
 				DDE0CE28209E203400F7C82D /* GainageCell.swift */,
@@ -346,7 +349,6 @@
 				DD2573C320920CB000AA6AB6 /* Helpers */,
 				DDBE6C972091BCE900C14200 /* Info.plist */,
 				DDBE6C942091BCE900C14200 /* LaunchScreen.storyboard */,
-				DDBE6CAC2091CF0700C14200 /* CoreData */,
 				DD2808DA209325D500D14DE3 /* Old (without FRC) */,
 			);
 			path = MyAppV2;
@@ -365,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */,
+				DDBE85D220CAF62000A65BFD /* ReportTrainingController+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				DD2573C9209211E400AA6AB6 /* UIView+.swift in Sources */,
 				DD309CC820C00DD30011A464 /* ReportTrainingController+UITableView.swift in Sources */,
 				DD2808DC2093447A00D14DE3 /* CreateTrainingController+TextDelegate.swift in Sources */,
+				DDBE85D320CAF62000A65BFD /* ReportTrainingController+UI.swift in Sources */,
 				DDFBC7C1209B6B83001D464C /* SetsController+UITableView.swift in Sources */,
 				DDA4DB3B20AD804B0090E5FB /* SettingsSubtitleCell.swift in Sources */,
 				DD2573C520920CC800AA6AB6 /* UIViewController+.swift in Sources */,

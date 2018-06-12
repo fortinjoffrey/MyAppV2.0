@@ -11,10 +11,8 @@ import UIKit
 extension ReportTrainingController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func setupCollectionView() {
-        
         groupsCollectionView.dataSource = self
         groupsCollectionView.delegate = self
-//        groupsCollectionView.register(GroupCell.self, forCellWithReuseIdentifier: "collectionCellId")
         groupsCollectionView.register(GroupCell.self, forCellWithReuseIdentifier: collectionViewCellId)
         groupsCollectionView.allowsSelection = false
         groupsCollectionView.isScrollEnabled = false        
@@ -35,11 +33,8 @@ extension ReportTrainingController: UICollectionViewDataSource, UICollectionView
             }
         }
         sortedCountedGroups = countedOccurencesOfSamePrimaryGroups.sorted { $0.value > $1.value }
-        print(sortedCountedGroups)
-        print(sortedCountedGroups.count)
         collectionViewHeight += CGFloat(sortedCountedGroups.count) * collectionViewCellHeight
         collectionViewHeight += CGFloat(max(sortedCountedGroups.count - 1, 0)) * collectionViewSpacing
-        print(collectionViewHeight)
     }
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -62,7 +57,6 @@ extension ReportTrainingController: UICollectionViewDataSource, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: view.frame.width - 32, height: collectionViewCellHeight)
     }
     

@@ -47,15 +47,6 @@ class CreateTrainingController: UIViewController {
         return sv
     }()
     
-    let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Nom de la séance"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .black
-        label.textAlignment = .center
-        return label
-    }()
-    
     lazy var nameTextField: UITextField = {
         let tf = UITextField()
         tf.delegate = self
@@ -65,15 +56,6 @@ class CreateTrainingController: UIViewController {
         return tf
     }()
     
-    let startDateLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Entrez l'heure de début"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .black
-        label.textAlignment = .center
-        return label
-    }()
-    
     let startDatePicker: UIDatePicker = {
         let dp = UIDatePicker()
         dp.datePickerMode = .dateAndTime
@@ -81,27 +63,11 @@ class CreateTrainingController: UIViewController {
         return dp
     }()
     
-    let endDateLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Fin de l'entraînement"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
-    }()
-    
     let endDatePicker: UIDatePicker = {
         let dp = UIDatePicker()
         dp.datePickerMode = .dateAndTime
         dp.locale = Locale(identifier: "FR_fr")
         return dp
-    }()
-    
-    let notationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Notez la séance"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
     }()
     
     let notationPicker: NotationPickerView = {
@@ -114,14 +80,6 @@ class CreateTrainingController: UIViewController {
         return pv
     }()
     
-    let tirednessNotationLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Notez votre état de fatigue"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
-    }()
-    
     let tirednessNotationPicker: NotationPickerView = {
         let pv = NotationPickerView()
         pv.dataSource = pv
@@ -130,14 +88,6 @@ class CreateTrainingController: UIViewController {
         let rotationAngle: CGFloat = -.pi / 2
         pv.transform = CGAffineTransform(rotationAngle: rotationAngle)
         return pv
-    }()
-    
-    let notesLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Remarques sur la séance"
-        label.textAlignment = .center
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        return label
     }()
     
     lazy var notesTextView: UITextView = {
@@ -155,18 +105,18 @@ class CreateTrainingController: UIViewController {
         
         view.backgroundColor = .darkBlue
         
-        navigationItem.title = training == nil ? "Créer training" : "Modifier"
-        
-        setupCancelButton()
-        
-        setupSaveButtonInNavBar(selector: #selector(handleSave))
-        
+        setupNavigationItems()
         setupUI()
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard))
         view.addGestureRecognizer(tap)
         
         setupObservers()
+    }
+    
+    fileprivate func setupNavigationItems() {
+        navigationItem.title = training == nil ? "Créer training" : "Modifier"
+        setupCancelButtonInNavBar()
+        setupSaveButtonInNavBar(selector: #selector(handleSave))
     }
     
     fileprivate func setupObservers() {

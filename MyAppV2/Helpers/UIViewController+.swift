@@ -19,7 +19,7 @@ extension UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sauvegarder", style: .plain, target: self, action: selector)
     }
     
-    func setupCancelButton() {
+    func setupCancelButtonInNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancelModal))
     }
     

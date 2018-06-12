@@ -16,7 +16,6 @@ class ReportTrainingController: UIViewController {
     
     var training: Training? {
         didSet {
-            print("hello")
             
             guard let startDate = training?.startDate else { return }
             guard let endDate = training?.endDate else { return }
@@ -48,7 +47,6 @@ class ReportTrainingController: UIViewController {
                 exercicesNumberLabel.attributedText = attributedText
             }
         }
-        
     }
     
     
@@ -65,18 +63,18 @@ class ReportTrainingController: UIViewController {
     let collectionViewSpacing: CGFloat = 4
     var collectionViewHeight: CGFloat = 0
     
-    private let visualEffectView: UIVisualEffectView = {
+    let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         return visualEffectView
     }()
     
-    private let scrollView: UIScrollView = {
+    let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
     }()
     
-    private let scrollContainerView: UIView = {
+    let scrollContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.masksToBounds = true
@@ -84,21 +82,21 @@ class ReportTrainingController: UIViewController {
         return view
     }()
     
-    private let dismissButton: UIButton = {
+    let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(#imageLiteral(resourceName: "down-arrow-black").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleDismiss), for: .touchUpInside)
         return button
     }()
     
-    private let durationLabel: UILabel = {
+    let durationLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     
-    private let exercicesNumberLabel: UILabel = {
+    let exercicesNumberLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -127,44 +125,12 @@ class ReportTrainingController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .clear
         fetchExercices()
-        setupSubViews()
         setupTableView()
         setupCollectionView()
+        setupSubViews()
         setupLayout()
     }
-    
-    
-    
-    func setupSubViews() {
-        view.addSubview(visualEffectView)
-        visualEffectView.contentView.addSubview(scrollView)
-        scrollView.addSubview(scrollContainerView)
-        [dismissButton, durationLabel,exercicesNumberLabel, groupsCollectionView, performancesTableView].forEach { scrollContainerView.addSubview($0) }
-    }
-    
-    func setupLayout() {
-        visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        scrollView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 1300)
-        
-        dismissButton.anchor(top: scrollContainerView.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
-        dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        let durationExercicesStackView = UIStackView(arrangedSubviews: [durationLabel, exercicesNumberLabel])
-        durationExercicesStackView.axis = .horizontal
-        durationExercicesStackView.distribution = .fillEqually
-        
-        scrollContainerView.addSubview(durationExercicesStackView)
-        
-        durationExercicesStackView.anchor(top: dismissButton.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 70)
-        
-        groupsCollectionView.anchor(top: durationExercicesStackView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: collectionViewHeight)
-        
-        performancesTableView.anchor(top: groupsCollectionView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: tableViewHeight)
-    }
-    
+
     private func fetchExercices() {
         guard let trainingExercices = training?.exercices?.allObjects as? [Exercice] else { return }
         exercices = trainingExercices.sorted(by: { $0.date! < $1.date!  })
