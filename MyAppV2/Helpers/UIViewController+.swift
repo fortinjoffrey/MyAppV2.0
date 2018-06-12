@@ -9,7 +9,7 @@
 import UIKit
 import UserNotifications
 
-extension UIViewController {        
+extension UIViewController {
     
     func setupPlusButtonInNavBar(selector: Selector) {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: selector)
@@ -48,6 +48,22 @@ extension UIViewController {
                 print(err)
             }
         }        
+    }
+    
+    func createLabel(for text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }
+    
+    func setupStackview(with views: [UIView], for axis: UILayoutConstraintAxis) -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: views)
+        stackView.distribution = .fillEqually
+        stackView.axis = axis
+        return stackView
     }
     
 }

@@ -32,7 +32,7 @@ class ReportTrainingController: UIViewController {
                 } else {
                     durationText = "\(hours)h" + String(format: "%02d", minutes)
                 }
-                let attributedText = NSMutableAttributedString(string: "DURÉE\n", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)])
+                let attributedText = NSMutableAttributedString(string: "Durée\n", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)])                
                 
                 attributedText.append(NSAttributedString(string: durationText, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)]))
                 
@@ -40,7 +40,7 @@ class ReportTrainingController: UIViewController {
             }
             
             if let numberOfExercices = training?.exercices?.allObjects.count {
-                let attributedText = NSMutableAttributedString(string: "EXERCICES\n", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)])
+                let attributedText = NSMutableAttributedString(string: "Exercice\n", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)])
                 
                 attributedText.append(NSAttributedString(string: "\(numberOfExercices)", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)]))
                 
@@ -49,6 +49,7 @@ class ReportTrainingController: UIViewController {
         }
     }
     
+    var notationLabelWidth: CGFloat = 0.0
     
     var exercices = [Exercice]()
     var sets = [[Set]]()
@@ -129,6 +130,10 @@ class ReportTrainingController: UIViewController {
         setupCollectionView()
         setupSubViews()
         setupLayout()
+    }
+    
+    override func viewDidLayoutSubviews() {
+//        notationLabelWidth = notationLabel.frame.width
     }
 
     private func fetchExercices() {

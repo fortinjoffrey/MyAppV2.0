@@ -9,13 +9,8 @@
 import UIKit
 import CoreData
 
-extension TrainingsAutoUpdateController: ExercicesControllerDelegate {
-    func didFinishTraining(training: Training) {
-        
-        guard let indexPath = fetchResultsController.indexPath(forObject: training) else { return }
-        tableView.reloadRows(at: [indexPath], with: .automatic)
-        
-        let training = self.fetchResultsController.object(at: indexPath)
+extension TrainingsAutoUpdateController: EvaluateTrainingControllerDelegate {
+    func didEvaluateTraining(training: Training) {
         presentReportTrainingController(for: training)
     }
     
@@ -25,7 +20,26 @@ extension TrainingsAutoUpdateController: ExercicesControllerDelegate {
         
         reportTrainingController.training = training
         self.present(reportTrainingController, animated: true, completion: nil)
-    }    
+    }
+}
+
+extension TrainingsAutoUpdateController: ExercicesControllerDelegate {
+    func didFinishTraining(training: Training) {        
+        guard let indexPath = fetchResultsController.indexPath(forObject: training) else { return }
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+        
+        let training = self.fetchResultsController.object(at: indexPath)
+        presentEvaluateTrainingController(for: training)
+    }
+    
+    fileprivate func presentEvaluateTrainingController(for training: Training) {
+        let evaluateTrainingController = EvaluateTrainingController()
+        evaluateTrainingController.modalPresentationStyle = .overFullScreen
+        
+        evaluateTrainingController.training = training
+        evaluateTrainingController.delegate = self
+        self.present(evaluateTrainingController, animated: true, completion: nil)
+    }            
 }
 
 extension TrainingsAutoUpdateController: CreateTrainingControllerDelegate {

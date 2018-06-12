@@ -68,6 +68,18 @@ struct CoreDataManager {
         }
     }
     
+    func saveNotationForTraining(notation: Int16, training: Training) {
+        let context = persistentContainer.viewContext
+        
+        training.notation = notation
+        
+        do {
+            try context.save()
+        } catch let saveErr {
+            print("Failed to save notation in CD:", saveErr)
+        }
+    }
+    
     func fetchTrainings() -> [Training]{
         
         let context = persistentContainer.viewContext

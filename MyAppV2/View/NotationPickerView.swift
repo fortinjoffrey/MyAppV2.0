@@ -10,7 +10,7 @@ import UIKit
 
 class NotationPickerView: UIPickerView {
     
-    let data = [Int16](0...10)
+    open let data = [Int16](0...10)
     var selectedData: Int16 = 5
     
     override func layoutSubviews() {

@@ -18,7 +18,7 @@ extension CreateTrainingController {
         default:
             _ = setupMinimalUI()
         }
-    }
+    }        
     
     fileprivate func setupNotationContainerView() -> UIView {
         
@@ -51,13 +51,7 @@ extension CreateTrainingController {
         return tirednessNotationContainerView
     }
     
-    fileprivate func setupStackview(with views: [UIView]) -> UIStackView {
-        
-        let stackView = UIStackView(arrangedSubviews: views)
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
-        return stackView
-    }
+    
     
     fileprivate func setupUIForDoneTraining() {
         
@@ -71,7 +65,7 @@ extension CreateTrainingController {
         
         let views = [endDateLabel,endDatePicker, notationLabel, notationContainerView, tirednessNotationLabel, tirednessNotationContainerView, notesLabel]
         
-        let stackView = setupStackview(with: views)
+        let stackView = setupStackview(with: views, for: .vertical)
         
         [stackView, notesTextView].forEach { scrollContainerView.addSubview($0) }
         
@@ -101,23 +95,13 @@ extension CreateTrainingController {
         scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 800)
         
         let views = [nameLabel, nameTextField, startDateLabel, startDatePicker]
-        let stackView = setupStackview(with: views)
+        let stackView = setupStackview(with: views, for: .vertical)
         
         scrollContainerView.addSubview(stackView)
         stackView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 215)
   
         return scrollContainerView
     }
-    
-    fileprivate func createLabel(for text: String) -> UILabel {
-        let label = UILabel()
-        label.text = text
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textColor = .black
-        label.textAlignment = .center
-        return label
-    }
-    
 }
 
 
