@@ -66,7 +66,7 @@ extension ListExercicesAutoUpdateController {
             ["Front squat smith machine","Quadriceps","","Machines, poulie"],
             ["Squat barre","Quadriceps","","Poids libres"],
             ["Squat smith machine","Quadriceps","","Machines, poulie"],
-            ["Montee sur banc","Quadriceps","",""],
+            ["Montee sur banc","Quadriceps","","Poids du corps"],
             ["Fente a la smith machine","Quadriceps","","Machines, poulie"],
             ["Fente avec haltères","Quadriceps","","Poids libres"],
             ["Leg extension","Quadriceps","","Machines, poulie"],
@@ -105,16 +105,16 @@ extension ListExercicesAutoUpdateController {
             ["Barre au front a la barre","Triceps","","Poids libres"],
             ["Developpe couche prise serree","Triceps","","Poids libres"],
             ["Dips a la machine","Triceps","","Machines, poulie"],
-            ["Dips entre deux bancs","Triceps","",""],
-            ["Dips prise serree","Triceps","",""],
+            ["Dips entre deux bancs","Triceps","","Poids du corps"],
+            ["Dips prise serree","Triceps","","Poids du corps"],
             ["Extension a la poulie haute corde","Triceps","","Machines, poulie"],
             ["Extension a la poulie haute barre droite","Triceps","","Machines, poulie"],
             ["Extension nuque avec haltères","Triceps","","Poids libres"],
             ["Extension nuque a la poulie","Triceps","","Machines, poulie"],
             ["Kickback","Triceps","","Poids libres"],
             ["Kickback a la poulie","Triceps","","Machines, poulie"],
-            ["Pompes prise diamant","Triceps","",""],
-            ["Pompes prise serree","Triceps","",""],
+            ["Pompes prise diamant","Triceps","","Poids du corps"],
+            ["Pompes prise serree","Triceps","","Poids du corps"],
             
             // LOMBAIRES
             ["Good morning","Lombaires","","Poids libres"],
@@ -125,10 +125,10 @@ extension ListExercicesAutoUpdateController {
             ["Leg curl","Ischio-Jambiers","","Machines, poulie"],
             
             // DORSAUX
-            ["Traction prise large","Dorsaux","",""],
-            ["Traction prise neutre","Dorsaux","",""],
-            ["Traction prise serree en pronation","Dorsaux","",""],
-            ["Traction prise serree en supination","Dorsaux","",""],
+            ["Traction prise large","Dorsaux","","Poids du corps"],
+            ["Traction prise neutre","Dorsaux","","Poids du corps"],
+            ["Traction prise serree en pronation","Dorsaux","","Poids du corps"],
+            ["Traction prise serree en supination","Dorsaux","","Poids du corps"],
             ["Traction a la machine","Dorsaux","","Machines, poulie"],
             ["Traction a la poulie haute en pronation","Dorsaux","","Machines, poulie"],
             ["Traction a la poulie haute en supination","Dorsaux","","Machines, poulie"],
@@ -147,7 +147,7 @@ extension ListExercicesAutoUpdateController {
             ["Chameau","Mollets","","Poids libres"],
             ["Mollets assis","Mollets","","Machines, poulie"],
             ["Mollets debout a la machine","Mollets","","Machines, poulie"],
-            ["Mollets debout","Mollets","",""],
+            ["Mollets debout","Mollets","","Poids du corps"],
             
             // CARDIO
             ["Rameur","Cardio","","Cardio"],

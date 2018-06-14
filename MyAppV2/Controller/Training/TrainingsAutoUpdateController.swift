@@ -54,7 +54,7 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
         self.present(navController, animated: true, completion: nil)        
     }
     
-    @objc private func handleAdd() {
+    @objc private func handleAdd(button: UIBarButtonItem) {
         
         let trainingCategories = ["Entraînement terminé", "Entraînement en cours", "Entraînement futur"]
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -67,7 +67,12 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
             }))
         }
         alertController.addAction(UIAlertAction(title: "Annuler", style: .cancel, handler: nil))
-        
+        alertController.modalPresentationStyle = .popover
+
+        if let popoverController = alertController.popoverPresentationController {
+            popoverController.barButtonItem = button
+
+        }
         present(alertController, animated: true, completion: nil)
     }
 }
