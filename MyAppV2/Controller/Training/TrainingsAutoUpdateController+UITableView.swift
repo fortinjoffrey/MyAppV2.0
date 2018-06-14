@@ -57,14 +57,22 @@ extension TrainingsAutoUpdateController {
     // MARK: Swipe Actions
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
-        let deleteAction = UIContextualAction(style: .destructive, title: "Supprimer") { (action, view, success) in
+        let deleteAction = UIContextualAction(style: .normal, title: "Supprimer") { (action, view, success) in
             
-            let training = self.fetchResultsController.object(at: indexPath)
+            let alertController = UIAlertController(title: "Êtes-vous sur ?", message: "Cette action est irréversible", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Annuler", style: UIAlertActionStyle.cancel, handler: { (action) in
+                alertController.dismiss(animated: true, completion: nil)
+                success(true)
+            }))
+            alertController.addAction(UIAlertAction(title: "Oui", style: .destructive, handler: { (action) in
+                let training = self.fetchResultsController.object(at: indexPath)
+                _ = CoreDataManager.shared.deleteTraining(training: training)
+                success(true)
+            }))
             
-            _ = CoreDataManager.shared.deleteTraining(training: training)
-            success(true)
-            
+            self.present(alertController, animated: true, completion: nil)
         }
+        deleteAction.backgroundColor = .red
         
         let editAction = UIContextualAction(style: .normal, title: "Modifier") { (action, view, success) in
             

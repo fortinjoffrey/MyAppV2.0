@@ -68,7 +68,7 @@ extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewD
             cell.accessoryType = .none
         } else {
             selectedExercices.append(exercice)
-            cell.accessoryType = .checkmark
+            cell.accessoryType = .checkmark            
         }
     
         return nil

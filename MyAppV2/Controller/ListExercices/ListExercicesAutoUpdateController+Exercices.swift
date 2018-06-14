@@ -40,11 +40,11 @@ extension ListExercicesAutoUpdateController {
             ["Developpe nuque barre","Deltoïdes","","Poids libres"],
             ["Developpe nuque haltères","Deltoïdes","","Poids libres"],
             ["Developpe arnold","Deltoïdes","","Poids libres"],
-            ["elevations laterales haltères","Deltoïdes","","Poids libres"],
-            ["elevations laterales poulie","Deltoïdes","","Machines, poulie"],
-            ["elevations frontales haltères","Deltoïdes","","Poids libres"],
-            ["elevations frontales barre","Deltoïdes","","Poids libres"],
-            ["elevations frontales poulie","Deltoïdes","","Machines, poulie"],
+            ["Elevations laterales haltères","Deltoïdes","","Poids libres"],
+            ["Elevations laterales poulie","Deltoïdes","","Machines, poulie"],
+            ["Elevations frontales haltères","Deltoïdes","","Poids libres"],
+            ["Elevations frontales barre","Deltoïdes","","Poids libres"],
+            ["Elevations frontales poulie","Deltoïdes","","Machines, poulie"],
             ["Rowing barre coudes ouverts","Deltoïdes","","Poids libres"],
             ["Rowing poulie coudes ouverts","Deltoïdes","","Machines, poulie"],
             ["Oiseau poulie","Deltoïdes","Trapèzes","Machines, poulie"],
@@ -140,7 +140,7 @@ extension ListExercicesAutoUpdateController {
             // FESSIERS
             ["Souleve de terre","Fessiers","","Poids libres"],
             ["Souleve de terre sumo","Fessiers","","Poids libres"],
-            ["Fente glissee","Fessiers","",""],
+            ["Fente glissee","Fessiers","","Poids du corps"],
             ["Fente a la smith machine","Fessiers","","Machines, poulie"],
             
             // MOLLETS
@@ -151,7 +151,10 @@ extension ListExercicesAutoUpdateController {
             
             // CARDIO
             ["Rameur","Cardio","","Cardio"],
-            ["Velo elyptique","Cardio","","Cardio"],
+            ["Velo elliptique","Cardio","","Cardio"],
+            ["Velo de course","Cardio","","Cardio"],
+            ["Marcheur","Cardio","","Cardio"],
+            ["Mountain Climber","Cardio","","Cardio"],
             ["Tapis de course","Cardio","","Cardio"],
             
             

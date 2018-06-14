@@ -78,7 +78,7 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         setupTableView()
         setupNavigationItems()
         definesPresentationContext = true
-        //createDefaultsExercicesIfNeeded()
+        createDefaultsExercicesIfNeeded()
     }
     
     fileprivate func setupNavigationItems() {
@@ -95,7 +95,7 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     fileprivate func setupNavigationBarButtonItems() {
         if training == nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddView))
-            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminer", style: .plain, target: self, action: #selector(handleDone))
         }

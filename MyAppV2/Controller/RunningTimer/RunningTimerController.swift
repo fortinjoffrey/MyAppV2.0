@@ -102,16 +102,14 @@ class RunningTimerController: UIViewController {
     @objc private func handlePlus() {
         timerValue += 15
         count += 15
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "Temps écoulé", body: "\(Int(timerValue)) se sont écoulées")
+        sendUserNotificationForTimerValue(of: timerValue)
     }
     
     @objc private func handleMinus() {
         if count > 15 {
             timerValue -= 15
             count -= 15
-            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "Temps écoulé", body: "\(Int(timerValue)) se sont écoulées")
+            sendUserNotificationForTimerValue(of: timerValue)
         }
     }
     
@@ -119,18 +117,25 @@ class RunningTimerController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        
         setupObservers()
         setupCircleLayers()
         setupUI()
         
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
         view.addGestureRecognizer(panGestureRecognizer)
-                
-        sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "Temps écoulé", body: "\(Int(timerValue)) se sont écoulées")
+        
+        
+        sendUserNotificationForTimerValue(of: timerValue)
         
         timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(handleTimer), userInfo: nil, repeats: true)
         
+    }
+    
+    fileprivate func sendUserNotificationForTimerValue(of timerValue: CGFloat) {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        let notificationBody = "\(Int(timerValue) / 60):" + String(format: "%02d", Int(timerValue) % 60) +  " se sont écoulées"
+        
+        sendUserNotification(identifier: "timerDone", timeInterval: Double(timerValue), title: "Temps écoulé", body: notificationBody)
     }
     
     @objc func handleTimer() {
@@ -164,15 +169,25 @@ class RunningTimerController: UIViewController {
     
     func setupUI() {
 
+        let hideLabel = createLabel(for: "Cacher")
+        hideLabel.font = UIFont.systemFont(ofSize: 12)
+        hideLabel.textColor = .lightGray
+        let fifteenSecondsLabel = createLabel(for: "15 secs")
+        fifteenSecondsLabel.textColor = .lightGray
+        fifteenSecondsLabel.font = UIFont.systemFont(ofSize: 12)
         
-        [dismissButton, timeLabel, remainingTimeLabel, stopButton, minusButton, plusButton].forEach { view.addSubview($0) }
+        [dismissButton, hideLabel, timeLabel, remainingTimeLabel, stopButton, minusButton, plusButton, fifteenSecondsLabel].forEach { view.addSubview($0) }
         
         dismissButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
+        hideLabel.anchor(top: dismissButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 25)
+        
         minusButton.anchor(top: dismissButton.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 50, paddingLeft: view.frame.width / 6, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
         
         plusButton.anchor(top: dismissButton.bottomAnchor, left: nil, bottom: nil, right: view.rightAnchor, paddingTop: 50, paddingLeft: 0, paddingBottom: 0, paddingRight: view.frame.width / 6, width: 25, height: 25)
+        
+        fifteenSecondsLabel.anchor(top: minusButton.topAnchor, left: minusButton.rightAnchor, bottom: minusButton.bottomAnchor, right: plusButton.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
     
         NSLayoutConstraint.activate([timeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                      timeLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
@@ -232,8 +247,8 @@ class RunningTimerController: UIViewController {
             let velocity = gesture.velocity(in: self.view)
             
             if velocity.y > 1000 || view.frame.origin.y >= view.frame.height / 2 {
-                timer?.invalidate()
-                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+//                timer?.invalidate()
+//                UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
                 dismiss(animated: true, completion: nil)
             } else {
                 UIView.animate(withDuration: 0.3) {

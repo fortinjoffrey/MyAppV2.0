@@ -71,7 +71,6 @@ class TrainingsAutoUpdateController: UITableViewController, NSFetchedResultsCont
 
         if let popoverController = alertController.popoverPresentationController {
             popoverController.barButtonItem = button
-
         }
         present(alertController, animated: true, completion: nil)
     }

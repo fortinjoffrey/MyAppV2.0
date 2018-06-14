@@ -235,17 +235,28 @@ class CreateSetController: UIViewController {
         
         if let set = tuple.0 {
             self.delegate?.didAddSet(set: set)
-            if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
-                let runningTimerController = RunningTimerController()
-                runningTimerController.modalPresentationStyle = .overFullScreen
-                
-                if let count = UserDefaults.standard.value(forKey: "DefaultTimerCount") as? Int {
-                    runningTimerController.timerValue = CGFloat(count)
-                } else {
-                    runningTimerController.timerValue = CGFloat(90)
-                }
-                present(runningTimerController, animated: true, completion: nil)
+            
+            let alertController = UIAlertController(title: "Ajouté", message: nil, preferredStyle: .alert)
+            
+            present(alertController, animated: true, completion: nil)
+            
+            let when = DispatchTime.now() + 0.5
+            DispatchQueue.main.asyncAfter(deadline: when){                
+                alertController.dismiss(animated: true, completion: {                    
+                    if !self.trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
+                        let runningTimerController = RunningTimerController()
+                        runningTimerController.modalPresentationStyle = .overFullScreen
+                        
+                        if let count = UserDefaults.standard.value(forKey: "DefaultTimerCount") as? Int {
+                            runningTimerController.timerValue = CGFloat(count)
+                        } else {
+                            runningTimerController.timerValue = CGFloat(90)
+                        }
+                        self.present(runningTimerController, animated: true, completion: nil)
+                    }
+                })
             }
+            
         }
         
     }
@@ -375,7 +386,7 @@ class CreateSetController: UIViewController {
         
         [durationSpeedLabelStackView, durationSpeedPickerStackView].forEach { mainView.addSubview($0) }
         
-        durationSpeedLabelStackView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
+        durationSpeedLabelStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 30, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
         
         durationSpeedPickerStackView.anchor(top: nil, left: mainView.leftAnchor, bottom: validateButton.topAnchor, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height / 2)
     }

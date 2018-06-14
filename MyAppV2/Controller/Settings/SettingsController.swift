@@ -14,13 +14,13 @@ class SettingsController: UITableViewController {
     let rightDetailCellId = "rightDetailCellId"
     let defaultCellId = "defaultCellId"
     
-    let sectionsAndRowsNumberArray = [[0,1], [1,2], [2,1]]
+    let sectionsAndRowsNumberArray = [[1,2], [2,1]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Paramètres"
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Réinitialiser", style: .plain, target: self, action: #selector(handleReset))
         registerTableViewCells()
     }
     
@@ -52,10 +52,10 @@ class SettingsController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
+//        case 0:
+//            let cell = tableView.dequeuseReusableCell(withIdentifier: subtitleCellId, for: indexPath, textLabelText: "Title", detailTextLabelText: "Subtitle", selectionStyle: nil, accessoryType: nil)
+//            return cell
         case 0:
-            let cell = tableView.dequeuseReusableCell(withIdentifier: subtitleCellId, for: indexPath, textLabelText: "Title", detailTextLabelText: "Subtitle", selectionStyle: nil, accessoryType: nil)
-            return cell
-        case 1:
             if indexPath.row == 0 {
                 let cell = tableView.dequeuseReusableCell(withIdentifier: rightDetailCellId, for: indexPath, textLabelText: "Timer par défaut", detailTextLabelText: setupDefaultTimerText(), selectionStyle: nil, accessoryType: nil)
                 return cell
@@ -66,12 +66,14 @@ class SettingsController: UITableViewController {
             }
         default:
             let cell = tableView.dequeuseReusableCell(withIdentifier: rightDetailCellId, for: indexPath, textLabelText: "Version", detailTextLabelText: "1.0", selectionStyle: .none, accessoryType: .none)
+            cell.accessoryType = .none
+            cell.selectionStyle = .none
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 1 && indexPath.row == 0 {
+        if indexPath.section == 0 && indexPath.row == 0 {
             let settingsTimerController = SettingsTimerController(style: .grouped)
             navigationController?.pushViewController(settingsTimerController, animated: true)
         }

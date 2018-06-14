@@ -12,22 +12,7 @@ extension SetsController: CreateSetControllerDelegate {
     func didAddSet(set: Set) {
         sets.append(set)
         let indexPath = IndexPath(row: sets.count - 1, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-        
-//        guard let trainingIsDone = trainingIsDone else { return }
-        
-//        if !trainingIsDone && UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") as? Bool == true {
-//            let runningTimerController = RunningTimerController()
-//            runningTimerController.modalPresentationStyle = .overFullScreen
-//            
-//            if let count = UserDefaults.standard.value(forKey: "DefaultTimerCount") as? Int {
-//                runningTimerController.timerValue = CGFloat(count)
-//            } else {
-//                runningTimerController.timerValue = CGFloat(90)
-//            }
-//            
-//            present(runningTimerController, animated: true, completion: nil)
-//        }
+        tableView.insertRows(at: [indexPath], with: .automatic)        
     }
     
     func didEditSet(set: Set) {

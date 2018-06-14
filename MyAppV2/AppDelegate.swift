@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         setupNavigationBar()
         setupNotificationRequestAndDelegate()
+        checkIfAutoTimerIsOn()
         
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "Annuler"
+
         
         window = UIWindow()
         window?.makeKeyAndVisible()
@@ -56,6 +59,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    fileprivate func checkIfAutoTimerIsOn() {
+        if UserDefaults.standard.value(forKey: "automaticTimerSwitchIsOn") == nil {
+            UserDefaults.standard.set(true, forKey: "automaticTimerSwitchIsOn")
+        }
+    }
     
     fileprivate func setupNavigationBar() {
         UINavigationBar.appearance().tintColor = .white

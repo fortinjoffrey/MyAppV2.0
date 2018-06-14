@@ -72,6 +72,9 @@ class SetsController: UIViewController {
         
         let createSetController = CreateSetController()
         createSetController.modalPresentationStyle = .overFullScreen
+        if let trainingIsDone = trainingIsDone {
+            createSetController.trainingIsDone = trainingIsDone
+        }
         createSetController.exercice = exercice        
         createSetController.delegate = self
         present(createSetController, animated: true, completion: nil)
