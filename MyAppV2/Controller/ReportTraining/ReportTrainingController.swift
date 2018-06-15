@@ -19,9 +19,6 @@ class ReportTrainingController: UIViewController {
             
             guard let startDate = training?.startDate else { return }
             guard let endDate = training?.endDate else { return }
-            //                    guard let name = training?.name else { return }
-            
-            //                    nameLabel.text = name
             
             let calendar = Calendar.current
             var durationText = ""
@@ -32,22 +29,14 @@ class ReportTrainingController: UIViewController {
                 } else {
                     durationText = "\(hours)h" + String(format: "%02d", minutes)
                 }
-                let attributedText = NSMutableAttributedString(string: "Durée\n", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)])                
-                
-                attributedText.append(NSAttributedString(string: durationText, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)]))
-                
-                durationLabel.attributedText = attributedText
+                setupBlackBoldAttributedText(for: durationLabel, firstString: "Durée\n", secondString: durationText, size: 14)
             }
             
             if let numberOfExercices = training?.exercices?.allObjects.count {
-                let attributedText = NSMutableAttributedString(string: "Exercice\n", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)])
-                
-                attributedText.append(NSAttributedString(string: "\(numberOfExercices)", attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: 14)]))
-                
-                exercicesNumberLabel.attributedText = attributedText
+                setupBlackBoldAttributedText(for: exercicesNumberLabel, firstString: "Exercice\n", secondString: "\(numberOfExercices)", size: 14)
             }
         }
-    }
+    }        
     
     var notationLabelWidth: CGFloat = 0.0
     
@@ -128,12 +117,7 @@ class ReportTrainingController: UIViewController {
         fetchExercices()
         setupTableView()
         setupCollectionView()
-        setupSubViews()
-        setupLayout()
-    }
-    
-    override func viewDidLayoutSubviews() {
-//        notationLabelWidth = notationLabel.frame.width
+        setupUI()
     }
 
     private func fetchExercices() {

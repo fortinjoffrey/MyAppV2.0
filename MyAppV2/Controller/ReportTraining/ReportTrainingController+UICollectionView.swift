@@ -16,10 +16,10 @@ extension ReportTrainingController: UICollectionViewDataSource, UICollectionView
         groupsCollectionView.register(GroupCell.self, forCellWithReuseIdentifier: collectionViewCellId)
         groupsCollectionView.allowsSelection = false
         groupsCollectionView.isScrollEnabled = false        
-        setupHeightsForCollectionView()
+        setupCollectionViewHeight()
     }
     
-    func setupHeightsForCollectionView() {
+    func setupCollectionViewHeight() {
         
         guard let exercices = training?.exercices?.allObjects as? [Exercice] else { return }
         var countedOccurencesOfSamePrimaryGroups:[String:Int] = [:]
@@ -37,8 +37,7 @@ extension ReportTrainingController: UICollectionViewDataSource, UICollectionView
         collectionViewHeight += CGFloat(max(sortedCountedGroups.count - 1, 0)) * collectionViewSpacing
     }
         
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(sortedCountedGroups.count)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {        
         return sortedCountedGroups.count
     }
     

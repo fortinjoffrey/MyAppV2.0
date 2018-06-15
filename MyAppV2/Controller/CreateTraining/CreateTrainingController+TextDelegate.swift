@@ -17,19 +17,19 @@ extension CreateTrainingController: UITextFieldDelegate, UITextViewDelegate {
         return true
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         selectedTextArea = textView
         textfieldMode = false
         return true
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
     
-    @objc func handleKeyboardWillShow(notification: NSNotification) {
-        
+    @objc func handleKeyboardWillShow(notification: NSNotification) {        
         offSetBottomAnchor(notification: notification)
     }
     

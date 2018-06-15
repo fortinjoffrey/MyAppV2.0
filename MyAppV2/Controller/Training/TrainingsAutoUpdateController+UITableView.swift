@@ -19,7 +19,6 @@ extension TrainingsAutoUpdateController {
         tableView.separatorInset = UIEdgeInsets(top: 0, left: view.frame.width / 7 + 11 , bottom: 0, right: 30)
     }
  
-    // MARK: Section
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchResultsController.sections?.count ?? 0
     }
@@ -33,7 +32,6 @@ extension TrainingsAutoUpdateController {
 //        return label
 //    }
     
-    // MARK: Rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchResultsController.sections![section].numberOfObjects
     }
@@ -41,15 +39,11 @@ extension TrainingsAutoUpdateController {
         return 75
     }
     
-    // MARK: Cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TrainingCell
         
         let training = fetchResultsController.object(at: indexPath)
-        
         cell.training = training
-        
-//        training.isDone ? cell.accessoryType = .checkmark : cell.accessoryType = .disclosureIndicator
         
         return cell
     }
@@ -123,7 +117,7 @@ extension TrainingsAutoUpdateController {
         return nil
     }
     
-    // MARK: Footer
+    // MARK: FOOTER
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.textColor = .white

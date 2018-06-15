@@ -68,6 +68,21 @@ struct CoreDataManager {
         }
     }
     
+    func saveTrainingIsDone(isDone: Bool, training: Training?) -> Bool {
+        let context = persistentContainer.viewContext
+        training?.isDone = true
+        training?.endDate = Date()
+        
+        do {
+            try context.save()
+            return true
+        } catch let saveErr {
+            print("Failed to save training validation:", saveErr)
+            return false
+        }
+        
+    }
+    
     func saveNotationForTraining(notation: Int16, training: Training) {
         let context = persistentContainer.viewContext
         

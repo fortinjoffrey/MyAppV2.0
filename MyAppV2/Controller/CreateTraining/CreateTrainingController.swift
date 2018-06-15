@@ -99,24 +99,25 @@ class CreateTrainingController: UIViewController {
         return tf
     }()
     
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
         view.backgroundColor = .darkBlue
         
-        setupNavigationItems()
+        setupNavBar()
         setupUI()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard))
-        view.addGestureRecognizer(tap)
-        
+        setupTapGesture()
         setupObservers()
     }
     
-    fileprivate func setupNavigationItems() {
+    fileprivate func setupNavBar() {
         navigationItem.title = training == nil ? "Créer training" : "Modifier"
         setupCancelButtonInNavBar()
         setupSaveButtonInNavBar(selector: #selector(handleSave))
+    }
+    
+    fileprivate func setupTapGesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleDismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     fileprivate func setupObservers() {

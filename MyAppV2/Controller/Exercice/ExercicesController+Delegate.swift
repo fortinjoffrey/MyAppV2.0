@@ -14,17 +14,5 @@ extension ExercicesController: SetsControllerDelegate {
         exercices[row] = exercice        
         let indexPath = IndexPath(row: row, section: 0)
         tableView.reloadRows(at: [indexPath], with: .automatic)
-
-        
-        
-//        guard let indexPath = fetchResultsController.indexPath(forObject: training) else { return }
-//        print(indexPath)
-//        tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
-//        _ = tableView(tableView, willSelectRowAt: indexPath)
-        
-    }
-    
-    
-    
-    
+    }    
 }

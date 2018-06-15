@@ -10,6 +10,11 @@ import UIKit
 
 extension ReportTrainingController {
     
+    func setupUI() {
+        setupSubViews()
+        setupLayout()
+    }
+    
     func setupSubViews() {
         view.addSubview(visualEffectView)
         visualEffectView.contentView.addSubview(scrollView)

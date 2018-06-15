@@ -65,17 +65,6 @@ class RunningTimerController: UIViewController {
 //        button.layer.shadowOffset = CGSize(width: 0, height: 2)
         return button
     }()
-    
-//    let plusButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("+ 30 seconds", for: .normal)
-//        button.setTitleColor(UIColor.white, for: .normal)
-//        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-//        button.backgroundColor = .outlineStrokeColor
-//        button.addTarget(self, action: #selector(handlePlus), for: .touchUpInside)
-//        button.layer.cornerRadius = 20
-//        return button
-//    }()
  
     private let plusButton: UIButton = {
         let button = UIButton(type: .system)

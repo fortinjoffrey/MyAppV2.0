@@ -16,16 +16,20 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
         performancesTableView.tableFooterView = UIView()
         performancesTableView.allowsSelection = false
         performancesTableView.isScrollEnabled = false
+        registerTableViewCells()
+        setupTableViewHeight()
+    }
+    
+    func registerTableViewCells() {
         performancesTableView.register(UITableViewCell.self, forCellReuseIdentifier: reportTrainingCellId)
         performancesTableView.register(RepsWeightCell.self, forCellReuseIdentifier: cellIds[0])
         performancesTableView.register(CardioCell.self, forCellReuseIdentifier: cellIds[1])
         performancesTableView.register(BodyweightCell.self, forCellReuseIdentifier: cellIds[2])
         performancesTableView.register(GainageCell.self, forCellReuseIdentifier: cellIds[3])
         performancesTableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIds[4])
-        setupHeightsForTableView()
     }
     
-    func setupHeightsForTableView() {
+    func setupTableViewHeight() {
         var numberOfSets = 0
         sets.forEach { numberOfSets += $0.count }        
         tableViewHeight = CGFloat(exercices.count) * tableViewHeaderHeight + CGFloat(numberOfSets) * tableViewCellHeight

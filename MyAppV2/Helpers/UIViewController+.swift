@@ -66,4 +66,13 @@ extension UIViewController {
         return stackView
     }
     
+    func setupBlackBoldAttributedText(for label: UILabel, firstString: String, secondString: String, size: CGFloat) {
+        
+        let attributedText = NSMutableAttributedString(string: firstString, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: size)])
+        
+        attributedText.append(NSAttributedString(string: secondString, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: size)]))
+        
+        label.attributedText = attributedText
+    }
+    
 }

@@ -10,8 +10,7 @@ import UIKit
 
 extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
     
-    func setupTableView() {
-        
+    func setupTableView() {        
         tableView.backgroundColor = .darkBlue
         tableView.tableFooterView = UIView()
         tableView.register(SettingsRightDetailCell.self, forCellReuseIdentifier: cellId)
@@ -22,7 +21,6 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let exercice = exercices[indexPath.row]
         cell.textLabel?.text = exercice.name
@@ -43,22 +41,18 @@ extension ExercicesController: UITableViewDataSource, UITableViewDelegate {
             }
             success(true)
         }
-        
         let config = UISwipeActionsConfiguration(actions: [deleteAction])
         config.performsFirstActionWithFullSwipe = false
         return config
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        
         let exercice = exercices[indexPath.row]
-        
-        print(exercice.category ?? "")
-        
         let setsController = SetsController()
         setsController.exercice = exercice
         setsController.trainingIsDone = training?.isDone
         setsController.delegate = self
-        
         navigationController?.pushViewController(setsController, animated: true)
         return nil
     }

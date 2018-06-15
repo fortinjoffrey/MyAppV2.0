@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol ExercicesControllerDelegate {
     func didFinishTraining(training: Training)
@@ -28,9 +29,9 @@ class ExercicesController: UIViewController {
     var training: Training? {
         didSet {
             navigationItem.title = training?.name
+            setupNavBar()
         }
     }
-    
     
     let plusButton: UIButton = {
         let button = UIButton(type: .system)
@@ -41,68 +42,39 @@ class ExercicesController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupTableView()
         setupUI()
-      
         fetchExercices()
     }
     
-    private func setupUI() {
-        
+    fileprivate func setupNavBar() {
         if let isDone = training?.isDone {
             if !isDone {
                 navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checked_64").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(handleDone))
-            }            
+            }
         }
-        
-        [tableView, plusButton].forEach { view.addSubview($0) }
-        
-        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        setupTableView()
-        
-        guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
-        
-        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
-        
     }
     
     @objc private func handleDone() {
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        training?.isDone = true
-        training?.endDate = Date()
-        
-        do {
-            try context.save()
+        if CoreDataManager.shared.saveTrainingIsDone(isDone: true, training: training) {
             if let training = training {
                 self.delegate?.didFinishTraining(training: training)
                 navigationController?.popViewController(animated: true)
-                //
-                
             }
-        } catch let saveErr {
-            print("Failed to save training validation:", saveErr)
         }
-        
     }
     
     @objc private func handleAdd() {
-        
         let listExercicesAutoUpdateController = ListExercicesAutoUpdateController()
         listExercicesAutoUpdateController.training = training
         listExercicesAutoUpdateController.delegate = self
         let navController = UINavigationController(rootViewController: listExercicesAutoUpdateController)
-        present(navController, animated: true, completion: nil)
-
+        present(navController, animated: true, completion: nil)        
     }
     
     private func fetchExercices() {
-        
         guard let trainingExercices = training?.exercices?.allObjects as? [Exercice] else { return }
-        
         let sortedExercices = trainingExercices.sorted(by: { $0.date! < $1.date! })
-        
         self.exercices = sortedExercices        
     }
     
