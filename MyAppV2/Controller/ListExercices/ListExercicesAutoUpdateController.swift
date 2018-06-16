@@ -73,12 +73,43 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         return frc
     }()
     
+    let plusButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "plus_blueCustom").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleAddView), for: .touchUpInside)
+        return button
+    }()
+    
+    let confirmButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "confirm_blueCustom").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         setupTableView()
         setupNavigationItems()
         definesPresentationContext = true
         createDefaultsExercicesIfNeeded()
+    }
+    
+    fileprivate func setupUI() {
+        
+        plusButton.isHidden = training == nil ? false : true
+        confirmButton.isHidden = training == nil ? true : false
+        
+        [tableView, plusButton, confirmButton].forEach { view.addSubview($0) }
+        
+        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        confirmButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 16, width: 50, height: 50)
+        
+        guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
+        
+        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
     }
     
     fileprivate func setupNavigationItems() {
@@ -93,12 +124,9 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     }
     
     fileprivate func setupNavigationBarButtonItems() {
-        if training == nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(handleAddView))
-//            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
-        } else {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminer", style: .plain, target: self, action: #selector(handleDone))
-        }
+//        if training != nil {
+//            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Terminer", style: .plain, target: self, action: #selector(handleDone))
+//        }
     }
     
     fileprivate func createDefaultsExercicesIfNeeded() {

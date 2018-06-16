@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        setupNavigationBar()
+        setupNavBarAppearance()
         setupNotificationRequestAndDelegate()
         checkIfAutoTimerIsOn()
         
@@ -66,10 +66,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
     }
     
-    fileprivate func setupNavigationBar() {
+    fileprivate func setupNavBarAppearance() {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = .lightRed
+        UINavigationBar.appearance().barTintColor = .roseCustom
         UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]

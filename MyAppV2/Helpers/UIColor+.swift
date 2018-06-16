@@ -30,4 +30,11 @@ extension UIColor {
     static let pulsatingFillColor = UIColor.rgb(r: 86, g: 30, b: 63)
     
     static let doneGreen = rgb(r: 20, g: 187, b: 112)
+    
+    
+    static let orangeCustom = rgb(r: 255, g: 148, b: 2)
+    static let roseCustom = rgb(r: 233, g: 43, b: 97)
+    static let blueCustom = rgb(r: 21, g: 126, b: 251)
+    
+    
 }

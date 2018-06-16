@@ -194,9 +194,9 @@ class CreateSetController: UIViewController {
     let validateButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Valider", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.backgroundColor = .green
+        button.backgroundColor = .blueCustom
         button.layer.cornerRadius = 10
         button.addTarget(self, action: #selector(handleValidate), for: .touchUpInside)
         return button

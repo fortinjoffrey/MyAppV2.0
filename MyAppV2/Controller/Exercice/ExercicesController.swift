@@ -28,15 +28,21 @@ class ExercicesController: UIViewController {
     
     var training: Training? {
         didSet {
-            navigationItem.title = training?.name
-            setupNavBar()
+            navigationItem.title = training?.name        
         }
     }
     
     let plusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plus_green").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plus_blueCustom").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleAdd), for: .touchUpInside)
+        return button
+    }()
+    
+    let confirmButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(#imageLiteral(resourceName: "confirm_blueCustom").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         return button
     }()
     
@@ -45,14 +51,6 @@ class ExercicesController: UIViewController {
         setupTableView()
         setupUI()
         fetchExercices()
-    }
-    
-    fileprivate func setupNavBar() {
-        if let isDone = training?.isDone {
-            if !isDone {
-                navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "checked_64").withRenderingMode(.alwaysOriginal), style: .done, target: self, action: #selector(handleDone))
-            }
-        }
     }
     
     @objc private func handleDone() {

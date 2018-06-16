@@ -32,7 +32,7 @@ class MainTabBarController: UITabBarController {
         let settingsNavController = templateNavController(unselectedImage: #imageLiteral(resourceName: "settings_unselected"), selectedImage: #imageLiteral(resourceName: "settings_selected"),rootViewController: settingsController)
         settingsNavController.tabBarItem.title = "Paramètres"
         
-        tabBar.tintColor = .black
+        tabBar.tintColor = .roseCustom
         viewControllers = [trainingsNavController, exercicesNavController, timerNavController, settingsNavController]        
     }
     

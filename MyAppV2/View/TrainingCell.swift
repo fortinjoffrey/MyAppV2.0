@@ -20,7 +20,7 @@ class TrainingCell: UITableViewCell {
             if let isDone = training?.isDone {
                 if isDone {
                     accessoryType = UITableViewCellAccessoryType.checkmark
-                    stateView.backgroundColor = .green
+                    stateView.backgroundColor = .blueCustom
                     stateLabel.text = "TERMINÉ"
                 } else {
                     accessoryType = UITableViewCellAccessoryType.disclosureIndicator

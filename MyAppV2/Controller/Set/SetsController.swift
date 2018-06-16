@@ -33,19 +33,14 @@ class SetsController: UIViewController {
     
     let plusButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: "plus_green").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "plus_blueCustom").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleAdd), for: .touchUpInside)
         return button
     }()
     
-    let validateButton: UIButton = {
+    let confirmButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Valider", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        button.backgroundColor = .green
-        button.layer.cornerRadius = 10
-        button.isHidden = true
+        button.setImage(#imageLiteral(resourceName: "confirm_blueCustom").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleDone), for: .touchUpInside)
         return button
     }()
@@ -84,7 +79,6 @@ class SetsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
-        view.backgroundColor = .darkBlue
         
         setupUI()
         setupTableView()
@@ -95,10 +89,10 @@ class SetsController: UIViewController {
     func setupUI() {
         
         if let isDone = exercice?.isDone {
-            validateButton.isHidden = !isDone ? false : true
+            confirmButton.isHidden = !isDone ? false : true
         }
         
-        [tableView, plusButton, validateButton].forEach { view.addSubview($0) }
+        [tableView, plusButton, confirmButton].forEach { view.addSubview($0) }
         
         tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
@@ -106,8 +100,7 @@ class SetsController: UIViewController {
         
         plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
         
-        validateButton.centerYAnchor.constraint(equalTo: plusButton.centerYAnchor).isActive = true
-        validateButton.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: plusButton.leftAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 32, paddingRight: 16, width: 0, height: 50)
+        confirmButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: tabBarHeight + 16, paddingRight: 0, width: 50, height: 50)                
     }
     
     func fetchSets() {

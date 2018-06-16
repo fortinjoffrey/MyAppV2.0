@@ -11,7 +11,8 @@ import UIKit
 extension SetsController: UITableViewDataSource, UITableViewDelegate {
     
     func setupTableView() {
-        
+        tableView.backgroundColor = .darkBlue
+        tableView.allowsSelection = false
         tableView.register(RepsWeightCell.self, forCellReuseIdentifier: cellIds[0])
         tableView.register(CardioCell.self, forCellReuseIdentifier: cellIds[1])
         tableView.register(BodyweightCell.self, forCellReuseIdentifier: cellIds[2])
@@ -78,5 +79,35 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.backgroundColor = .lightBlue
+        label.textColor = .darkBlue
+        label.textAlignment = .center
+        label.text = "Performances"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    
+    // MARK: Footer
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Pas de performances enregistrées"
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return sets.count > 0 ? 0 : 150
+    }
+    
     
 }
