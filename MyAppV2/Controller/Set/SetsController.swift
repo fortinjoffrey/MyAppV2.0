@@ -24,6 +24,8 @@ class SetsController: UIViewController {
         }
     }
     
+    let cellIds = ["repsWeightCellId", "cardioCellId", "bodyweightCellId", "gainageCellId", "cellId"]
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -45,23 +47,23 @@ class SetsController: UIViewController {
         return button
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.largeTitleDisplayMode = .never
+        setupUI()
+        setupTableView()
+        fetchSets()
+    }
+    
     @objc private func handleDone() {
         
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        exercice?.isDone = true
-        
-        do {
-            try context.save()
+        if CoreDataManager.shared.saveExerciceIsDone(isDone: true, exercice: exercice) {
             if let exercice = exercice {
                 self.delegate?.didFinishExercice(exercice: exercice)
                 navigationController?.popViewController(animated: true)
-            }           
-        } catch let saveErr {
-            print("Failed to save exercice validation:", saveErr)
-        }
+            }
+        }             
     }
-    
-    let cellIds = ["repsWeightCellId", "cardioCellId", "bodyweightCellId", "gainageCellId", "cellId"]    
     
     @objc private func handleAdd() {
         
@@ -70,41 +72,12 @@ class SetsController: UIViewController {
         if let trainingIsDone = trainingIsDone {
             createSetController.trainingIsDone = trainingIsDone
         }
-        createSetController.exercice = exercice        
+        createSetController.exercice = exercice
         createSetController.delegate = self
         present(createSetController, animated: true, completion: nil)
     }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.largeTitleDisplayMode = .never
         
-        setupUI()
-        setupTableView()
-        fetchSets()
-        
-    }
-    
-    func setupUI() {
-        
-        if let isDone = exercice?.isDone {
-            confirmButton.isHidden = !isDone ? false : true
-        }
-        
-        [tableView, plusButton, confirmButton].forEach { view.addSubview($0) }
-        
-        tableView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        guard let tabBarHeight = tabBarController?.tabBar.frame.height else { return }
-        
-        plusButton.anchor(top: nil, left: nil, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: tabBarHeight + 16, paddingRight: 16, width: 50, height: 50)
-        
-        confirmButton.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: nil, paddingTop: 0, paddingLeft: 16, paddingBottom: tabBarHeight + 16, paddingRight: 0, width: 50, height: 50)                
-    }
-    
-    func fetchSets() {
-        
+    func fetchSets() {        
         guard let exerciceSets = exercice?.sets?.allObjects as? [Set] else { return }        
         let sortedSets = exerciceSets.sorted(by: { $0.date! < $1.date! })
         sets = sortedSets

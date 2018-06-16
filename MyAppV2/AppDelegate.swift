@@ -69,7 +69,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     fileprivate func setupNavBarAppearance() {
         UINavigationBar.appearance().tintColor = .white
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = .roseCustom
+        UINavigationBar.appearance().barTintColor = .orangeCustom
         UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]

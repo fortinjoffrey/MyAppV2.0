@@ -32,8 +32,8 @@ extension UIColor {
     static let doneGreen = rgb(r: 20, g: 187, b: 112)
     
     
-    static let orangeCustom = rgb(r: 255, g: 148, b: 2)
-    static let roseCustom = rgb(r: 233, g: 43, b: 97)
+    static let orangeCustom = rgb(r: 254, g: 131, b: 7)
+    static let roseCustom = rgb(r: 233, g: 46, b: 111)
     static let blueCustom = rgb(r: 21, g: 126, b: 251)
     
     

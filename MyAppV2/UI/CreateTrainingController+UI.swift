@@ -65,7 +65,7 @@ extension CreateTrainingController {
         
         let views = [endDateLabel,endDatePicker, notationLabel, notationContainerView, tirednessNotationLabel, tirednessNotationContainerView, notesLabel]
         
-        let stackView = setupStackview(with: views, for: .vertical)
+        let stackView = createStackView(with: views, for: .vertical)
         
         [stackView, notesTextView].forEach { scrollContainerView.addSubview($0) }
         
@@ -95,7 +95,7 @@ extension CreateTrainingController {
         scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 800)
         
         let views = [nameLabel, nameTextField, startDateLabel, startDatePicker]
-        let stackView = setupStackview(with: views, for: .vertical)
+        let stackView = createStackView(with: views, for: .vertical)
         
         scrollContainerView.addSubview(stackView)
         stackView.anchor(top: scrollContainerView.topAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 215)

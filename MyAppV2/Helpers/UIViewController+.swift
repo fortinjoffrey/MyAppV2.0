@@ -20,10 +20,10 @@ extension UIViewController {
     }
     
     func setupCancelButtonInNavBar() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancelModal))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Annuler", style: .plain, target: self, action: #selector(handleCancel))
     }
     
-    @objc func handleCancelModal() {
+    @objc func handleCancel() {
         dismiss(animated: true, completion: nil)
     }
     
@@ -32,7 +32,7 @@ extension UIViewController {
         let alertConfirmedAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(alertConfirmedAction)
         present(alertController, animated: true, completion: nil)
-    }
+    }        
     
     func sendUserNotification(identifier: String, timeInterval: TimeInterval, title: String, body: String) {
         
@@ -59,7 +59,7 @@ extension UIViewController {
         return label
     }
     
-    func setupStackview(with views: [UIView], for axis: UILayoutConstraintAxis) -> UIStackView {
+    func createStackView(with views: [UIView], for axis: UILayoutConstraintAxis) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.distribution = .fillEqually
         stackView.axis = axis
@@ -73,6 +73,14 @@ extension UIViewController {
         attributedText.append(NSAttributedString(string: secondString, attributes: [NSAttributedStringKey.foregroundColor:UIColor.black, NSAttributedStringKey.font:UIFont.boldSystemFont(ofSize: size)]))
         
         label.attributedText = attributedText
+    }
+    
+    func createButton(title: String, titleColor: UIColor, action: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(titleColor, for: .normal)
+        button.addTarget(self, action: action, for: .touchUpInside)
+        return button
     }
     
 }

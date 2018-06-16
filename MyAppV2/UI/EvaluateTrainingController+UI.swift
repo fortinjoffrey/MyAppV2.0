@@ -32,7 +32,7 @@ extension EvaluateTrainingController {
         
         let notationLabel = createLabel(for: "Notez la séance")
         let notationContainerView = setupNotationContainerView()
-        let stackView = setupStackview(with: [notationLabel, notationContainerView, validateButton], for: .vertical)
+        let stackView = createStackView(with: [notationLabel, notationContainerView, validateButton], for: .vertical)
         
         [stackView].forEach { mainView.addSubview($0) }
         

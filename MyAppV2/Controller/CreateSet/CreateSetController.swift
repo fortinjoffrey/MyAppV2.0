@@ -12,31 +12,26 @@ import CoreData
 protocol CreateSetControllerDelegate {
     func didAddSet(set: Set)
     func didEditSet(set: Set)
-    
 }
 
 class CreateSetController: UIViewController {
     
     var trainingIsDone: Bool = false
-    
     var delegate: CreateSetControllerDelegate?
-    
     var exercice: Exercice? {
         didSet {
-//            exercice?.sets?.count
         }
     }
+    var mainViewOriginY: CGFloat = 0.0
     
-    private let visualEffectView: UIVisualEffectView = {
+    let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.alpha = 1
         return visualEffectView
     }()
     
-    var mainViewOriginY: CGFloat = 0.0
-    
-    private let mainView: UIView = {
+    let mainView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.masksToBounds = true
@@ -44,16 +39,12 @@ class CreateSetController: UIViewController {
         return view
     }()
     
-    private let dismissButton: UIButton = {
+    let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(#imageLiteral(resourceName: "down-arrow").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         return button
     }()
-    
-    @objc fileprivate func handleCancel() {
-        dismiss(animated: true, completion: nil)
-    }
     
     // MARK: Labels
     let repsLabel: UILabel = {

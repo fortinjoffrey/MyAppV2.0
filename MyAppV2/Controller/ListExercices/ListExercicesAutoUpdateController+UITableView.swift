@@ -10,7 +10,8 @@ import UIKit
 
 extension ListExercicesAutoUpdateController: UITableViewDataSource, UITableViewDelegate {
     
-    func setupTableView() {        
+    func setupTableView() {
+        tableView.allowsSelection = training == nil ? false : true
         tableView.tableFooterView = UIView()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: listExercicesCellId)
     }

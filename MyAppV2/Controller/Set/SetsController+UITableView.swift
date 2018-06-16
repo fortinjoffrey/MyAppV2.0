@@ -19,7 +19,6 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
         tableView.register(GainageCell.self, forCellReuseIdentifier: cellIds[3])
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIds[4])
         tableView.tableFooterView = UIView()
-        
     }
     
     // MARK: Rows
@@ -34,7 +33,6 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
         
         switch exercice?.category {
         case "Poids libres","Machines, poulie", "Poids libres / Machines":
-//            cell.textLabel?.text = "\(set.repetitions) REPS || \(set.weight) KGS".set
             let cell = tableView.dequeueReusableCell(withIdentifier: cellIds[0], for: indexPath) as! RepsWeightCell
             cell.accessoryType = .checkmark
             cell.set = set
@@ -93,7 +91,6 @@ extension SetsController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
-    
     
     // MARK: Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

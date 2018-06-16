@@ -10,21 +10,26 @@ import UIKit
 
 class CreateExerciceController: UIViewController {
     
-    private let visualEffectView: UIVisualEffectView = {
+    let groups = ["Pectoraux" ,"Abdominaux", "Quadriceps","Deltoïdes","Biceps","Avant-bras","Trapèzes","Triceps","Lombaires","Ischio-Jambiers","Mollets","Fessiers","Dorsaux", "Cardio"].sorted()
+    let categories = ["Poids libres","Machines, poulie", "Cardio","Poids du corps","Gainage"]
+    
+    var mainViewOriginY: CGFloat = 0.0
+    
+    let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         visualEffectView.alpha = 1
         return visualEffectView
     }()
     
-    private let dismissButton: UIButton = {
+    let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setBackgroundImage(#imageLiteral(resourceName: "down-arrow").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         return button
     }()
     
-    private let mainView: UIView = {
+    let mainView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.masksToBounds = true
@@ -32,15 +37,7 @@ class CreateExerciceController: UIViewController {
         return view
     }()
     
-    private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Nom de l'exercice"
-        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var nameTextField: UITextField = {
+    lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .gray
         textField.textAlignment = .center
@@ -49,15 +46,7 @@ class CreateExerciceController: UIViewController {
         return textField
     }()
     
-    private let primaryGroupLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Groupe musculaire principal"
-        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let primaryGroupButton: UIButton = {
+    let primaryGroupButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sélectionner groupe", for: .normal)
         button.setTitleColor(.gray, for: .normal)
@@ -65,15 +54,7 @@ class CreateExerciceController: UIViewController {
         return button
     }()
     
-    private let secondaryGroupLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Groupe musculaire secondaire"
-        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let secondaryGroupButton: UIButton = {
+    let secondaryGroupButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("(Optionnel)", for: .normal)
         button.setTitleColor(.gray, for: .normal)
@@ -81,15 +62,7 @@ class CreateExerciceController: UIViewController {
         return button
     }()
     
-    private let categoryLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Catégorie de l'exercice"
-        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private let categoryButton: UIButton = {
+    let categoryButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Exemple: Poids du corps", for: .normal)
         button.setTitleColor(.gray, for: .normal)
@@ -98,10 +71,25 @@ class CreateExerciceController: UIViewController {
         return button
     }()
     
-    let groups = ["Pectoraux" ,"Abdominaux", "Quadriceps","Deltoïdes","Biceps","Avant-bras","Trapèzes","Triceps","Lombaires","Ischio-Jambiers","Mollets","Fessiers","Dorsaux", "Cardio"].sorted()
-    let categories = ["Poids libres","Machines, poulie", "Cardio","Poids du corps","Gainage"]
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tabBarController?.tabBar.isHidden = true
+        
+        setupUI()
+        setupPanGesture()
+    }
     
-    var mainViewOriginY: CGFloat = 0.0
+    override func viewDidLayoutSubviews() {
+        mainViewOriginY = mainView.frame.origin.y
+    }
+    
+    fileprivate func setupPanGesture() {
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
+        view.addGestureRecognizer(panGestureRecognizer)
+        
+    }
     
     @objc fileprivate func handleGroupSelection(button: UIButton) {
         
@@ -124,22 +112,7 @@ class CreateExerciceController: UIViewController {
             popoverController.permittedArrowDirections = []
             popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
         }
-        
         present(alertController, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    
-        if let tabBarController = tabBarController {
-            tabBarController.tabBar.isHidden = true
-        }
-        
-        setupViewsAndLayout()
-        
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleGesture))
-        view.addGestureRecognizer(panGestureRecognizer)
-        
     }
     
     @objc fileprivate func handleGesture(gesture: UIPanGestureRecognizer) {
@@ -168,52 +141,7 @@ class CreateExerciceController: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        mainViewOriginY = mainView.frame.origin.y
-    }
-    
-    fileprivate func setupViewsAndLayout() {
-        
-        [visualEffectView, dismissButton, mainView].forEach { view.addSubview($0) }
-        
-        visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        dismissButton.anchor(top: nil, left: nil, bottom: mainView.topAnchor, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 16, paddingRight: 0, width: 25, height: 25)
-        dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        mainView.anchor(top: nil, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: view.frame.height * 0.9)
-//        mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        let fieldsStackView = UIStackView(arrangedSubviews: [nameLabel, nameTextField, primaryGroupLabel, primaryGroupButton, secondaryGroupLabel, secondaryGroupButton, categoryLabel, categoryButton])
-        fieldsStackView.distribution = .fillEqually
-        fieldsStackView.axis = .vertical
-        
-        let cancelButton = UIButton(type: .system)
-        cancelButton.setTitle("Annuler", for: .normal)
-        cancelButton.setTitleColor(.red, for: .normal)
-        cancelButton.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
-        
-        let validateButton = UIButton(type: .system)
-        validateButton.setTitle("Ajouter", for: .normal)
-        validateButton.setTitleColor(.blue, for: .normal)
-        validateButton.addTarget(self, action: #selector(handleValidate), for: .touchUpInside)
-        
-        let buttonStackView = UIStackView(arrangedSubviews: [cancelButton, validateButton])
-        buttonStackView.distribution = .fillEqually
-        buttonStackView.axis = .horizontal
-        
-        [fieldsStackView, buttonStackView].forEach { mainView.addSubview($0) }
-        
-        fieldsStackView.anchor(top: mainView.topAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 400)
-        
-        buttonStackView.anchor(top: fieldsStackView.bottomAnchor, left: mainView.leftAnchor, bottom: nil, right: mainView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 50)
-    }
-    
-    @objc fileprivate func handleCancel() {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @objc fileprivate func handleValidate() {
+    @objc func handleValidate() {
         
         guard let exerciceName = nameTextField.text else { return }
         guard let primaryGroupName = primaryGroupButton.titleLabel?.text else { return }
@@ -221,10 +149,7 @@ class CreateExerciceController: UIViewController {
         guard let categoryName = categoryButton.titleLabel?.text else { return }
         
         if exerciceName.isEmpty || !groups.contains(primaryGroupName) || !categories.contains(categoryName) {
-            let alertController = UIAlertController(title: "Champ vide", message: "Veuillez compléter les champs", preferredStyle: .alert)
-            let alertConfirmedAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertConfirmedAction)
-            present(alertController, animated: true, completion: nil)
+            showEmptyTextFieldAlert(message: "Veuillez compléter les champs")
             return
         }
         

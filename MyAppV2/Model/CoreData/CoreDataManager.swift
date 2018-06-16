@@ -80,7 +80,6 @@ struct CoreDataManager {
             print("Failed to save training validation:", saveErr)
             return false
         }
-        
     }
     
     func saveNotationForTraining(notation: Int16, training: Training) {
@@ -148,24 +147,16 @@ struct CoreDataManager {
         
         let context = persistentContainer.viewContext
         
-//        let exercice = NSEntityDescription.insertNewObject(forEntityName: "Exercice", into: context) as! Exercice
         let exercice = Exercice(context: context)
         
         exercice.name = name
         exercice.date = Date()
         exercice.category = category
         exercice.isDone = false
-        
         exercice.primaryGroup = primaryGroup
         exercice.secondaryGroup = secondaryGroup
-        
         exercice.training = training
-        
-        if training == nil {
-            exercice.isListed = true
-        } else {
-            exercice.isListed = false
-        }
+        exercice.isListed = training == nil ? true : false
         
         do {
             try context.save()
@@ -173,6 +164,19 @@ struct CoreDataManager {
         } catch let saveErr {
             print("Failed to create exercice:", saveErr)
             return (nil, saveErr)
+        }
+    }
+    
+    func saveExerciceIsDone(isDone: Bool, exercice: Exercice?) -> Bool {
+        let context = persistentContainer.viewContext
+        exercice?.isDone = true
+        
+        do {
+            try context.save()
+            return true
+        } catch let saveErr {
+            print("Failed to save exercice validation:", saveErr)
+            return false
         }
     }
     

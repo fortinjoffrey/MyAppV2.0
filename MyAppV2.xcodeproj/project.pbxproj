@@ -53,6 +53,9 @@
 		DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE6CAD2091CF1D00C14200 /* CoreDataManager.swift */; };
 		DDBE85D120CAEA2A00A65BFD /* CreateTrainingController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */; };
 		DDBE85D320CAF62000A65BFD /* ReportTrainingController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBE85D220CAF62000A65BFD /* ReportTrainingController+UI.swift */; };
+		DDC75E7720D5AFB0004289CD /* ListExercicesAutoUpdateController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC75E7620D5AFB0004289CD /* ListExercicesAutoUpdateController+UI.swift */; };
+		DDC75E7920D5B186004289CD /* CreateExerciceController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC75E7820D5B186004289CD /* CreateExerciceController+UI.swift */; };
+		DDC75E7B20D5BE8C004289CD /* SetsController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC75E7A20D5BE8C004289CD /* SetsController+UI.swift */; };
 		DDE0CE25209E1A8500F7C82D /* CardioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE24209E1A8500F7C82D /* CardioCell.swift */; };
 		DDE0CE27209E1D6600F7C82D /* BodyweightCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */; };
 		DDE0CE29209E203400F7C82D /* GainageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE0CE28209E203400F7C82D /* GainageCell.swift */; };
@@ -119,6 +122,9 @@
 		DDBE85D020CAEA2A00A65BFD /* CreateTrainingController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateTrainingController+UI.swift"; sourceTree = "<group>"; };
 		DDBE85D220CAF62000A65BFD /* ReportTrainingController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReportTrainingController+UI.swift"; sourceTree = "<group>"; };
 		DDC75E7320D5765B004289CD /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		DDC75E7620D5AFB0004289CD /* ListExercicesAutoUpdateController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListExercicesAutoUpdateController+UI.swift"; sourceTree = "<group>"; };
+		DDC75E7820D5B186004289CD /* CreateExerciceController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateExerciceController+UI.swift"; sourceTree = "<group>"; };
+		DDC75E7A20D5BE8C004289CD /* SetsController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SetsController+UI.swift"; sourceTree = "<group>"; };
 		DDE0CE24209E1A8500F7C82D /* CardioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardioCell.swift; sourceTree = "<group>"; };
 		DDE0CE26209E1D6600F7C82D /* BodyweightCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyweightCell.swift; sourceTree = "<group>"; };
 		DDE0CE28209E203400F7C82D /* GainageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GainageCell.swift; sourceTree = "<group>"; };
@@ -378,6 +384,9 @@
 				DDBE85D220CAF62000A65BFD /* ReportTrainingController+UI.swift */,
 				DD51891420D45EBE009E067A /* EvaluateTrainingController+UI.swift */,
 				DD51891620D464B9009E067A /* ExercicesController+UI.swift */,
+				DDC75E7620D5AFB0004289CD /* ListExercicesAutoUpdateController+UI.swift */,
+				DDC75E7820D5B186004289CD /* CreateExerciceController+UI.swift */,
+				DDC75E7A20D5BE8C004289CD /* SetsController+UI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -475,6 +484,8 @@
 				DDFBC7C3209B6D4D001D464C /* SetsController+CreateSetControllerDelegate.swift in Sources */,
 				DD2808DE209344F700D14DE3 /* NotationPickerView.swift in Sources */,
 				DDF1E97F20A9DB17005F9DC0 /* MainTabBarController.swift in Sources */,
+				DDC75E7720D5AFB0004289CD /* ListExercicesAutoUpdateController+UI.swift in Sources */,
+				DDC75E7B20D5BE8C004289CD /* SetsController+UI.swift in Sources */,
 				DDBE85D120CAEA2A00A65BFD /* CreateTrainingController+UI.swift in Sources */,
 				DD5CD28520BC386100213BD3 /* CreateExerciceController.swift in Sources */,
 				DDBE6CA82091BE6E00C14200 /* TrainingsController.swift in Sources */,
@@ -509,6 +520,7 @@
 				DDBE85D320CAF62000A65BFD /* ReportTrainingController+UI.swift in Sources */,
 				DDFBC7C1209B6B83001D464C /* SetsController+UITableView.swift in Sources */,
 				DDA4DB3B20AD804B0090E5FB /* SettingsSubtitleCell.swift in Sources */,
+				DDC75E7920D5B186004289CD /* CreateExerciceController+UI.swift in Sources */,
 				DD2573C520920CC800AA6AB6 /* UIViewController+.swift in Sources */,
 				DDEDC14820BEDA4000B65A62 /* ListExercicesAutoUpdateController+UISearchBarDelegate.swift in Sources */,
 				DDBE6CAE2091CF1D00C14200 /* CoreDataManager.swift in Sources */,
