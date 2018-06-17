@@ -13,7 +13,8 @@ extension ListExercicesAutoUpdateController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
                 
         if !searchText.isEmpty {
-            let predicate = NSPredicate(format: "name contains %@ && isListed = true", searchText)                        
+//            let predicate = NSPredicate(format: "name contains %@ && isListed = true", searchText)
+            let predicate = NSPredicate(format: "name contains [cd] %@ && isListed = true", searchText)
             fetchResultsController.fetchRequest.predicate = predicate
         } else {
             fetchResultsController.fetchRequest.predicate = NSPredicate(format: "isListed = true")

@@ -54,7 +54,7 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let groupSortDescriptor = NSSortDescriptor(key: "primaryGroup", ascending: true)
-        let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
+        let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))        
         
         //        request.predicate = NSPredicate(format: "date > %@", NSDate())
         request.predicate = NSPredicate(format: "isListed = true")
