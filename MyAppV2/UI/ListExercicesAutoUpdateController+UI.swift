@@ -32,6 +32,7 @@ extension ListExercicesAutoUpdateController {
         navigationItem.searchController = searchController
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
     }
     
     

@@ -106,7 +106,7 @@ class ListExercicesAutoUpdateController: UIViewController, NSFetchedResultsContr
     /*
      * Might call this method upon "Reset All Exercices To Default" inside the settings page
      */
-    @objc fileprivate func handleReset() {
+    @objc func handleReset() {
         UserDefaults.standard.set(nil, forKey: "hasAlreadyBeenLauched")
         
         fetchResultsController.fetchedObjects?.forEach({ (exercice) in
