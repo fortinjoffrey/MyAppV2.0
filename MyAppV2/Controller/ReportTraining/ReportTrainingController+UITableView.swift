@@ -78,10 +78,10 @@ extension ReportTrainingController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.backgroundColor = .lightBlue
-        label.textColor = .darkBlue
+        label.backgroundColor = .darkBlue
+        label.textColor = .white
         label.textAlignment = .center
-        label.text = exercices[section].name?.uppercased()
+        label.text = exercices[section].name
         label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }

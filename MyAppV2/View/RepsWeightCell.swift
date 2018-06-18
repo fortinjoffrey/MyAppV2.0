@@ -13,12 +13,9 @@ class RepsWeightCell: UITableViewCell {
     var set: Set? {
         didSet {
             if let reps = set?.repetitions, let weight = set?.weight {
-                
                 repsValueLabel.text = "\(reps)"
                 weightValueLabel.text = "\(weight)"
-                
-            }
-            
+            }            
         }
     }
     
@@ -27,7 +24,7 @@ class RepsWeightCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     
@@ -43,7 +40,7 @@ class RepsWeightCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     
@@ -63,32 +60,21 @@ class RepsWeightCell: UITableViewCell {
     private func setupUI() {
         
         let middleSeparator = UIView()
-        middleSeparator.backgroundColor = .blue
+        middleSeparator.backgroundColor = .darkBlue
         
         [repsValueLabel, repsLabel, middleSeparator, weightValueLabel, weightLabel].forEach { addSubview($0) }
-        [].forEach { addSubview($0) }
         
         middleSeparator.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 8, paddingRight: 0, width: 2, height: 0)
         
-        middleSeparator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true                
-        
-//        repsLabel.backgroundColor = .cyan
+        middleSeparator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         
         repsLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: middleSeparator.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: frame.width / 4, height: 0)
         
-//        repsValueLabel.backgroundColor = .yellow
-        
         repsValueLabel.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: repsLabel.leftAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 0)
         
-//        weightLabel.backgroundColor = .cyan
         weightLabel.anchor(top: topAnchor, left: nil, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: frame.width / 4, height: 0)
         
-//        weightValueLabel.backgroundColor = .yellow
         weightValueLabel.anchor(top: topAnchor, left: middleSeparator.rightAnchor, bottom: bottomAnchor, right: weightLabel.leftAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 0, height: 0)
-        
-        
-        
-        
     }
         
     

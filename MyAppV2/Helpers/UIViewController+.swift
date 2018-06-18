@@ -83,4 +83,21 @@ extension UIViewController {
         return button
     }
     
+    func createSeparatorView(color: UIColor) -> UIView {
+        let view = UIView()
+        view.backgroundColor = color
+        return view
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+

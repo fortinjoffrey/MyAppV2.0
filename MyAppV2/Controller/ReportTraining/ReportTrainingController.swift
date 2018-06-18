@@ -27,14 +27,25 @@ class ReportTrainingController: UIViewController {
                 if hours < 0 || minutes < 0 || hours > 23 {
                     durationText = ""
                 } else {
-                    durationText = "\(hours)h" + String(format: "%02d", minutes)
+                    durationText = "\(hours) h " + String(format: "%02d", minutes) + " min"
                 }
-                setupBlackBoldAttributedText(for: durationLabel, firstString: "Durée\n", secondString: durationText, size: 14)
+                setupBlackBoldAttributedText(for: durationLabel, firstString: "", secondString: durationText, size: 16)
             }
             
             if let numberOfExercices = training?.exercices?.allObjects.count {
-                setupBlackBoldAttributedText(for: exercicesNumberLabel, firstString: "Exercice\n", secondString: "\(numberOfExercices)", size: 14)
+                setupBlackBoldAttributedText(for: exercicesNumberLabel, firstString: "\(numberOfExercices)", secondString: " exercices"  , size: 16)
             }
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "FR_fr")
+            dateFormatter.dateStyle = .full
+            dateFormatter.timeStyle = .short
+//            dateFormatter.dateFormat = "EEEE d MMM yyyy à hh:mm"
+            dateLabel.text = "Le " + dateFormatter.string(from: startDate)
+            dateLabel.font = UIFont.boldSystemFont(ofSize: 16)                    
+            
+            guard let notes = training?.notes else { return }
+            notesTextView.text = notes
         }
     }        
     
@@ -81,17 +92,33 @@ class ReportTrainingController: UIViewController {
     
     let durationLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
+//        label.numberOfLines = 0
+        label.textAlignment = .left
         return label
     }()
     
     let exercicesNumberLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
-        label.textAlignment = .center
+//        label.numberOfLines = 0
+        label.textAlignment = .left
         return label
     }()
+    
+    let dateLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let notesTextView: UITextView = {
+        let tf = UITextView()
+        tf.text = ""
+        tf.isEditable = false
+        tf.font = UIFont.systemFont(ofSize: 16)
+        tf.backgroundColor = .white
+        return tf
+    }()
+    
     
     let performancesTableView: UITableView = {
         let tv = UITableView() 

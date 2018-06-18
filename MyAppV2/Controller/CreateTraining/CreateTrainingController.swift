@@ -93,7 +93,7 @@ class CreateTrainingController: UIViewController {
     lazy var notesTextView: UITextView = {
         let tf = UITextView()
         tf.delegate = self
-        tf.text = ""
+        tf.text = ""        
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.backgroundColor = .white
         return tf

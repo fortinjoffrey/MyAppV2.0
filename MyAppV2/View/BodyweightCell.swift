@@ -22,7 +22,7 @@ class BodyweightCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     

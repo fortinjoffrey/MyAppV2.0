@@ -23,7 +23,7 @@ class GainageCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     
@@ -39,7 +39,7 @@ class GainageCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     
@@ -59,7 +59,7 @@ class GainageCell: UITableViewCell {
     private func setupUI() {
         
         let middleSeparator = UIView()
-        middleSeparator.backgroundColor = .blue
+        middleSeparator.backgroundColor = .darkBlue
         
         [durationMinutesValueLabel, durationMinutesLabel, middleSeparator, durationSecondsValueLabel, durationSecondsLabel].forEach { addSubview($0) }
         [].forEach { addSubview($0) }

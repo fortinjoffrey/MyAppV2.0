@@ -24,7 +24,7 @@ class CardioCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     
@@ -40,7 +40,7 @@ class CardioCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .right
         label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.textColor = .blue
+        label.textColor = .blueCustom
         return label
     }()
     
@@ -60,7 +60,7 @@ class CardioCell: UITableViewCell {
     private func setupUI() {
         
         let middleSeparator = UIView()
-        middleSeparator.backgroundColor = .blue
+        middleSeparator.backgroundColor = .darkBlue
         
         [durationValueLabel, durationLabel, middleSeparator, speedValueLabel, speedLabel].forEach { addSubview($0) }
         [].forEach { addSubview($0) }
