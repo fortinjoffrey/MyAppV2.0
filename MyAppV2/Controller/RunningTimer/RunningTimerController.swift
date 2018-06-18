@@ -161,8 +161,8 @@ class RunningTimerController: UIViewController {
         let hideLabel = createLabel(for: "Cacher")
         hideLabel.font = UIFont.systemFont(ofSize: 12)
         hideLabel.textColor = .lightGray
-        let fifteenSecondsLabel = createLabel(for: "15 secs")
-        fifteenSecondsLabel.textColor = .lightGray
+        let fifteenSecondsLabel = createLabel(for: "15")
+        fifteenSecondsLabel.textColor = .black
         fifteenSecondsLabel.font = UIFont.systemFont(ofSize: 12)
         
         [dismissButton, hideLabel, timeLabel, remainingTimeLabel, stopButton, minusButton, plusButton, fifteenSecondsLabel].forEach { view.addSubview($0) }

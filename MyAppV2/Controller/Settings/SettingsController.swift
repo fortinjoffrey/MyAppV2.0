@@ -65,7 +65,7 @@ class SettingsController: UITableViewController {
                 return cell
             }
         default:
-            let cell = tableView.dequeuseReusableCell(withIdentifier: rightDetailCellId, for: indexPath, textLabelText: "Version", detailTextLabelText: "1.0", selectionStyle: .none, accessoryType: .none)
+            let cell = tableView.dequeuseReusableCell(withIdentifier: rightDetailCellId, for: indexPath, textLabelText: "Version", detailTextLabelText: "1.1", selectionStyle: .none, accessoryType: .none)
             cell.accessoryType = .none
             cell.selectionStyle = .none
             return cell

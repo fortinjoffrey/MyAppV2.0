@@ -93,7 +93,30 @@ extension UIViewController {
         view.endEditing(true)
     }
     
+    func setupKeyboardToolBar(for textView: UITextView) {
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Terminer", style: .done, target: self, action: #selector(dismissKeyboard))
+        
+        toolBar.items = [flexibleSpace, doneButton]
+        textView.inputAccessoryView = toolBar
+    }
     
+    func createKeyboardToolBar() -> UIToolbar {
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "Terminer", style: .done, target: self, action: #selector(dismissKeyboard))
+        
+        toolBar.items = [flexibleSpace, doneButton]
+        return toolBar
+    }
+        
 }
 
 

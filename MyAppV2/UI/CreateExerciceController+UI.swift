@@ -12,6 +12,8 @@ extension CreateExerciceController {
     
     func setupUI() {
         
+       
+        
         [visualEffectView, dismissButton, mainView].forEach { view.addSubview($0) }
         
         let nameLabel = createLabel(for: "Nom de l'exercice")
@@ -23,6 +25,8 @@ extension CreateExerciceController {
         let confirmButton = createButton(title: "Confirmer", titleColor: .blue, action: #selector(handleValidate))
         
         let buttonStackView = createStackView(with: [cancelButton, confirmButton], for: .horizontal)
+        
+        nameTextField.inputAccessoryView = createKeyboardToolBar()
         
         let views = [nameLabel, nameTextField, primaryGroupLabel, primaryGroupButton, secondaryGroupLabel, secondaryGroupButton, categoryLabel, categoryButton, buttonStackView]
         let stackView = createStackView(with: views, for: .vertical)

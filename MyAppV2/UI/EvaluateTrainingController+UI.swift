@@ -12,8 +12,8 @@ extension EvaluateTrainingController {
     
     func setupUI() {
         setupVisualEffectMainViews()
-        setupKeyboardToolBar()
-        setupNotationViewsAndValidateButton()        
+        setupNotationViewsAndValidateButton()
+        notesTextView.inputAccessoryView = createKeyboardToolBar()
     }
     
     fileprivate func setupVisualEffectMainViews() {
@@ -62,17 +62,7 @@ extension EvaluateTrainingController {
         return notationContainerView
     }
     
-    fileprivate func setupKeyboardToolBar() {
-        
-        let toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
-        
-        toolBar.items = [flexibleSpace, doneButton]
-        notesTextView.inputAccessoryView = toolBar
-    }
+    
 }
 
 
