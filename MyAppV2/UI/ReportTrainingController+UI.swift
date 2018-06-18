@@ -12,7 +12,8 @@ extension ReportTrainingController {
     
     func setupUI() {
         setupSubViews()
-        setupLayout2()
+        setupVisualEffectMainViews()
+        setupLayout()
     }
     
     func setupSubViews() {
@@ -24,30 +25,17 @@ extension ReportTrainingController {
     
     // 8 P + 25 D + 16 P + 70 D + collectionViewHeight + tableViewHeigt
     
-    func setupLayout() {
+    fileprivate func setupVisualEffectMainViews() {
         visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        scrollView.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
+        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: 8 + 25 + 16 + 70 + collectionViewHeight + tableViewHeight + 50)
+        let scrollContainerViewHeight: CGFloat = 8 + 25 + 16 + 50 + 16 + 1 + 16 + 200 + 16 + 1 + 16 + collectionViewHeight + 16 + 1 + 16 + 50 + 16 + 1 + 16 + tableViewHeight + 16 + 1 + 16 + 50 + 16 + 1 + 16 + 200
+        
+        scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: scrollContainerViewHeight)
         
         dismissButton.anchor(top: scrollContainerView.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
         dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
-        
-        let notationLabel = createAndFillNotationLabel()
-        
-        let durationExercicesStackView = UIStackView(arrangedSubviews: [durationLabel, notationLabel,exercicesNumberLabel])
-        durationExercicesStackView.axis = .horizontal
-        durationExercicesStackView.distribution = .fillEqually
-        
-        scrollContainerView.addSubview(durationExercicesStackView)
-        
-        durationExercicesStackView.anchor(top: dismissButton.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 70)
-        
-        groupsCollectionView.anchor(top: durationExercicesStackView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: collectionViewHeight)
-        
-        performancesTableView.anchor(top: groupsCollectionView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: tableViewHeight)
     }
     
     fileprivate func createAndFillNotationLabel() -> UILabel {
@@ -63,7 +51,6 @@ extension ReportTrainingController {
             label.text = "Note\n\(notation)"            
         }
         label.font = UIFont.boldSystemFont(ofSize: 14)
-//        label.font = UIFont.preferredFont(forTextStyle: .headline)
         print(UIFont.preferredFont(forTextStyle: .headline).pointSize)
         label.font = UIFont(name: "AvenirNext-Bold", size: UIFont.preferredFont(forTextStyle: .headline).pointSize)
         label.adjustsFontForContentSizeCategory = true
@@ -74,19 +61,7 @@ extension ReportTrainingController {
     
     
     
-    func setupLayout2() {
-        
-        visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        scrollView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
-        
-        let scrollContainerViewHeight: CGFloat = 8 + 25 + 16 + 50 + 16 + 1 + 16 + 200 + 16 + 1 + 16 + collectionViewHeight + 16 + 1 + 16 + 50 + 16 + 1 + 16 + tableViewHeight + 16 + 1 + 16 + 50 + 16 + 1 + 16 + 200
-        
-        scrollContainerView.anchor(top: scrollView.topAnchor, left: scrollView.leftAnchor, bottom: scrollView.bottomAnchor, right: scrollView.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: view.frame.width, height: scrollContainerViewHeight)
-        
-        dismissButton.anchor(top: scrollContainerView.safeAreaLayoutGuide.topAnchor, left: nil, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 25, height: 25)
-        dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        
+    func setupLayout() {
         
         guard let name = training?.name else { return }
         let nameLabel = createLabel(for: name)
@@ -114,7 +89,10 @@ extension ReportTrainingController {
         
         let notesSeparator = createSeparatorView(color: .blueCustom)
         
-        [nameLabel, nameSeparator, infoStackView, infoSeparator, groupsSeparator, performancesLabel, performancesLabelSeparator, performancesSeparator, notesLabel, notesSeparator,notesTextView].forEach { scrollContainerView.addSubview($0) }
+        let notationSeparator = createSeparatorView(color: .blueCustom)
+        
+        
+        [nameLabel, nameSeparator, infoStackView, infoSeparator, groupsSeparator, performancesLabel, performancesLabelSeparator, performancesSeparator, notesLabel, notesSeparator,notesTextView, notationSeparator].forEach { scrollContainerView.addSubview($0) }
         
         nameLabel.anchor(top: dismissButton.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right: scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: scrollContainerView.frame.width  * 0.2, height: 50)
         
@@ -142,7 +120,45 @@ extension ReportTrainingController {
         
         notesSeparator.anchor(top: notesLabel.bottomAnchor, left: nameSeparator.leftAnchor, bottom: nil, right: nameSeparator.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 6)
         
-        notesTextView.anchor(top: notesSeparator.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right:scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 200)
+        notesTextView.anchor(top: notesSeparator.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right:scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 100)
+        
+        if let notationInfoStackView = createStackViewForNotationInfo() {
+            
+            scrollContainerView.addSubview(notationInfoStackView)
+            notationInfoStackView.anchor(top: notesTextView.bottomAnchor, left: scrollContainerView.leftAnchor, bottom: nil, right:scrollContainerView.rightAnchor, paddingTop: 16, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: 60)
+        }
+    }
+        
+    
+    fileprivate func createStackViewForNotationInfo() -> UIStackView? {
+        
+        // notation
+
+        let notationLabel = createLabel(for: "Séance")
+        guard let notation = training?.notation else { return nil }
+        let notationValueLabel = createLabel(for: "\(notation)")
+        
+        let hue = CGFloat(notation) / 11 * 0.3
+        notationValueLabel.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        
+        let notationViews = [notationLabel, notationValueLabel]
+        let notationStackView = createStackView(with: notationViews, for: .vertical)
+        
+        // tiredness notation
+        
+        let tirednessNotationLabel = createLabel(for: "Fatigue")
+        guard let tirednessNotation = training?.tirednessNotation else { return nil }
+        let tirednessNotationValueLabel = createLabel(for: "\(tirednessNotation)")
+        
+        let tirednessHue = CGFloat(11 - tirednessNotation - 1) / 11 * 0.3
+        tirednessNotationValueLabel.backgroundColor = UIColor(hue: tirednessHue, saturation: 1.0, brightness: 1.0, alpha: 1.0)
+        
+        
+        let tirednessViews = [tirednessNotationLabel, tirednessNotationValueLabel]
+        let tirednessStackView = createStackView(with: tirednessViews, for: .vertical)
+        
+        let views = [notationStackView, tirednessStackView]
+        return createStackView(with: views, for: .horizontal)
     }
     
     

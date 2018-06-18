@@ -84,6 +84,7 @@ class CreateTrainingController: UIViewController {
         let pv = NotationPickerView()
         pv.dataSource = pv
         pv.delegate = pv
+        pv.redToGreenMode = false
         pv.selectRow(5, inComponent: 0, animated: false)
         let rotationAngle: CGFloat = -.pi / 2
         pv.transform = CGAffineTransform(rotationAngle: rotationAngle)
@@ -93,7 +94,7 @@ class CreateTrainingController: UIViewController {
     lazy var notesTextView: UITextView = {
         let tf = UITextView()
         tf.delegate = self
-        tf.text = ""        
+        tf.text = ""
         tf.font = UIFont.systemFont(ofSize: 16)
         tf.backgroundColor = .white
         return tf
@@ -170,3 +171,22 @@ class CreateTrainingController: UIViewController {
         training == nil ? createTraining(name: name, isDone: isDone) : saveTrainingChanges(name: name, isDone: isDone)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -12,6 +12,7 @@ class NotationPickerView: UIPickerView {
     
     open let data = [Int16](0...10)
     var selectedData: Int16 = 5
+    var redToGreenMode = true
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -48,7 +49,9 @@ extension NotationPickerView: UIPickerViewDelegate {
         let label = UILabel()
         label.text = "\(data[row])"
         
-        let hue = CGFloat(row)/CGFloat(data.count) * 0.3
+        let hue = redToGreenMode ? CGFloat(row)/CGFloat(data.count) * 0.3 : CGFloat(data.count - row - 1)/CGFloat(data.count) * 0.3
+        
+//        let hue = CGFloat(row)/CGFloat(data.count) * 0.3
         label.backgroundColor = UIColor(hue: hue, saturation: 1.0, brightness:1.0, alpha: 1.0)
         
         

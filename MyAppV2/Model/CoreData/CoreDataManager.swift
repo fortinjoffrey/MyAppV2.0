@@ -82,10 +82,12 @@ struct CoreDataManager {
         }
     }
     
-    func saveNotationForTraining(notation: Int16, training: Training) {
+    func saveNotationsForTraining(notes: String,notation: Int16, tirednessNotation: Int16, training: Training) {
         let context = persistentContainer.viewContext
         
+        training.notes = notes
         training.notation = notation
+        training.tirednessNotation = tirednessNotation
         
         do {
             try context.save()

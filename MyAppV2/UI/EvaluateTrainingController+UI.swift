@@ -12,7 +12,8 @@ extension EvaluateTrainingController {
     
     func setupUI() {
         setupVisualEffectMainViews()
-        setupNotationViewsAndValidateButton()
+        setupKeyboardToolBar()
+        setupNotationViewsAndValidateButton()        
     }
     
     fileprivate func setupVisualEffectMainViews() {
@@ -21,7 +22,7 @@ extension EvaluateTrainingController {
         
         visualEffectView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         
-        mainView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: view.frame.height * 0.3)
+        mainView.anchor(top: nil, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 16, paddingBottom: 0, paddingRight: 16, width: 0, height: view.frame.height * 0.8)
         NSLayoutConstraint.activate([
             mainView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             mainView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
@@ -29,10 +30,16 @@ extension EvaluateTrainingController {
     }
     
     fileprivate func setupNotationViewsAndValidateButton() {
+                
+        let notesLabel = createLabel(for: "Remarques sur la séance")
+        
+        
         
         let notationLabel = createLabel(for: "Notez la séance")
-        let notationContainerView = setupNotationContainerView()
-        let stackView = createStackView(with: [notationLabel, notationContainerView, validateButton], for: .vertical)
+        let notationContainerView = setupNotationContainerView(for: notationPicker)
+        let tirednessNotationLabel = createLabel(for: "Évaluez votre fatigue")
+        let tirednessNotationContainerView = setupNotationContainerView(for: tirednessNotationPicker)
+        let stackView = createStackView(with: [notesLabel, notesTextView,notationLabel, notationContainerView, tirednessNotationLabel, tirednessNotationContainerView, validateButton], for: .vertical)
         
         [stackView].forEach { mainView.addSubview($0) }
         
@@ -40,20 +47,38 @@ extension EvaluateTrainingController {
         
     }
     
-    fileprivate func setupNotationContainerView() -> UIView {
+    fileprivate func setupNotationContainerView(for notationPickerView: NotationPickerView) -> UIView {
         
         let notationContainerView = UIView()
-        notationContainerView.addSubview(notationPicker)
+        notationContainerView.addSubview(notationPickerView)        
         
         NSLayoutConstraint.activate([
-            notationPicker.centerXAnchor.constraint(equalTo: notationContainerView.centerXAnchor),
-            notationPicker.centerYAnchor.constraint(equalTo: notationContainerView.centerYAnchor)
+            notationPickerView.centerXAnchor.constraint(equalTo: notationContainerView.centerXAnchor),
+            notationPickerView.centerYAnchor.constraint(equalTo: notationContainerView.centerYAnchor)
             ])
         
-        notationPicker.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: view.frame.width - 32)
+        notationPickerView.anchor(top: nil, left: nil, bottom: nil, right: nil, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 50, height: view.frame.width - 32)
         
         return notationContainerView
     }
     
-    
+    fileprivate func setupKeyboardToolBar() {
+        
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissKeyboard))
+        
+        toolBar.items = [flexibleSpace, doneButton]
+        notesTextView.inputAccessoryView = toolBar
+    }
 }
+
+
+
+
+
+
+
+
